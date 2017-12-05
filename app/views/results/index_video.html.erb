@@ -1,0 +1,6 @@
+<% @results.each do |result| %>
+    <%= result.caption %>
+    <%= result.created_at %>
+    <%= link_to "Va voir", result.link %>
+  <br>
+<% end %>
