@@ -17,6 +17,7 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem "pundit"
 
 group :development, :test do
   gem 'pry-byebug'
