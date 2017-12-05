@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205122105) do
+ActiveRecord::Schema.define(version: 20171205150158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,12 +29,13 @@ ActiveRecord::Schema.define(version: 20171205122105) do
     t.text "message"
     t.text "story"
     t.string "node_id"
-    t.string "picture_url"
+    t.string "attachments"
     t.string "privacy"
     t.string "link"
     t.bigint "provider_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category"
     t.index ["provider_id"], name: "index_results_on_provider_id"
   end
 
