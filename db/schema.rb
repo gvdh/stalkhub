@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205144817) do
+ActiveRecord::Schema.define(version: 20171205150158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20171205144817) do
     t.text "message"
     t.text "story"
     t.string "node_id"
-    t.string "picture_url"
+    t.string "attachments"
     t.string "privacy"
     t.string "link"
     t.bigint "provider_id"

@@ -39,7 +39,7 @@ posts.each do |post|
     message: "#{actual_post["description"]}",
     node_id: "#{post["id"]}",
     provider_id: User.first.providers[0].id,
-    picture_url: "#{actual_post["attachments"]}",
+    attachments: "#{actual_post["attachments"]}",
     category: "#{actual_post["type"]}",
     privacy: "#{actual_post["privacy"]["value"]}",
     link: "#{actual_post["permalink_url"]}"
