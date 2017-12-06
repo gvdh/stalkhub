@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206092336) do
+ActiveRecord::Schema.define(version: 20171206175609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,11 @@ ActiveRecord::Schema.define(version: 20171206092336) do
     t.datetime "updated_at", null: false
     t.string "category"
     t.string "created_time"
+    t.text "description"
+    t.string "fan_count"
+    t.string "name"
+    t.string "picture"
+    t.string "total_likes"
     t.index ["provider_id"], name: "index_results_on_provider_id"
   end
 

@@ -3,7 +3,7 @@ class ResultsController < ApplicationController
   def index
     provider = Provider.where(name: params[:provider], user: current_user).first
     if provider.nil?
-      flash[:error] = 'No provider'
+      flash[:alert] = 'No provider'
       redirect_to root_path
     end
 
