@@ -1,10 +1,10 @@
 class ResultsController < ApplicationController
 
-  def index
+  def fb_index
     @results = policy_scope(Result).order(created_at: :desc)
   end
 
-  def index_photo
+  def fb_index_photo
     @results = policy_scope(Result).order(created_at: :desc)
     @photos = []
     @results.each do |result|
@@ -12,9 +12,9 @@ class ResultsController < ApplicationController
     end
   end
 
-  def index_text
+  def fb_index_text
   end
 
-  def index_video
+  def fb_index_video
   end
 end
