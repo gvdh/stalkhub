@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   get '/:provider/results', to: 'results#index', as: 'results'
+  get '/:provider/connect', to: 'providers#new', as: 'new_provider'
 
   devise_for :users
   root to: 'pages#home'
