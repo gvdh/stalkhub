@@ -1,1 +1,16 @@
 // Specific CSS for your home-page
+body {
+  color:black;
+  background-image: url("earth.png");
+  background-size: 100%;
+  background-position: center top;
+  display:block;
+}
+
+#Welcome {
+  position: relative;
+  vertical-align:middle;
+  display:block;
+  width: 98px;
+  height: 58px;
+}
