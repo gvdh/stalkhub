@@ -1,14 +1,22 @@
 <div id="page">
-  <div id="sidebar">
-    <%= render 'shared/sidebar_menu' %>
-  </div>
+  <div id="side_content">
+    <div id="sidebar">
+      <%= render 'shared/sidebar_menu' %>
+    </div>
 
+    <div id="category_filter">
+      <%= render 'shared/category_filter', provider: @provider %>
+    </div>
+  </div>
   <div id="container-reduced">
     <% @results.each do |result| %>
+      <p>
         <%= result.caption %>
         <%= result.created_at %>
-        <%= link_to "GO", result.link %>
+        <%= link_to "GO", result.link, target: '_blank' %>
+      </p>
       <br>
     <% end %>
+    <p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p><p>coucou</p>
   </div>
 </div>

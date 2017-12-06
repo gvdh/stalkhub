@@ -2,29 +2,10 @@ body {
   font-family: "raleway", sans-serif;
 }
 
-
-#page {
-  display: flex;
-}
-
-#container-reduced {
-  flex-grow: 1;
-  margin : 5%;
-}
-
-#sidebar {
-
-}
-
 .sidenav {
   height: 100vh;
   width: 120px;
-  position: fixed;
   position: relative;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  bottom: 0;
   background-color: #FFF;
   overflow-x: hidden;
   padding-top: 20px;
