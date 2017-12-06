@@ -2,6 +2,7 @@ require 'koala'
 
 class GraphObjectService
   UPLOADED_PHOTOS_FIELDS = "me?fields=albums{privacy,photos{name,link,created_time,images}}"
+  UPLOADED_POSTS_FIELDS = "me?fields=posts{privacy,message, created_time,story,attachments}"
 
   def initialize(token)
     @token = token
@@ -19,25 +20,41 @@ class GraphObjectService
           attachments = photo["images"] unless photo["images"].nil?
           created_time = photo["created_time"]
           photo_link = photo["link"]
-          result = {
+          id = photo["id"]
+          results << {
             caption: caption,
-            link: photo["link"],
+            link: photo_link,
             privacy: album_privacy,
             category: "photo",
             attachments: attachments,
-            created_time: photo["created_time"]
-                  }
-        results << result
+            created_time: created_time
+          }
         end
       end
     end
-    puts results
+    return results
   end
 
+  def get_uploaded_posts
+    results = []
+    @graph = Koala::Facebook::API.new(@token)
+    posts =  @graph.get_object(UPLOADED_POSTS_FIELDS)
+    puts posts.next_page
+    until posts.next_page.nil?
+      unless posts["posts"]["data"].nil?
+        posts["posts"]["data"].each do |post|
+          results << post
+        end
+      posts = posts.next_page
+    end
+    end
+    puts results
+  end
 
 end
 
 
 c = GraphObjectService.new(TOKEN)
+c.get_uploaded_posts
 c.get_uploaded_photos
 
