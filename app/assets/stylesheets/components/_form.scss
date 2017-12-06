@@ -1,0 +1,62 @@
+body {
+  background-image: linear-gradient(-225deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%),url("earth.png");
+  background-size: cover;
+  background-position: bottom top;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.logo {
+  margin: 20px;
+}
+
+#form {
+  background-color: #FFF;
+  opacity: 0.7;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+#title {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  color: #FFF;
+}
+
+#sentence {
+  padding-bottom:30px;
+  color: #FFF;
+}
+
+input {
+  width: 350px;
+  background-color: rgba(255,255,255, 0.6);
+}
+
+.form-group {
+  text-align: center;
+  // width: 400px;
+  margin: 20px 30px;
+  border-radius: 8px;
+  background-color: white;
+  label {
+    display: none;
+  }
+}
+
+.btn.btn-default {
+  width: 100px;
+  border-radius: 8px;
+  border: none;
+  background-color: $blue;
+  color: #FFF;
+}
+
+a {
+  text-align: center;
+}
+
+
+.form-group {
+  background-color:#FFF;
+}
