@@ -1,8 +1,10 @@
 require 'koala'
+Koala.config.api_version = "v2.11"
 
 class GraphObjectService
-  UPLOADED_PHOTOS_FIELDS = "me?fields=albums{privacy,photos{name,link,created_time,images}}"
-  UPLOADED_POSTS_FIELDS = "me?fields=posts{privacy,message, created_time,story,attachments}"
+  UPLOADED_PHOTOS_FIELDS = "me/albums?fields=privacy,photos{name,link,created_time,images}"
+  UPLOADED_POSTS_FIELDS = "me/posts?fields=privacy,message, created_time,story,attachments"
+  LIKED_PAGES = "me/likes?fields=fan_count,name,picture,link&after="
 
   def initialize(token)
     @token = token
@@ -12,23 +14,13 @@ class GraphObjectService
     results = []
     @graph = Koala::Facebook::API.new(@token)
     photos =  @graph.get_object(UPLOADED_PHOTOS_FIELDS)
-    photos["albums"]["data"].each do |data|
-      album_privacy = data["privacy"]
-      unless data["photos"].nil?
-        data["photos"]["data"].each do |photo|
-          caption = photo["name"] unless photo["name"].nil?
-          attachments = photo["images"] unless photo["images"].nil?
-          created_time = photo["created_time"]
-          photo_link = photo["link"]
-          id = photo["id"]
-          results << {
-            caption: caption,
-            link: photo_link,
-            privacy: album_privacy,
-            category: "photo",
-            attachments: attachments,
-            created_time: created_time
-          }
+    until photos.next_page.nil?
+      photos.each do |data|
+        album_privacy = data["privacy"]
+        unless data["photos"].nil?
+          data["photos"]["data"].each do |photo|
+            results << photo
+          end
         end
       end
     end
@@ -39,16 +31,26 @@ class GraphObjectService
     results = []
     @graph = Koala::Facebook::API.new(@token)
     posts =  @graph.get_object(UPLOADED_POSTS_FIELDS)
-    puts posts.next_page
     until posts.next_page.nil?
-      unless posts["posts"]["data"].nil?
-        posts["posts"]["data"].each do |post|
-          results << post
-        end
+      posts.each do |post|
+        results << post
+      end
       posts = posts.next_page
     end
+    return results
+  end
+
+  def get_liked_pages
+    liked_pages = []
+    @graph = Koala::Facebook::API.new(@token)
+    actual_page = @graph.get_object(LIKED_PAGES)
+    until actual_page.next_page.nil?
+      actual_page.each do |page|
+        liked_pages << page
+      end
+      actual_page = actual_page.next_page
     end
-    puts results
+    return liked_pages
   end
 
 end
@@ -57,4 +59,5 @@ end
 c = GraphObjectService.new(TOKEN)
 c.get_uploaded_posts
 c.get_uploaded_photos
+c.get_liked_pages
 
