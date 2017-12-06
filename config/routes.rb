@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+
+  resources :results, only: [ :index, :index_photo, :index_text, :index_video ]
+
   devise_for :users
   root to: 'pages#home'
 
   get '/auth/:provider/callback', to: 'providers#create'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end
