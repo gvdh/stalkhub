@@ -1,33 +1,22 @@
-<div class="sidenav">
-  <%= image_tag "logo.png", id: "logo", style: "width: 60px; height: 60px;"%>
-  <div id="title">
-    <p><strong>STALK_</strong><span>HUB</span></p>
+<div id="category_filter">
+  <div class="social-media-icon">
+    <%= link_to '/twitter/results', class: 'link'  do %>
+      <p>All</p>
+    <% end %>
   </div>
   <div class="social-media-icon active">
     <%= link_to '/facebook/results', class: 'link' do %>
-      <i class="fa fa-facebook" aria-hidden="true"></i>
+      <p>Photos</p>
     <% end %>
   </div>
   <div class="social-media-icon">
     <%= link_to '/instagram/results', class: 'link' do %>
-      <i class="fa fa-instagram" aria-hidden="true"></i>
+      <p>Texts</p>
     <% end %>
   </div>
   <div class="social-media-icon">
     <%= link_to '/linkedin/results', class: 'link'  do %>
-      <i class="fa fa-linkedin" aria-hidden="true"></i>
+      <p>Videos</p>
     <% end %>
-  </div>
-  <div class="social-media-icon">
-    <%= link_to '/twitter/results', class: 'link'  do %>
-      <i class="fa fa-twitter" aria-hidden="true"></i>
-    <% end %>
-  </div>
-  <div class="sidebar-bottom">
-    <div class="logout-icon">
-      <%= link_to destroy_user_session_path, method: :delete, class: 'link'  do %>
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-      <% end %>
-    </div>
   </div>
 </div>
