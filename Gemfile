@@ -23,6 +23,7 @@ gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+gem 'redis', '~> 4.0', '>= 4.0.1'
 
 group :development, :test do
   gem 'pry-byebug'
