@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  ActiveAdmin.routes(self)
   resources :results, only: [ :index, :index_photo, :index_text, :index_video ]
 
   devise_for :users
