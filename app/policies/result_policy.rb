@@ -1,7 +1,7 @@
 class ResultPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(user: user)
+      scope.joins(:provider).where(providers: { user: user })
     end
   end
 end
