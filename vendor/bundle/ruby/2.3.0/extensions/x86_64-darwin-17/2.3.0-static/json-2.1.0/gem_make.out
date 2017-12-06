@@ -1,0 +1,13 @@
+current directory: /Users/huangd/code/huangd973/stalkhub/vendor/bundle/ruby/2.3.0/gems/json-2.1.0/ext/json
+/Users/huangd/.rbenv/versions/2.3.5/bin/ruby -r ./siteconf20171206-8114-rtj0pg.rb extconf.rb
+creating Makefile
+
+current directory: /Users/huangd/code/huangd973/stalkhub/vendor/bundle/ruby/2.3.0/gems/json-2.1.0/ext/json
+make "DESTDIR=" clean
+
+current directory: /Users/huangd/code/huangd973/stalkhub/vendor/bundle/ruby/2.3.0/gems/json-2.1.0/ext/json
+make "DESTDIR="
+make: Nothing to be done for `all'.
+
+current directory: /Users/huangd/code/huangd973/stalkhub/vendor/bundle/ruby/2.3.0/gems/json-2.1.0/ext/json
+make "DESTDIR=" install
