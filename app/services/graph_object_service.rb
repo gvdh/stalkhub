@@ -8,6 +8,7 @@ class GraphObjectService
   end
 
   def get_uploaded_photos
+    results = []
     @graph = Koala::Facebook::API.new(@token)
     photos =  @graph.get_object(UPLOADED_PHOTOS_FIELDS)
     photos["albums"]["data"].each do |data|
@@ -26,10 +27,11 @@ class GraphObjectService
             attachments: attachments,
             created_time: photo["created_time"]
                   }
-        puts result
+        results << result
         end
       end
     end
+    puts results
   end
 
 
