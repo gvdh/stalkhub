@@ -7,8 +7,10 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: 'pages#home'
+  get '/auth/:provider/callback', to: 'providers#create'
 
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end
+
 end
