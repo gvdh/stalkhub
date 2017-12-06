@@ -3,6 +3,10 @@
     <%= render 'shared/sidebar_menu' %>
   </div>
 
+  <div id="category_filter">
+    <%= render 'shared/category_filter' %>
+  </div>
+
   <div id="container-reduced">
     <% @results.each do |result| %>
         <%= result.caption %>
