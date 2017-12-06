@@ -1,0 +1,49 @@
+body {
+  font-family: "raleway", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 120px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #FFF;
+  overflow-x: hidden;
+  padding-top: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  text-align:center;
+}
+
+.sidenav a {
+  text-decoration: none;
+  font-size: 30px;
+  color: #D8D8D8;
+}
+
+.social-media-icon {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+span {
+  color: #87A1DC;
+}
+
+.link {
+  margin:auto;
+}
+
+.active {
+  background-color: #87A1DC;
+  .link {
+    color: #FFF;
+  }
+}
+
+#title {
+  padding-bottom: 30px;
+  padding-top: 10px;
+}
