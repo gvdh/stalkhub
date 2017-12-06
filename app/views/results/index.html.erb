@@ -1,16 +1,14 @@
-<%= render 'shared/sidebar_menu' %>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-2 col-xs-offset-2">
+<div id="page">
+  <div id="sidebar">
+    <%= render 'shared/sidebar_menu' %>
+  </div>
 
-    </div>
-    <div class="col-xs-6">
-      <% @results.each do |result| %>
-          <%= result.caption %>
-          <%= result.created_at %>
-          <%= link_to "GO", result.link %>
-        <br>
-      <% end %>
-    </div>
+  <div id="container-reduced">
+    <% @results.each do |result| %>
+        <%= result.caption %>
+        <%= result.created_at %>
+        <%= link_to "GO", result.link %>
+      <br>
+    <% end %>
   </div>
 </div>

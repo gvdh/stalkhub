@@ -2,6 +2,20 @@ body {
   font-family: "raleway", sans-serif;
 }
 
+
+#page {
+  display: flex;
+}
+
+#container-reduced {
+  flex-grow: 1;
+  margin : 5%;
+}
+
+#sidebar {
+
+}
+
 .sidenav {
   height: 100vh;
   width: 120px;

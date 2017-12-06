@@ -5,6 +5,10 @@ class ProviderPolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    return true
+  end
+
   def create?
     return true
   end

@@ -1,0 +1,15 @@
+<div id="page">
+  <div id="sidebar">
+    <%= render 'shared/sidebar_menu' %>
+  </div>
+
+  <div id="container-reduced">
+    <% if current_user %>
+      <% if @provider == 'facebook' %>
+        <%= link_to 'link your facebook account', '/auth/facebook' %>
+      <% else %>
+        <p>Sorry, we don't handle this social media yet...</p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

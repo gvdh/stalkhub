@@ -4,7 +4,8 @@ class ResultsController < ApplicationController
     provider = Provider.where(name: params[:provider], user: current_user).first
     if provider.nil?
       flash[:alert] = 'No provider'
-      redirect_to root_path
+      redirect_to new_provider_path(params[:provider])
+
     end
 
     @results = policy_scope(Result).where(provider: provider).order(created_at: :desc)
