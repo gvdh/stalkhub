@@ -55,5 +55,6 @@ end
 
 
 c = GraphObjectService.new(TOKEN)
-# c.get_uploaded_photos
 c.get_uploaded_posts
+c.get_uploaded_photos
+
