@@ -27,6 +27,14 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def new
+    # Ugly way to authorize method (instanciate an unused Provider)
+    provider = Provider.new
+    authorize provider
+
+    @provider = params[:provider]
+  end
+
   private
 
   def auth_hash
