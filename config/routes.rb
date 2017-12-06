@@ -3,7 +3,8 @@ require "sidekiq/web"
 Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
-  resources :results, only: [ :index, :index_photo, :index_text, :index_video ]
+
+  get '/:provider/results', to: 'results#index', as: 'results'
 
   devise_for :users
   root to: 'pages#home'

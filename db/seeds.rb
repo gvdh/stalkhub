@@ -18,13 +18,13 @@ counter = 1
   providr = Provider.create!(
     user_id: user.id,
     name: "facebook",
-    token: "EAACEdEose0cBAHdlMub8FBG6ULAunXD5L3XUgww4myIZCv3vIhiKGIHzYErGT8ngWE4FVbjkyXHRRE8jf6ZCWb8ZCpReyweEZCpEnjlvZAx3AB9kwyWAgSaYLQweWf2MmIFKwrQvt4DydBXyCeV2C1XFiEXp2vYubaiUP10XUW7Q7npiH0wmzTVwmkOGAZBNq7nJbGtwfMeAZDZD"
+    token: TOKEN
     )
   counter+=1
 end
 
 puts "Koala facebook api initialization ... "
-@graph = Koala::Facebook::API.new("EAACEdEose0cBAHdlMub8FBG6ULAunXD5L3XUgww4myIZCv3vIhiKGIHzYErGT8ngWE4FVbjkyXHRRE8jf6ZCWb8ZCpReyweEZCpEnjlvZAx3AB9kwyWAgSaYLQweWf2MmIFKwrQvt4DydBXyCeV2C1XFiEXp2vYubaiUP10XUW7Q7npiH0wmzTVwmkOGAZBNq7nJbGtwfMeAZDZD")
+@graph = Koala::Facebook::API.new(TOKEN)
 posts = @graph.get_connections("me", "posts")
 
 puts "Success !"
