@@ -6,6 +6,7 @@ class ResultsController < ApplicationController
       redirect_to new_provider_path(params[:provider])
     end
 
+    @provider = params[:provider]
     @results = policy_scope(Result).where(provider: provider).order(created_at: :desc)
     if params[:type] == 'photo'
       @results = @results.photos

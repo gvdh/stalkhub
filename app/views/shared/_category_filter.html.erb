@@ -1,21 +1,21 @@
 <div id="category_filter">
   <div class="filter-btn">
-    <%= link_to '/twitter/results', class: 'link'  do %>
+    <%= link_to results_path(provider) do %>
       <div>All</div>
     <% end %>
   </div>
   <div class="filter-btn">
-    <%= link_to '/facebook/results', class: 'link' do %>
+    <%= link_to results_path(provider) do %>
       <div>Photos</div>
     <% end %>
   </div>
   <div class="filter-btn">
-    <%= link_to '/instagram/results', class: 'link' do %>
+    <%= link_to results_path(provider) do %>
       <div>Texts</div>
     <% end %>
   </div>
   <div class="filter-btn">
-    <%= link_to '/linkedin/results', class: 'link'  do %>
+    <%= link_to results_path(provider) do %>
       <div >Videos</div>
     <% end %>
   </div>
