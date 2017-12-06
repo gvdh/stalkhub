@@ -5,17 +5,17 @@
     <% end %>
   </div>
   <div class="filter-btn">
-    <%= link_to results_path(provider) do %>
+    <%= link_to results_path(provider, type: 'photo') do %>
       <div>Photos</div>
     <% end %>
   </div>
   <div class="filter-btn">
-    <%= link_to results_path(provider) do %>
+    <%= link_to results_path(provider, type: 'text') do %>
       <div>Texts</div>
     <% end %>
   </div>
   <div class="filter-btn">
-    <%= link_to results_path(provider) do %>
+    <%= link_to results_path(provider, type: 'video') do %>
       <div >Videos</div>
     <% end %>
   </div>
