@@ -1,6 +1,28 @@
 #category_filter {
   left: 120px;
-  padding: 20px;
-  background-color: grey;
   height: 100vh;
+  padding-top: 40px;
+  margin-left: 60px;
+}
+
+.filter-btn {
+  text-align: center;
+  padding: 5px 15px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  background-color: white;
+  box-shadow: 2px 2px 5px $gray;
+  a {
+    color: $gray;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.filter-btn:hover {
+  background-color: $blue;
+  a {
+    color:white;
+  }
 }
