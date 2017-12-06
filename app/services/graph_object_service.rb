@@ -38,6 +38,6 @@ class GraphObjectService
 end
 
 
-c = GraphObjectService.new("EAACEdEose0cBANNFh3sSHdw22ws6ZBYgPLqetc3GftarCgdqRbh1TPsyUlFVOalXzfzp1ZBZB0iMwIAZBvc9mdZALBYpJOq09VrzIwCIoT5Yu8gnhMVZBGO3WBsvlpezydXqJdfjr3ksRoQd7VM0dFBvY3E4Yhs0ZBBcorx40UCgohdNha49ukjMBmVp5pPPmMtYwo9NcCFDAZDZD")
+c = GraphObjectService.new(TOKEN)
 c.get_uploaded_photos
 
