@@ -4,28 +4,30 @@
     <p><strong>STALK_</strong><span>HUB</span></p>
   </div>
   <div class="social-media-icon active">
-    <%= link_to '#', class: 'link' do %>
+    <%= link_to '/facebook/results', class: 'link' do %>
       <i class="fa fa-facebook" aria-hidden="true"></i>
     <% end %>
   </div>
   <div class="social-media-icon">
-    <%= link_to '#', class: 'link' do %>
+    <%= link_to '/instagram/results', class: 'link' do %>
       <i class="fa fa-instagram" aria-hidden="true"></i>
     <% end %>
   </div>
   <div class="social-media-icon">
-    <%= link_to '#', class: 'link'  do %>
+    <%= link_to '/linkedin/results', class: 'link'  do %>
       <i class="fa fa-linkedin" aria-hidden="true"></i>
     <% end %>
   </div>
   <div class="social-media-icon">
-    <%= link_to '#', class: 'link'  do %>
+    <%= link_to '/twitter/results', class: 'link'  do %>
       <i class="fa fa-twitter" aria-hidden="true"></i>
     <% end %>
   </div>
-  <div class="logout-icon">
-    <%= link_to '#', class: 'link'  do %>
-      <i class="fa fa-sign-out" aria-hidden="true"></i>
-    <% end %>
+  <div class="sidebar-bottom">
+    <div class="logout-icon">
+      <%= link_to destroy_user_session_path, method: :delete, class: 'link'  do %>
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+      <% end %>
+    </div>
   </div>
 </div>
