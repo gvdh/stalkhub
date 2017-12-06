@@ -1,7 +1,7 @@
 require 'koala'
 
 class GraphObjectService
-  UPLOADED_PHOTOS_FIELDS = "albums{privacy,photos{name,link,created_time,images}}"
+  UPLOADED_PHOTOS_FIELDS = "me?fields=albums{privacy,photos{name,link,created_time,images}}"
 
   def initialize(token)
     @token = token
@@ -9,7 +9,7 @@ class GraphObjectService
 
   def get_uploaded_photos
     @graph = Koala::Facebook::API.new(@token)
-    photos =  @graph.get_object("me?fields=" + UPLOADED_PHOTOS_FIELDS )
+    photos =  @graph.get_object(UPLOADED_PHOTOS_FIELDS)
     photos["albums"]["data"].each do |data|
       album_privacy = data["privacy"]
       unless data["photos"].nil?
@@ -36,5 +36,6 @@ class GraphObjectService
 end
 
 
-c = GraphObjectService.new("EAACEdEose0cBAFCjjxEBZCkpVAS1FbQzW1Ne2W4KIu7AZBZBHRZCn4RgoJi6ZCZCi4nBS5YdMODIZBrpwDlbkPbiA6UiyEevApd2kfHAtJx15mGhoiQnVErtyyc8mC27BZBvigxTRLWhOVFZBMxEdzSk4pZBGmZARKUJ5RXmrGP4jWfDM8AUkKfwZBzqosl0J2jpn88ZD")
+c = GraphObjectService.new("EAACEdEose0cBANNFh3sSHdw22ws6ZBYgPLqetc3GftarCgdqRbh1TPsyUlFVOalXzfzp1ZBZB0iMwIAZBvc9mdZALBYpJOq09VrzIwCIoT5Yu8gnhMVZBGO3WBsvlpezydXqJdfjr3ksRoQd7VM0dFBvY3E4Yhs0ZBBcorx40UCgohdNha49ukjMBmVp5pPPmMtYwo9NcCFDAZDZD")
 c.get_uploaded_photos
+
