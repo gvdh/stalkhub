@@ -5,11 +5,11 @@ class ProvidersController < ApplicationController
       create_or_update_for_facebook(auth_hash)
     # add new providers here (elsif)
     else
-      flash[:error] = 'Provider not handled'
+      flash[:alert] = 'Provider not handled'
       return redirect_to root_path
     end
 
-    redirect_to root_path
+    redirect_to results_path(params[:provider])
   end
 
   def create_or_update_for_facebook(hash)
