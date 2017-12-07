@@ -1,18 +1,18 @@
 <div class="connect_card">
   <!-- icon -->
-  <div>
+  <div class="icon">
     <i class="fa fa-<%= @provider %>" aria-hidden="true"></i>
   </div>
 
   <!-- name -->
-  <div>
-    <%= @provider %>
+  <div class="name">
+    <p><%= @provider %></p>
   </div>
 
   <!-- link -->
-  <div>
+  <div class="link">
     <% if @provider == 'facebook' %>
-      <%= link_to 'link your facebook account', '/auth/facebook' %>
+      <%= link_to 'Link my facebook account', '/auth/facebook' %>
     <% else %>
       <p>Sorry, we don't handle connection to <%= @provider %> yet...</p>
     <% end %>
