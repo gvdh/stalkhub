@@ -6,8 +6,8 @@ class GraphObjectService
   PHOTOS_FIELDS = "me/photos?fields=name,link,created_time,picture"
   UPLOADED_POSTS_FIELDS = "me/posts?fields=privacy,message, created_time,story,attachments,permalink_url,type"
   LIKED_PAGES = "me/likes?fields=fan_count,name,picture,link"
-  TAGGED_VIDEOS_FIELDS = "me/videos?fields=privacy,created_time,description"
-  UPLOADED_VIDEOS_FIELDS = "me/videos/uploaded?fields=privacy,created_time,description"
+  TAGGED_VIDEOS_FIELDS = "me/videos?fields=privacy,created_time,description, source"
+  UPLOADED_VIDEOS_FIELDS = "me/videos/uploaded?fields=privacy,created_time,description, source"
 
   def initialize(provider)
     @token = provider.token
@@ -47,6 +47,7 @@ class GraphObjectService
     until posts.next_page.nil? && page != 1
       posts.each do |post|
         if Result.find_by_node_id(post["id"]).nil?
+          attachment = post["attachments"]["image"].first["src"] if post["attachments"] && post["attachments"]["image"]
           Result.create!(
             user: @user,
             category: post["type"],
@@ -54,7 +55,7 @@ class GraphObjectService
             created_time: post["created_time"],
             story: post["story"],
             node_id: post["id"],
-            attachments: post["attachments"],
+            attachments: attachment,
             link: post["permalink_url"]
             )
         else
@@ -106,7 +107,8 @@ class GraphObjectService
             created_time: video["created_time"],
             description: video["description"],
             node_id: video["id"],
-            total_likes: likes
+            total_likes: likes,
+            picture: video["source"]
           )
         else
           puts "Result already exists !"
@@ -132,7 +134,8 @@ class GraphObjectService
             created_time: video["created_time"],
             description: video["description"],
             node_id: video["id"],
-            total_likes: likes
+            total_likes: likes,
+            picture: video["source"]
           )
         else
           puts "Result already exists !"

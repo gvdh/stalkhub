@@ -1,6 +1,7 @@
 class ProvidersController < ApplicationController
 
   def create
+    authorize Provider
     if params[:provider] == 'facebook'
       create_or_update_for_facebook(auth_hash)
     # add new providers here (elsif)
@@ -25,6 +26,7 @@ class ProvidersController < ApplicationController
         token: hash[:credentials][:token],
         user: current_user
       )
+      FacebookJob.perform_now(provider)
     end
   end
 
