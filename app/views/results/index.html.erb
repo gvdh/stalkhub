@@ -11,16 +11,17 @@
   <div id="container-reduced">
 
     <div class="row">
-      <div class="col-xs-12 col-md-8 ">
-        <%= link_to 'https://www.facebook.com/10155849735787836/posts/10154334555742836:0', target: '_blank' do %>
-          <%= render 'shared/result_card' %>
-        <% end %>
+      <!-- TODO : Iteration on results -->
+        <div class="col-xs-12 col-md-8 ">
+          <!-- Adapt link!! -->
+          <%= link_to 'https://www.facebook.com/10155849735787836/posts/10154334555742836:0', target: '_blank' do %>
+            <!-- Pass local to partial -->
+            <%= render 'shared/result_card' %>
+          <% end %>
+        </div>
       </div>
-      <div class="col-xs-12 col-md-8 ">
-        <%= render 'shared/result_card' %>
-      </div>
-    </div>
 
+    <!-- Remove this when section above is done -->
     <% @results.each do |result| %>
       <ul class="list-inline">
         <li><%= result.node_id[0..5] %></li>
