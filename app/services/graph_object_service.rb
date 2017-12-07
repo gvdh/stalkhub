@@ -3,11 +3,11 @@ require 'koala'
 Koala.config.api_version = "v2.11"
 
 class GraphObjectService
-  PHOTOS_FIELDS = "me/photos?fields=name,link,created_time,picture"
+  PHOTOS_FIELDS = "me/photos?fields=name,link,created_time,picture,images"
   UPLOADED_POSTS_FIELDS = "me/posts?fields=privacy,message, created_time,story,attachments,permalink_url,type"
   LIKED_PAGES = "me/likes?fields=fan_count,name,picture,link"
-  TAGGED_VIDEOS_FIELDS = "me/videos?fields=privacy,created_time,description, source"
-  UPLOADED_VIDEOS_FIELDS = "me/videos/uploaded?fields=privacy,created_time,description, source"
+  TAGGED_VIDEOS_FIELDS = "me/videos?fields=privacy,created_time,description, source, picture, permalink_url"
+  UPLOADED_VIDEOS_FIELDS = "me/videos/uploaded?fields=privacy,created_time,description, source, picture, permalink_url"
 
   def initialize(provider)
     @token = provider.token
@@ -22,15 +22,23 @@ class GraphObjectService
     until photos.next_page.nil? && page != 1
       photos.each do |photo|
         ze_photo = photo["likes"]["summary"]["total_count"] if photo["likes"]
+        text = photo["name"] if photo["name"]
+        image = photo["images"].first["source"] if photo["images"]
         if Result.find_by_node_id(photo["id"]).nil?
-          Result.create!(
-            user: @user,
-            category: "photo",
-            created_time: photo["created_time"],
-            picture: photo["picture"],
-            node_id: photo["id"],
-            total_likes: ze_photo
-            )
+          begin
+            Result.create!(
+              user: @user,
+              category: "photo",
+              text: text,
+              date: photo["created_time"],
+              picture: image,
+              node_id: photo["id"],
+              link: photo["link"],
+              total_likes: ze_photo
+              )
+          rescue
+            puts "Creation of result #{photo["id"]} failed !"
+          end
         else
           puts "Result already exists !"
         end
@@ -47,17 +55,27 @@ class GraphObjectService
     until posts.next_page.nil? && page != 1
       posts.each do |post|
         if Result.find_by_node_id(post["id"]).nil?
-          attachment = post["attachments"]["image"].first["src"] if post["attachments"] && post["attachments"]["image"]
-          Result.create!(
-            user: @user,
-            category: post["type"],
-            privacy: post["privacy"]["value"],
-            created_time: post["created_time"],
-            story: post["story"],
-            node_id: post["id"],
-            attachments: attachment,
-            link: post["permalink_url"]
-            )
+          parsed_post = post.to_s
+          if parsed_post.include?("\"attachments\"=>{\"data\"=>[{\"media\"=>")
+            attachment = post["attachments"]["data"].first["media"]["image"]["src"]
+          else
+            attachment = ""
+          end
+          text = post["message"] || post["story"]
+          begin
+            Result.create!(
+              user: @user,
+              category: post["type"],
+              privacy: post["privacy"]["value"],
+              date: post["created_time"],
+              text: text,
+              node_id: post["id"],
+              picture: attachment,
+              link: post["permalink_url"]
+              )
+          rescue
+            puts "Creation of result #{post["id"]} failed !"
+          end
         else
           puts "Result already exists !"
         end
@@ -74,15 +92,19 @@ class GraphObjectService
     until actual_page.next_page.nil? && page != 1
       actual_page.each do |page|
         if Result.find_by_node_id(page["id"]).nil?
-          Result.create!(
-            user: @user,
-            category: "page",
-            name: page["name"],
-            picture: page["picture"]["data"]["url"],
-            link: page["link"],
-            fan_count: page["fan_count"],
-            node_id: page["id"]
-          )
+          begin
+            Result.create!(
+              user: @user,
+              category: "page",
+              name: page["name"],
+              picture: page["picture"]["data"]["url"],
+              link: page["link"],
+              fan_count: page["fan_count"],
+              node_id: page["id"]
+            )
+          rescue
+            puts "Creation of result #{page["id"]} failed !"
+          end
         else
           puts "Result already exists !"
         end
@@ -99,17 +121,23 @@ class GraphObjectService
     until videos.next_page.nil? && page != 1
       videos.each do |video|
         likes = video["likes"]["summary"]["total_count"] if video['likes']
+        text = video["description"] if video["description"]
         if Result.find_by_node_id(video["id"]).nil?
-          Result.create!(
-            user: @user,
-            category: "video",
-            privacy: video["privacy"]["value"],
-            created_time: video["created_time"],
-            description: video["description"],
-            node_id: video["id"],
-            total_likes: likes,
-            picture: video["source"]
-          )
+          begin
+            Result.create!(
+              user: @user,
+              category: "video",
+              privacy: video["privacy"]["value"],
+              date: video["created_time"],
+              text: text,
+              node_id: video["id"],
+              total_likes: likes,
+              link: "https://www.facebook.com/"+video["permalink_url"],
+              picture: video["picture"]
+            )
+          rescue
+            puts "Creation of result #{video["id"]} failed !"
+          end
         else
           puts "Result already exists !"
         end
@@ -126,17 +154,23 @@ class GraphObjectService
     until videos.next_page.nil? && page != 1
       videos.each do |video|
         likes = video["likes"]["summary"]["total_count"] if video['likes']
+        text = video["description"] if video["description"]
         if Result.find_by_node_id(video["id"]).nil?
-          Result.create!(
-            user: @user,
-            category: "video",
-            privacy: video["privacy"]["value"],
-            created_time: video["created_time"],
-            description: video["description"],
-            node_id: video["id"],
-            total_likes: likes,
-            picture: video["source"]
-          )
+          begin
+            Result.create!(
+              user: @user,
+              category: "video",
+              privacy: video["privacy"]["value"],
+              date: video["created_time"],
+              text: video["description"],
+              node_id: video["id"],
+              total_likes: likes,
+              link: "https://www.facebook.com/"+video["permalink_url"],
+              picture: video["picture"]
+            )
+          rescue
+            puts "Creation of result #{video["id"]} failed !"
+          end
         else
           puts "Result already exists !"
         end
