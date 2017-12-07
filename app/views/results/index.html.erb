@@ -9,6 +9,7 @@
     </div>
   </div>
   <div id="container-reduced">
+    <%= render 'shared/result_card' %>
     <% @results.each do |result| %>
       <ul class="list-inline">
         <li><%= result.node_id[0..5] %></li>
