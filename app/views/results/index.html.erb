@@ -11,18 +11,12 @@
   <div id="container-reduced">
     <% @results.each do |result|  %>
       <div class="row">
-      <!-- TODO : Iteration on results -->
         <div class="col-xs-12 col-md-8 ">
-          <!-- Adapt link!! -->
           <%= link_to result.link , target: '_blank' do %>
-            <!-- Pass local to partial -->
             <%= render 'shared/result_card', result: result %>
           <% end %>
         </div>
       </div>
     <% end %>
-
-    <!-- Remove this when section above is done -->
-
   </div>
 </div>
