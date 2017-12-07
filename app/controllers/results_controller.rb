@@ -10,7 +10,10 @@ class ResultsController < ApplicationController
       flash[:alert] = 'No provider'
       redirect_to new_provider_path(params[:provider])
     end
+
     # check_results_size(params)
+
+    @type = params[:type]
     if params[:type] == 'photo'
       @results = @results.photos
     elsif params[:type] == 'text'
