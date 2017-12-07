@@ -1,5 +1,14 @@
-:concurrency: 3
-:timeout: 60
-:verbose: true
-:queues:  # Queue priority: https://github.com/mperham/sidekiq/wiki/Advanced-Options
-  - default
+$redis = Redis.new
+
+url = ENV["REDISCLOUD_URL"]
+
+if url
+  Sidekiq.configure_server do |config|
+    config.redis = { url: url }
+  end
+
+  Sidekiq.configure_client do |config|
+    config.redis = { url: url }
+  end
+  $redis = Redis.new(:url => url)
+end
