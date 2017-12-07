@@ -10,11 +10,13 @@
   </div>
   <div id="container-reduced">
     <% @results.each do |result| %>
-      <p>
-        <%= result.caption %>
-        <%= result.created_at %>
-        <%= link_to "GO", result.link, target: '_blank' %>
-      </p>
+      <ul class="list-inline">
+        <li><%= result.node_id[0..5] %></li>
+        <li><%= result.created_time.to_time.strftime("%d %B %Y")  %></li>
+        <li><%= image_tag result.picture if result.picture %></li>
+        <li><%= image_tag result.attachments if result.attachments %></li>
+        <li><%= link_to "GO", result.link, target: '_blank', class: "btn btn-primary" %></li>
+      </ul>
       <br>
     <% end %>
   </div>
