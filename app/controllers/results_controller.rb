@@ -9,6 +9,7 @@ class ResultsController < ApplicationController
     end
 
     @provider = params[:provider]
+    @type = params[:type]
     @results = policy_scope(Result).where(provider: provider).order(created_at: :desc)
     if params[:type] == 'photo'
       @results = @results.photos
