@@ -1,24 +1,24 @@
 <div class="sidenav">
-  <%= image_tag "logo.png", id: "logo", style: "width: 60px; height: 60px;"%>
-  <div id="title">
+  <%= image_tag "logo.png", id: "logo", style: "width: 60px; height: 60px;" %>
+  <div id="title-nav-bar">
     <p><strong>STALK_</strong><span>HUB</span></p>
   </div>
-  <div class="social-media-icon active">
+  <div id="facebook-tab" class="social-media-icon <%= 'active' if @provider == 'facebook' %>">
     <%= link_to '/facebook/results', class: 'link' do %>
       <i class="fa fa-facebook" aria-hidden="true"></i>
     <% end %>
   </div>
-  <div class="social-media-icon">
+  <div id="instagram-tab" class="social-media-icon <%= 'active' if @provider == 'instagram' %>">
     <%= link_to '/instagram/results', class: 'link' do %>
       <i class="fa fa-instagram" aria-hidden="true"></i>
     <% end %>
   </div>
-  <div class="social-media-icon">
+  <div id="linkedin-tab" class="social-media-icon <%= 'active' if @provider == 'linkedin' %>">
     <%= link_to '/linkedin/results', class: 'link'  do %>
       <i class="fa fa-linkedin" aria-hidden="true"></i>
     <% end %>
   </div>
-  <div class="social-media-icon">
+  <div id="twitter-tab" class="social-media-icon <%= 'active' if @provider == 'twitter' %>">
     <%= link_to '/twitter/results', class: 'link'  do %>
       <i class="fa fa-twitter" aria-hidden="true"></i>
     <% end %>

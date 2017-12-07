@@ -6,11 +6,11 @@ class ProviderPolicy < ApplicationPolicy
   end
 
   def new?
-    return true
+    true
   end
 
   def create?
-    return true
+    !user.nil?
   end
 
   def update?
