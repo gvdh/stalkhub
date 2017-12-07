@@ -1,15 +1,14 @@
-<div id="page">
-  <div id="sidebar">
-    <%= render 'shared/sidebar_menu' %>
-  </div>
+<div id="sidebar">
+  <%= render 'shared/sidebar_menu' %>
+</div>
 
-  <div id="container-reduced">
-    <% if current_user %>
-      <% if @provider == 'facebook' %>
-        <%= link_to 'link your facebook account', '/auth/facebook' %>
-      <% else %>
-        <p>Sorry, we don't handle this social media yet...</p>
+<div id="connect-container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 ">
+      <% if current_user %>
+        <%= render "shared/connect_card", provider: @provider %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
+

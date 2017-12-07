@@ -2,12 +2,11 @@ class ResultsController < ApplicationController
 
   def index
     provider = Provider.where(name: params[:provider], user: current_user).first
-
+    
     @provider = params[:provider]
     @results = policy_scope(Result)
     #.where(provider: provider).order(created_at: :desc)
     if provider.nil? || @results.size < 1
-      flash[:alert] = 'No provider'
       redirect_to new_provider_path(params[:provider])
     end
 
