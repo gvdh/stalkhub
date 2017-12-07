@@ -8,6 +8,7 @@
       <% if @provider == 'facebook' %>
         <%= link_to 'link your facebook account', '/auth/facebook' %>
       <% else %>
+        <%= render "shared/connect_card" %>
         <p>Sorry, we don't handle this social media yet...</p>
       <% end %>
     <% end %>
