@@ -1,8 +1,11 @@
 class PagesController < ApplicationController
 
   def home
-    # FB.getLoginStatus
-    # fail
+    if current_user.nil?
+      redirect_to new_user_registration_path
+    else
+      redirect_to results_path('facebook')
+    end
   end
 
   private
