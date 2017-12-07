@@ -1,0 +1,20 @@
+<div class="connect_card">
+  <!-- icon -->
+  <div>
+    <i class="fa fa-<%= @provider %>" aria-hidden="true"></i>
+  </div>
+
+  <!-- name -->
+  <div>
+    <%= @provider %>
+  </div>
+
+  <!-- link -->
+  <div>
+    <% if @provider == 'facebook' %>
+      <%= link_to 'link your facebook account', '/auth/facebook' %>
+    <% else %>
+      <p>Sorry, we don't handle connection to <%= @provider %> yet...</p>
+    <% end %>
+  </div>
+</div>
