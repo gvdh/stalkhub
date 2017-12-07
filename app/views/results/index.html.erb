@@ -9,7 +9,18 @@
     </div>
   </div>
   <div id="container-reduced">
-    <%= render 'shared/result_card' %>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-8 ">
+        <%= link_to 'https://www.facebook.com/10155849735787836/posts/10154334555742836:0', target: '_blank' do %>
+          <%= render 'shared/result_card' %>
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-md-8 ">
+        <%= render 'shared/result_card' %>
+      </div>
+    </div>
+
     <% @results.each do |result| %>
       <ul class="list-inline">
         <li><%= result.node_id[0..5] %></li>
