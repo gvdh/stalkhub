@@ -56,7 +56,7 @@ class GraphObjectService
       posts.each do |post|
         if Result.find_by_node_id(post["id"]).nil?
           parsed_post = post.to_s
-          if parsed_post.include?("\"attachments\"=>{\"data\"=>[{\"media\"=>")
+          if parsed_post.include?("\"media\"=>")
             attachment = post["attachments"]["data"].first["media"]["image"]["src"]
           else
             attachment = ""
