@@ -9,14 +9,22 @@
     </div>
   </div>
   <div id="container-reduced">
-    <% @results.each do |result|  %>
-      <div class="row">
-        <div class="col-xs-12 col-md-8 ">
-          <%= link_to result.link , target: '_blank' do %>
-            <%= render 'shared/result_card', result: result %>
-          <% end %>
-        </div>
+    <% if @results.size > 1 %>
+
+      <div id="loading">
+        <%= image_tag "loading.gif" %>
       </div>
+
+    <% else  %>
+      <% @results.each do |result|  %>
+        <div class="row">
+          <div class="col-xs-12 col-md-8 ">
+            <%= link_to result.link , target: '_blank' do %>
+              <%= render 'shared/result_card', result: result %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

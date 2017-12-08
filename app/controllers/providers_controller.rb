@@ -9,16 +9,12 @@ class ProvidersController < ApplicationController
       flash[:alert] = 'Provider not handled'
       return redirect_to root_path
     end
-
     redirect_to results_path(params[:provider])
   end
 
   def create_or_update_for_facebook(hash)
     provider = Provider.where(name: 'facebook', uid: hash[:uid]).first
     if provider
-      # Don't pass objects as arguments
-      fail
-      FacebookJob.perform_now(provider.id)
       authorize provider
       provider.update(token: hash[:credentials][:token])
     else
@@ -28,7 +24,6 @@ class ProvidersController < ApplicationController
         token: hash[:credentials][:token],
         user: current_user
       )
-      FacebookJob.perform_now(provider)
     end
   end
 
