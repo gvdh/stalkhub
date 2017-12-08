@@ -15,7 +15,6 @@ class ResultsController < ApplicationController
     @type = params[:type]
     if params[:type] == 'photo'
       @results = @results.photos
-      fail
     elsif params[:type] == 'text'
       @results = @results.texts
     elsif params[:type] == 'video'
