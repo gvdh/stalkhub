@@ -56,10 +56,8 @@ class GraphObjectService
       posts.each do |post|
         if Result.find_by_node_id(post["id"]).nil?
           parsed_post = post.to_s
-          if parsed_post.include?("\"attachments\"=>{\"data\"=>[{\"media\"=>")
-            attachment = post["attachments"]["data"].first["media"]["image"]["src"]
-          elsif parsed_post.include?("{\"subattachments\"")
-            attachment = post["attachments"]["data"].first["subattachments"]["data"].first["media"]["image"]["src"]
+          if post.to_s.include?("\"image\"")
+            attachment = parsed_post.delete(" ").scan(/(?<=\"src\"=>\")[^\"]+/).join
           else
             attachment = ""
           end
@@ -67,7 +65,7 @@ class GraphObjectService
           begin
             Result.create!(
               user: @user,
-              category: post["type"],
+              category: "post",
               privacy: post["privacy"]["value"],
               date: post["created_time"],
               text: text,
@@ -77,6 +75,7 @@ class GraphObjectService
               )
           rescue
             puts "Creation of result #{post["id"]} failed !"
+            fail
           end
         else
           puts "Result already exists !"
