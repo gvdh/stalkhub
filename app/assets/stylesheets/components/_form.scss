@@ -1,5 +1,6 @@
 .wrapper.form {
-  height: 100%;
+  min-height: 100vh;
+  height: inherit;
 }
 
 #form {
@@ -51,4 +52,5 @@
 .privacy-btn {
   margin-top: 10px;
 }
+
 
