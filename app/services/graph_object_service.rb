@@ -181,7 +181,3 @@ class GraphObjectService
   end
 end
 
-
-
-
-

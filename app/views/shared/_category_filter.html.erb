@@ -19,8 +19,8 @@
       <div >Videos</div>
     <% end %>
   </div>
-  <div class="filter-btn <%= 'active' if @order == 'page' %>">
-    <%= link_to results_path(provider, order: 'page'), id: 'page' do %>
+  <div class="filter-btn <%= 'active' if @type == 'page' %>">
+    <%= link_to results_path(provider, type: 'page'), id: 'page' do %>
       <div>Pages</div>
     <% end %>
   </div>
