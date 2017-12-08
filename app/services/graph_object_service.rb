@@ -75,7 +75,6 @@ class GraphObjectService
               )
           rescue
             puts "Creation of result #{post["id"]} failed !"
-            fail
           end
         else
           puts "Result already exists !"
