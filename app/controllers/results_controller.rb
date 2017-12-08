@@ -2,7 +2,7 @@ class ResultsController < ApplicationController
 
   def index
     provider = Provider.where(name: params[:provider], user: current_user).first
-    
+
     @provider = params[:provider]
     @results = policy_scope(Result)
     #.where(provider: provider).order(created_at: :desc)
@@ -20,12 +20,10 @@ class ResultsController < ApplicationController
     elsif params[:type] == 'video'
       @results = @results.videos
     end
+
+    if params[:order] == 'reverse'
+      @results = @results.order("created_at DESC")
+    end
+    @order = params[:order]
   end
-
-  # def check_results_size(params)
-  #   if @results.size == 0
-  #     redirect_to new_provider_path(params[:provider])
-  #   end
-  # end
-
 end
