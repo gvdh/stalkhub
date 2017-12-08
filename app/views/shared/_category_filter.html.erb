@@ -11,7 +11,7 @@
   <div class="filter-btn <%= 'active' if @type == 'video' %>" id="videos">
       <div >Videos</div>
   </div>
-  
+
   <div class="filter-btn <%= 'active' if @order == 'page' %>">
     <%= link_to results_path(provider, order: 'page'), id: 'page' do %>
       <div>Pages</div>
@@ -20,5 +20,6 @@
   <div class="filter-btn <%= 'active' if @order == 'reverse' %>">
     <%= link_to results_path(provider, order: 'reverse'), id: 'reverse' do %>
       <div>reverse</div>
+    <% end %>
   </div>
 </div>
