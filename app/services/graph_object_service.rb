@@ -53,6 +53,7 @@ class GraphObjectService
     posts =  @graph.get_object(UPLOADED_POSTS_FIELDS)
     page = 1
     until posts.next_page.nil? && page != 1
+      binding.pry
       posts.each do |post|
         if Result.find_by_node_id(post["id"]).nil?
           parsed_post = post.to_s
