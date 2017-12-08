@@ -1,2 +1,2 @@
 import "bootstrap";
-import "reverse_btn";
+import "./filters.js.erb";
