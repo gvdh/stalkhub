@@ -19,4 +19,9 @@
       <div >Videos</div>
     <% end %>
   </div>
+  <div class="filter-btn <%= 'active' if @order == 'reverse' %>">
+    <%= link_to results_path(provider, order: 'reverse'), id: 'reverse' do %>
+      <div>reverse</div>
+    <% end %>
+  </div>
 </div>
