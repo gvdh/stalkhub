@@ -13,6 +13,8 @@
   <div class="link">
     <% if @provider == 'facebook' %>
       <%= link_to 'Link my facebook account', '/auth/facebook' %>
+    <% elsif @provider == 'instagram' %>
+      <%= link_to 'Link my facebook account', '/auth/facebook' %>
     <% else %>
       <p>Sorry, we don't handle connection to <%= @provider %> yet...</p>
     <% end %>
