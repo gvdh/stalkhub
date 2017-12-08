@@ -4,6 +4,8 @@ class ProvidersController < ApplicationController
     authorize Provider
     if params[:provider] == 'facebook'
       create_or_update_for_facebook(auth_hash)
+    elsif params[:provider] == 'instagram'
+      create_or_update_for_instagram
     # add new providers here (elsif)
     else
       flash[:alert] = 'Provider not handled'
@@ -36,6 +38,11 @@ class ProvidersController < ApplicationController
     authorize provider
 
     @provider = params[:provider]
+  end
+
+  def initialize
+    # username = params[:username]
+    # InstaJob.perform_later(username)
   end
 
   private
