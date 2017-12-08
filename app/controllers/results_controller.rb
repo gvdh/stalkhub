@@ -19,6 +19,8 @@ class ResultsController < ApplicationController
       @results = @results.texts
     elsif params[:type] == 'video'
       @results = @results.videos
+    elsif params[:type] == 'page'
+      @results = @results.pages
     end
 
     if params[:order] == 'reverse'
