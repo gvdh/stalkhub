@@ -179,7 +179,6 @@ class GraphObjectService
       page += 1
     end
   end
-
 end
 
 
