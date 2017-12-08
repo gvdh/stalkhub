@@ -14,7 +14,10 @@
     <% if @provider == 'facebook' %>
       <%= link_to 'Link my facebook account', '/auth/facebook' %>
     <% elsif @provider == 'instagram' %>
-      <%= link_to 'Link my facebook account', '/auth/facebook' %>
+      <form method="get" action=<%= initializer_provider_path(@provider)%> >
+        <input name= "username" type="text">
+        <input type= "submit" value="Enregistrer">
+      </form>
     <% else %>
       <p>Sorry, we don't handle connection to <%= @provider %> yet...</p>
     <% end %>

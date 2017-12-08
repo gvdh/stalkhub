@@ -10,6 +10,7 @@ class ResultsController < ApplicationController
       redirect_to new_provider_path(params[:provider])
     end
 
+
     # check_results_size(params)
 
     @type = params[:type]

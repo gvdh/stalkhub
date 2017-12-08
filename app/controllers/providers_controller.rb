@@ -30,6 +30,12 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def initializer
+    @username = params[:username]
+    InstaJob.perform_now(@username)
+  end
+
+
   def new
     # Ugly way to authorize method (instanciate an unused Provider)
     provider = Provider.new
