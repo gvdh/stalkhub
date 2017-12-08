@@ -1,3 +1,10 @@
+<ul class="list-inline" style="margin-left:50vh; margin-top: 10px;">
+<li><button class="btn btn-primary" id="everyone">Only public</button></li>
+<li><button class="btn btn-primary" id="friends">Only friends</button></li>
+<li><button class="btn btn-primary" id="myself">Only me</button></li>
+<li><button class="btn btn-primary" id="nofilters">No privacy filters</</button>
+</ul>
+
 <div id="page">
   <div id="side_content">
     <div id="sidebar">
@@ -6,6 +13,7 @@
 
     <div id="category_filter">
       <%= render 'shared/category_filter', provider: @provider %>
+
     </div>
   </div>
   <div id="container-reduced">
