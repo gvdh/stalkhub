@@ -1,25 +1,21 @@
 <div id="category_filter">
-  <div class="filter-btn <%= 'active' unless @type %>" id="all">
+  <div class="filter-btn" id="all">
       <div>All</div>
   </div>
-  <div class="filter-btn <%= 'active' if @type == 'photo' %>" id="photos">
+  <div class="filter-btn" id="photos">
       <div>Photos</div>
   </div>
-  <div class="filter-btn <%= 'active' if @type == 'text' %>" id="texts">
+  <div class="filter-btn" id="texts">
       <div>Texts</div>
   </div>
-  <div class="filter-btn <%= 'active' if @type == 'video' %>" id="videos">
+  <div class="filter-btn" id="videos">
       <div >Videos</div>
   </div>
 
-  <div class="filter-btn <%= 'active' if @order == 'page' %>">
-    <%= link_to results_path(provider, order: 'page'), id: 'page' do %>
+  <div class="filter-btn" id="pages">
       <div>Pages</div>
-    <% end %>
   </div>
-  <div class="filter-btn <%= 'active' if @order == 'reverse' %>">
-    <%= link_to results_path(provider, order: 'reverse'), id: 'reverse' do %>
+  <div class="filter-btn" id="reverse">
       <div>reverse</div>
-    <% end %>
   </div>
 </div>
