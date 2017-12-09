@@ -1,9 +1,3 @@
-<ul class="list-inline" style="margin-left:50vh; margin-top: 10px;">
-  <li><button class="btn btn-primary" id="everyone">Only public</button></li>
-  <li><button class="btn btn-primary" id="friends">Only friends</button></li>
-  <li><button class="btn btn-primary" id="myself">Only me</button></li>
-  <li><button class="btn btn-primary" id="nofilters">No privacy filters</</button>
-</ul>
 
 <div id="page">
   <div id="side_content">
@@ -17,6 +11,13 @@
     </div>
   </div>
   <div id="container-reduced">
+    <ul id="privacy-filter" class="list-inline">
+      <li><button class="filter-btn" id="everyone">Only public</button></li>
+      <li><button class="filter-btn" id="friends">Only friends</button></li>
+      <li><button class="filter-btn" id="myself">Only me</button></li>
+      <li><button class="filter-btn" id="nofilters">No privacy filters</</button>
+    </ul>
+
     <% @results.each do |result|  %>
       <div class="row">
         <div class="col-xs-12 col-md-8 ">
