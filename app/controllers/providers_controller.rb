@@ -13,6 +13,7 @@ class ProvidersController < ApplicationController
     redirect_to results_path(params[:provider])
   end
 
+
   def create_or_update_for_facebook(hash)
     provider = Provider.where(name: 'facebook', uid: hash[:uid]).first
     if provider
@@ -31,10 +32,14 @@ class ProvidersController < ApplicationController
   end
 
   def initializer
+    skip_authorization
+    provider = Provider.create(
+        name: params[:provider],
+        user: current_user
+      )
     @username = params[:username]
-    authorize provider
-    InstaJob.perform_now(@username)
-    redirect_to results_path
+    InstaJob.perform_now(@username, current_user)
+    redirect_to results_path(params[:provider])
   end
 
 
