@@ -32,7 +32,9 @@ class ProvidersController < ApplicationController
 
   def initializer
     @username = params[:username]
+    authorize provider
     InstaJob.perform_now(@username)
+    redirect_to results_path
   end
 
 
