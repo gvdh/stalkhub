@@ -5,7 +5,6 @@ class ResultsController < ApplicationController
 
     @provider = params[:provider]
     @results = policy_scope(Result)
-    #.where(provider: provider).order(created_at: :desc)
     if provider.nil? || @results.size < 1
       redirect_to new_provider_path(params[:provider])
     end
