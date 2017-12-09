@@ -17,8 +17,9 @@ class ProvidersController < ApplicationController
     provider = Provider.where(name: 'facebook', uid: hash[:uid]).first
     if provider
       provider.update(token: hash[:credentials][:token])
-      FacebookJob.perform_now(provider)
       authorize provider
+      FacebookJob.perform_now(provider)
+      fail
     else
       provider = Provider.create(
         name: params[:provider],
