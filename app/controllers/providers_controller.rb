@@ -19,7 +19,6 @@ class ProvidersController < ApplicationController
       provider.update(token: hash[:credentials][:token])
       authorize provider
       FacebookJob.perform_now(provider)
-      fail
     else
       provider = Provider.create(
         name: params[:provider],
