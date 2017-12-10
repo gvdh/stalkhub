@@ -9,7 +9,6 @@ class ProvidersController < ApplicationController
       flash[:alert] = 'Provider not handled'
       return redirect_to root_path
     end
-
     redirect_to results_path(params[:provider])
   end
 
@@ -26,7 +25,6 @@ class ProvidersController < ApplicationController
         token: hash[:credentials][:token],
         user: current_user
       )
-      FacebookJob.perform_now(provider)
     end
   end
 

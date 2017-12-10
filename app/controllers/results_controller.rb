@@ -5,11 +5,17 @@ class ResultsController < ApplicationController
 
     @provider = params[:provider]
     @results = policy_scope(Result)
-    if provider.nil? || @results.size < 1
-      redirect_to new_provider_path(params[:provider])
+
+    #.where(provider: provider).order(created_at: :desc)
+    if provider.nil?
+      # or token has expired
+      return redirect_to new_provider_path(params[:provider])
     end
 
-    # check_results_size(params)
+    if @results.size < 1
+      provider_id = provider.id
+      FacebookJob.perform_later(provider_id)
+    end
 
     @type = params[:type]
     if params[:type] == 'photo'
