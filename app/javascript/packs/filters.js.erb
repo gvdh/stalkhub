@@ -1,16 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
-  buttons = document.querySelectorAll(".filter-btn")
+  category_filter = document.getElementById("category_filter")
+  categoryButtons = category_filter.querySelectorAll(".filter-btn")
+  privacyButtons = document.getElementById("privacy-filter").querySelectorAll(".filter-btn")
+  // results = document.querySelectorAll("#result_card:not(.hidden)");
+  // resultat = document.querySelector("#result_card")
   results = document.querySelectorAll("#result_card")
 
+
+
+
+  // privacy filter
   everyone = document.getElementById("everyone")
   everyone.addEventListener("click", (event) => {
-    buttons.forEach((button) => {
+    privacyButtons.forEach((button) => {
       button.classList.remove("active")
     });
     everyone.classList.add("active");
+
+    activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
+
     results.forEach((result) => {
-      if (!(result.classList.value.includes("EVERYONE"))){
-        result.classList = result.classList + " hidden"
+      if (!(result.classList.value.includes("EVERYONE" && activeFilter))){
+        result.classList.add("hidden")
       } else {
         result.classList.remove("hidden")
       };
@@ -19,13 +30,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   friends = document.getElementById("friends")
   friends.addEventListener("click", (event) => {
-    buttons.forEach((button) => {
+    privacyButtons.forEach((button) => {
       button.classList.remove("active")
     });
     friends.classList.add("active");
+
+    category_filter = document.getElementById("category_filter")
+    activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
+
     results.forEach((result) => {
-      if (!(result.classList.value.includes("FRIENDS"))){
-        result.classList = result.classList + " hidden"
+      if (!(result.classList.value.includes("FRIENDS" && activeFilter))){
+        result.classList.add("hidden")
       } else {
         result.classList.remove("hidden")
       };
@@ -34,13 +49,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   myself = document.getElementById("myself")
   myself.addEventListener("click", (event) => {
-    buttons.forEach((button) => {
+    privacyButtons.forEach((button) => {
       button.classList.remove("active")
     });
     myself.classList.add("active");
+
+    activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
+
     results.forEach((result) => {
-      if (!(result.classList.value.includes("SELF"))){
-        result.classList = result.classList + " hidden"
+      if (!(result.classList.value.includes("SELF" && activeFilter))){
+        result.classList.add("hidden")
       } else {
         result.classList.remove("hidden")
       };
@@ -49,24 +67,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   nofilters = document.getElementById("nofilters")
   nofilters.addEventListener("click", (event) => {
-    buttons.forEach((button) => {
+    privacyButtons.forEach((button) => {
       button.classList.remove("active")
     });
     nofilters.classList.add("active");
+
+    activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
+
     results.forEach((result) => {
-      result.classList.remove("hidden")
+      if (!(result.classList.value.includes(activeFilter))){
+        result.classList.add("hidden")
+      } else {
+        result.classList.remove("hidden")
+      };
     })
   })
 
+  // category filter
   photos = document.getElementById("photos")
   photos.addEventListener("click", (event) => {
-    buttons.forEach((button) => {
+    categoryButtons.forEach((button) => {
       button.classList.remove("active")
     });
     photos.classList.add("active");
     results.forEach((result) => {
       if (!(result.classList.value.includes("photo"))){
-        result.classList = result.classList + " hidden"
+        result.classList.add("hidden")
       } else {
         result.classList.remove("hidden")
       };
@@ -75,13 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   videos = document.getElementById("videos")
   videos.addEventListener("click", (event) => {
-    buttons.forEach((button) => {
+    categoryButtons.forEach((button) => {
       button.classList.remove("active")
     });
     videos.classList.add("active");
     results.forEach((result) => {
       if (!(result.classList.value.includes("video"))){
-        result.classList = result.classList + " hidden"
+        result.classList.add("hidden")
       } else {
         result.classList.remove("hidden")
       };
@@ -90,13 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   texts = document.getElementById("texts")
   texts.addEventListener("click", (event) => {
-    buttons.forEach((button) => {
+    categoryButtons.forEach((button) => {
       button.classList.remove("active")
     });
     texts.classList.add("active");
     results.forEach((result) => {
       if (!(result.classList.value.includes("post"))){
-        result.classList = result.classList + " hidden"
+        result.classList.add("hidden")
       } else {
         result.classList.remove("hidden")
       };
@@ -105,7 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   reverse = document.getElementById("reverse")
   reverse.addEventListener("click", (event) => {
-   buttons.forEach((button) => {
+   categoryButtons.forEach((button) => {
      button.classList.remove("active")
    });
    reverse.classList.add("active");
@@ -113,13 +139,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   pages = document.getElementById("pages")
   pages.addEventListener("click", (event) => {
-    buttons.forEach((button) => {
+    categoryButtons.forEach((button) => {
       button.classList.remove("active")
     });
     pages.classList.add("active");
     results.forEach((result) => {
       if (!(result.classList.value.includes("page"))){
-        result.classList = result.classList + " hidden"
+        result.classList.add("hidden")
       } else {
         result.classList.remove("hidden")
       };
@@ -129,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   all = document.getElementById("all")
   all.addEventListener("click", (event) => {
-    buttons.forEach((button) => {
+    categoryButtons.forEach((button) => {
       button.classList.remove("active")
     });
     all.classList.add("active");
@@ -140,3 +166,154 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
+
+
+
+
+
+// // Ancien code
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   buttons = document.querySelectorAll(".filter-btn")
+//   results = document.querySelectorAll("#result_card")
+
+//   // privacy filter
+//   everyone = document.getElementById("everyone")
+//   everyone.addEventListener("click", (event) => {
+//     buttons.forEach((button) => {
+//       button.classList.remove("active")
+//     });
+//     everyone.classList.add("active");
+//     results.forEach((result) => {
+//       if (!(result.classList.value.includes("EVERYONE"))){
+//         result.classList = result.classList + " hidden"
+//       } else {
+//         result.classList.remove("hidden")
+//       };
+//     })
+//   })
+
+//   friends = document.getElementById("friends")
+//   friends.addEventListener("click", (event) => {
+//     buttons.forEach((button) => {
+//       button.classList.remove("active")
+//     });
+//     friends.classList.add("active");
+//     results.forEach((result) => {
+//       if (!(result.classList.value.includes("FRIENDS"))){
+//         result.classList = result.classList + " hidden"
+//       } else {
+//         result.classList.remove("hidden")
+//       };
+//     })
+//   })
+
+//   myself = document.getElementById("myself")
+//   myself.addEventListener("click", (event) => {
+//     buttons.forEach((button) => {
+//       button.classList.remove("active")
+//     });
+//     myself.classList.add("active");
+//     results.forEach((result) => {
+//       if (!(result.classList.value.includes("SELF"))){
+//         result.classList = result.classList + " hidden"
+//       } else {
+//         result.classList.remove("hidden")
+//       };
+//     })
+//   })
+
+//   nofilters = document.getElementById("nofilters")
+//   nofilters.addEventListener("click", (event) => {
+//     buttons.forEach((button) => {
+//       button.classList.remove("active")
+//     });
+//     nofilters.classList.add("active");
+//     results.forEach((result) => {
+//       result.classList.remove("hidden")
+//     })
+//   })
+
+//   // category filter
+//   photos = document.getElementById("photos")
+//   photos.addEventListener("click", (event) => {
+//     buttons.forEach((button) => {
+//       button.classList.remove("active")
+//     });
+//     photos.classList.add("active");
+//     results.forEach((result) => {
+//       if (!(result.classList.value.includes("photo"))){
+//         result.classList = result.classList + " hidden"
+//       } else {
+//         result.classList.remove("hidden")
+//       };
+//     })
+//   })
+
+//   videos = document.getElementById("videos")
+//   videos.addEventListener("click", (event) => {
+//     buttons.forEach((button) => {
+//       button.classList.remove("active")
+//     });
+//     videos.classList.add("active");
+//     results.forEach((result) => {
+//       if (!(result.classList.value.includes("video"))){
+//         result.classList = result.classList + " hidden"
+//       } else {
+//         result.classList.remove("hidden")
+//       };
+//     })
+//   })
+
+//   texts = document.getElementById("texts")
+//   texts.addEventListener("click", (event) => {
+//     buttons.forEach((button) => {
+//       button.classList.remove("active")
+//     });
+//     texts.classList.add("active");
+//     results.forEach((result) => {
+//       if (!(result.classList.value.includes("post"))){
+//         result.classList = result.classList + " hidden"
+//       } else {
+//         result.classList.remove("hidden")
+//       };
+//     })
+//   })
+
+//   reverse = document.getElementById("reverse")
+//   reverse.addEventListener("click", (event) => {
+//    buttons.forEach((button) => {
+//      button.classList.remove("active")
+//    });
+//    reverse.classList.add("active");
+//   })
+
+//   pages = document.getElementById("pages")
+//   pages.addEventListener("click", (event) => {
+//     buttons.forEach((button) => {
+//       button.classList.remove("active")
+//     });
+//     pages.classList.add("active");
+//     results.forEach((result) => {
+//       if (!(result.classList.value.includes("page"))){
+//         result.classList = result.classList + " hidden"
+//       } else {
+//         result.classList.remove("hidden")
+//       };
+//     });
+//   });
+
+
+//   all = document.getElementById("all")
+//   all.addEventListener("click", (event) => {
+//     buttons.forEach((button) => {
+//       button.classList.remove("active")
+//     });
+//     all.classList.add("active");
+//     results.forEach((result) => {
+//       result.classList.remove("hidden");
+//     });
+//   });
+
+
+// });
