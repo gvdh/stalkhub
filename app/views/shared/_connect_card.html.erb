@@ -14,9 +14,10 @@
   <!-- link -->
   <div class="link">
     <% if @provider == 'facebook' %>
-      <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="false"></div>
-
-<div id="status">
+      <button class="loginBtn loginBtn--facebook">
+        <%= link_to 'Link my facebook account', '/auth/facebook' %>
+      </button>
+      <div id="status">
 </div>
     <% else %>
       <p>Sorry, we don't handle connection to <%= @provider %> yet...</p>
