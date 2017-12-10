@@ -7,6 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
   results = document.querySelectorAll("#result_card")
 
 
+  // No privacy filter on pages and photos
+
+  // TODO :
+  // Add privacy filter 'everyone' by default if category == page
+  // My method doesn't work for the filter 'All' -> to fix
+  // Check current privacy filter when clicking on category_filter
 
 
   // privacy filter
@@ -20,10 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
     activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
 
     results.forEach((result) => {
-      if (!(result.classList.value.includes("EVERYONE" && activeFilter))){
-        result.classList.add("hidden")
-      } else {
+      if (result.classList.contains("EVERYONE") && result.classList.contains(activeFilter)){
         result.classList.remove("hidden")
+      } else {
+        result.classList.add("hidden")
       };
     })
   })
@@ -39,10 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
     activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
 
     results.forEach((result) => {
-      if (!(result.classList.value.includes("FRIENDS" && activeFilter))){
-        result.classList.add("hidden")
-      } else {
+      if (result.classList.contains("ALL_FRIENDS") && result.classList.contains(activeFilter)){
         result.classList.remove("hidden")
+      } else {
+        result.classList.add("hidden")
       };
     })
   })
@@ -57,10 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
     activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
 
     results.forEach((result) => {
-      if (!(result.classList.value.includes("SELF" && activeFilter))){
-        result.classList.add("hidden")
-      } else {
+      if (result.classList.contains("SELF") && result.classList.contains(activeFilter)){
         result.classList.remove("hidden")
+      } else {
+        result.classList.add("hidden")
       };
     })
   })
@@ -75,10 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
     activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
 
     results.forEach((result) => {
-      if (!(result.classList.value.includes(activeFilter))){
-        result.classList.add("hidden")
-      } else {
+      if (result.classList.contains(activeFilter)){
         result.classList.remove("hidden")
+      } else {
+        result.classList.add("hidden")
       };
     })
   })
@@ -114,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  texts = document.getElementById("texts")
+  texts = document.getElementById("posts")
   texts.addEventListener("click", (event) => {
     categoryButtons.forEach((button) => {
       button.classList.remove("active")
