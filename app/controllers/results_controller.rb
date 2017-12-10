@@ -5,6 +5,7 @@ class ResultsController < ApplicationController
 
     @provider = params[:provider]
     @results = policy_scope(Result)
+
     #.where(provider: provider).order(created_at: :desc)
     if provider.nil?
       # or token has expired
@@ -23,8 +24,9 @@ class ResultsController < ApplicationController
       @results = @results.texts
     elsif params[:type] == 'video'
       @results = @results.videos
+    elsif params[:type] == 'page'
+      @results = @results.pages
     end
-
     if params[:order] == 'reverse'
       @results = @results.order("created_at DESC")
     end

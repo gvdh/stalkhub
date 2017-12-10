@@ -1,3 +1,4 @@
+
 <div id="page">
   <div id="side_content">
     <div id="sidebar">
@@ -6,6 +7,7 @@
 
     <div id="category_filter">
       <%= render 'shared/category_filter', provider: @provider %>
+
     </div>
   </div>
   <div id="container-reduced">
@@ -16,6 +18,12 @@
       </div>
 
     <% else  %>
+      <ul id="privacy-filter" class="list-inline">
+        <li><button class="filter-btn" id="everyone">Only public</button></li>
+        <li><button class="filter-btn" id="friends">Only friends</button></li>
+        <li><button class="filter-btn" id="myself">Only me</button></li>
+        <li><button class="filter-btn" id="nofilters">No privacy filters</</button>
+      </ul>
       <% @results.each do |result|  %>
         <div class="row">
           <div class="col-xs-12 col-md-8 ">

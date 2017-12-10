@@ -1,4 +1,4 @@
-<div id="result_card">
+<div id="result_card" class="<%= result.category %> <%= result.privacy %>">
   <div class="card-media">
     <%= image_tag result.picture %>
   </div>
@@ -6,6 +6,6 @@
     <p><%= result.text %></p>
   </div>
   <div class="card_footer text-right">
-    <p> <%= result.date.to_time.strftime("%b %Y") %> </p>
+    <p> <%= result.date.to_time.strftime("%b %Y") if result.date %> </p>
   </div>
 </div>

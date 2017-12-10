@@ -96,7 +96,7 @@ class GraphObjectService
             Result.create!(
               user: @user,
               category: "page",
-              name: page["name"],
+              text: page["name"],
               picture: page["picture"]["data"]["url"],
               link: page["link"],
               fan_count: page["fan_count"],
@@ -179,10 +179,5 @@ class GraphObjectService
       page += 1
     end
   end
-
 end
-
-
-
-
 

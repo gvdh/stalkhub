@@ -1,0 +1,142 @@
+document.addEventListener("DOMContentLoaded", () => {
+  buttons = document.querySelectorAll(".filter-btn")
+  results = document.querySelectorAll("#result_card")
+
+  everyone = document.getElementById("everyone")
+  everyone.addEventListener("click", (event) => {
+    buttons.forEach((button) => {
+      button.classList.remove("active")
+    });
+    everyone.classList.add("active");
+    results.forEach((result) => {
+      if (!(result.classList.value.includes("EVERYONE"))){
+        result.classList = result.classList + " hidden"
+      } else {
+        result.classList.remove("hidden")
+      };
+    })
+  })
+
+  friends = document.getElementById("friends")
+  friends.addEventListener("click", (event) => {
+    buttons.forEach((button) => {
+      button.classList.remove("active")
+    });
+    friends.classList.add("active");
+    results.forEach((result) => {
+      if (!(result.classList.value.includes("FRIENDS"))){
+        result.classList = result.classList + " hidden"
+      } else {
+        result.classList.remove("hidden")
+      };
+    })
+  })
+
+  myself = document.getElementById("myself")
+  myself.addEventListener("click", (event) => {
+    buttons.forEach((button) => {
+      button.classList.remove("active")
+    });
+    myself.classList.add("active");
+    results.forEach((result) => {
+      if (!(result.classList.value.includes("SELF"))){
+        result.classList = result.classList + " hidden"
+      } else {
+        result.classList.remove("hidden")
+      };
+    })
+  })
+
+  nofilters = document.getElementById("nofilters")
+  nofilters.addEventListener("click", (event) => {
+    buttons.forEach((button) => {
+      button.classList.remove("active")
+    });
+    nofilters.classList.add("active");
+    results.forEach((result) => {
+      result.classList.remove("hidden")
+    })
+  })
+
+  photos = document.getElementById("photos")
+  photos.addEventListener("click", (event) => {
+    buttons.forEach((button) => {
+      button.classList.remove("active")
+    });
+    photos.classList.add("active");
+    results.forEach((result) => {
+      if (!(result.classList.value.includes("photo"))){
+        result.classList = result.classList + " hidden"
+      } else {
+        result.classList.remove("hidden")
+      };
+    })
+  })
+
+  videos = document.getElementById("videos")
+  videos.addEventListener("click", (event) => {
+    buttons.forEach((button) => {
+      button.classList.remove("active")
+    });
+    videos.classList.add("active");
+    results.forEach((result) => {
+      if (!(result.classList.value.includes("video"))){
+        result.classList = result.classList + " hidden"
+      } else {
+        result.classList.remove("hidden")
+      };
+    })
+  })
+
+  texts = document.getElementById("texts")
+  texts.addEventListener("click", (event) => {
+    buttons.forEach((button) => {
+      button.classList.remove("active")
+    });
+    texts.classList.add("active");
+    results.forEach((result) => {
+      if (!(result.classList.value.includes("post"))){
+        result.classList = result.classList + " hidden"
+      } else {
+        result.classList.remove("hidden")
+      };
+    })
+  })
+
+  reverse = document.getElementById("reverse")
+  reverse.addEventListener("click", (event) => {
+   buttons.forEach((button) => {
+     button.classList.remove("active")
+   });
+   reverse.classList.add("active");
+  })
+
+  pages = document.getElementById("pages")
+  pages.addEventListener("click", (event) => {
+    buttons.forEach((button) => {
+      button.classList.remove("active")
+    });
+    pages.classList.add("active");
+    results.forEach((result) => {
+      if (!(result.classList.value.includes("page"))){
+        result.classList = result.classList + " hidden"
+      } else {
+        result.classList.remove("hidden")
+      };
+    });
+  });
+
+
+  all = document.getElementById("all")
+  all.addEventListener("click", (event) => {
+    buttons.forEach((button) => {
+      button.classList.remove("active")
+    });
+    all.classList.add("active");
+    results.forEach((result) => {
+      result.classList.remove("hidden");
+    });
+  });
+
+
+});
