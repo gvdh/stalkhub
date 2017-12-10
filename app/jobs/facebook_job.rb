@@ -1,7 +1,8 @@
 class FacebookJob < ApplicationJob
   queue_as :default
 
-  def perform(provider)
+  def perform(provider_id)
+    provider = Provider.find(provider_id)
     infos = GraphObjectService.new(provider)
     infos.get_uploaded_videos
     infos.get_tagged_videos
