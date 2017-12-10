@@ -11,12 +11,7 @@
     </div>
   </div>
   <div id="container-reduced">
-    <ul id="privacy-filter" class="list-inline">
-      <li><button class="filter-btn" id="everyone">Only public</button></li>
-      <li><button class="filter-btn" id="friends">Only friends</button></li>
-      <li><button class="filter-btn" id="myself">Only me</button></li>
-      <li><button class="filter-btn" id="nofilters">No privacy filters</</button>
-    </ul>
+    <%= render 'shared/privacy_filter' %>
 
     <% @results.each do |result|  %>
       <div class="row">
