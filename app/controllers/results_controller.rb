@@ -8,7 +8,10 @@ class ResultsController < ApplicationController
 
     #.where(provider: provider).order(created_at: :desc)
     if provider.nil?
-      # or token has expired
+      return redirect_to new_provider_path(params[:provider])
+    end
+
+    if provider.expires_at >= Time.now.to_i
       return redirect_to new_provider_path(params[:provider])
     end
 
@@ -32,4 +35,5 @@ class ResultsController < ApplicationController
     end
     @order = params[:order]
   end
+
 end

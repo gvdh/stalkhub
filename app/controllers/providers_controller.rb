@@ -14,14 +14,20 @@ class ProvidersController < ApplicationController
 
   def create_or_update_for_facebook(hash)
     provider = Provider.where(name: 'facebook', uid: hash[:uid]).first
-    if provider
+    if provider && provider.expires_at <= Time.now.to_i
       provider.update(token: hash[:credentials][:token])
       authorize provider
-      FacebookJob.perform_now(provider)
+      begin
+        FacebookJob.perform_now(provider.id)
+      rescue
+        return redirect_to new_provider_path(params[:provider])
+        flash[:alert] = 'Something went wrong, please try again'
+      end
     else
       provider = Provider.create(
         name: params[:provider],
         uid: hash[:uid],
+        expires_at: hash[:credentials][:expires_at],
         token: hash[:credentials][:token],
         user: current_user
       )
