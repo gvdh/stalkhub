@@ -22,12 +22,9 @@
     <% else  %>
       <%= render 'shared/privacy_filter' %>
 
-
-
+      <!-- Muuri grid -->
       <div class="grid">
-
         <% @results.each do |result|  %>
-
           <div class="item">
             <div class="item-content">
               <!-- Safe zone, enter your custom markup -->
@@ -37,10 +34,7 @@
               <!-- Safe zone ends -->
             </div>
           </div>
-
         <% end %>
-
-
       </div>
       <% content_for(:after_js) do %>
         <%= javascript_pack_tag 'index_results' %>
