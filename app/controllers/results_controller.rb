@@ -17,7 +17,7 @@ class ResultsController < ApplicationController
 
     if @results.size < 1
       provider_id = provider.id
-      FacebookJob.perform_now(provider_id)
+      FacebookJob.perform_later(provider_id)
     end
 
     @type = params[:type]
