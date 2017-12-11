@@ -4,12 +4,12 @@
       <%= render 'shared/sidebar_menu', provider: @provider %>
     </div>
 
-    <div id="category_filter">
+    <div>
       <%= render 'shared/category_filter', provider: @provider %>
-
     </div>
   </div>
   <div id="container-reduced">
+
     <% if @results.size < 1 %>
 
       <div id="loading">
@@ -20,12 +20,8 @@
       </div>
 
     <% else  %>
-      <ul id="privacy-filter" class="list-inline">
-        <li><button class="filter-btn" id="everyone">Only public</button></li>
-        <li><button class="filter-btn" id="friends">Only friends</button></li>
-        <li><button class="filter-btn" id="myself">Only me</button></li>
-        <li><button class="filter-btn" id="nofilters">No privacy filters</</button>
-      </ul>
+      <%= render 'shared/privacy_filter' %>
+
       <% @results.each do |result|  %>
         <div class="row">
           <div class="col-xs-12 col-md-8 ">
