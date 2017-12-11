@@ -15,6 +15,8 @@ class ResultsController < ApplicationController
     #   return redirect_to new_provider_path(params[:provider])
     # end
 
+
+    # check_results_size(params)
     if @results.size < 1
       provider_id = provider.id
       FacebookJob.perform_now(provider_id)

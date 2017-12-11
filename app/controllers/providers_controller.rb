@@ -14,6 +14,7 @@ class ProvidersController < ApplicationController
     redirect_to results_path(params[:provider])
   end
 
+
   def create_or_update_for_facebook(hash)
     provider = Provider.where(name: 'facebook', user: current_user).last
     if provider && provider.expires_at <= Time.now.to_i
@@ -35,6 +36,18 @@ class ProvidersController < ApplicationController
       )
     end
   end
+
+  def initializer
+    skip_authorization
+    provider = Provider.create(
+        name: params[:provider],
+        user: current_user
+      )
+    @username = params[:username]
+    InstaJob.perform_now(@username, current_user)
+    redirect_to results_path(params[:provider])
+  end
+
 
   def new
     # Ugly way to authorize method (instanciate an unused Provider)
