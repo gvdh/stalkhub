@@ -253,5 +253,4 @@ document.addEventListener("DOMContentLoaded", () => {
    reverse.classList.add("active");
   })
 
-
 });
