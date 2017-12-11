@@ -14,19 +14,6 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
-  # def after_sign_in_path_for(resource)
-  #   results_path(provider)
-  #   fail
-  # end
-
-  # def after_sign_up_path_for(resource)
-  #   results_path(provider)
-  # end
-
-  # def after_sign_out_path_for(resource_or_scope)
-  # request.referrer
-  # end
-
   private
 
   def skip_pundit?

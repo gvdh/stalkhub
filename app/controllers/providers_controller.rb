@@ -5,6 +5,8 @@ class ProvidersController < ApplicationController
     if params[:provider] == 'facebook'
       create_or_update_for_facebook(auth_hash)
     # add new providers here (elsif)
+    elsif params[:provider] == 'twitter'
+      create_twitter(params)
     else
       flash[:alert] = 'Provider not handled'
       return redirect_to root_path
@@ -28,6 +30,11 @@ class ProvidersController < ApplicationController
       )
       FacebookJob.perform_now(provider)
     end
+  end
+
+  def create_twitter(params)
+    user = User.find(current_user.id)
+    TwitterJob.perform_now(params, user)
   end
 
   def new

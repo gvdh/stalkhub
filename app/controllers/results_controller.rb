@@ -1,11 +1,12 @@
 class ResultsController < ApplicationController
 
   def index
-    provider = Provider.where(name: params[:provider], user: current_user).first
+    #provider = Provider.where(name: params[:provider], user: current_user).first
 
     @provider = params[:provider]
-    @results = policy_scope(Result)
-    if provider.nil? || @results.size < 1
+    @results = policy_scope(Result).select { |r| r.provider.name == @provider }
+    fail
+    if @provider.nil? || @results.size < 1
       redirect_to new_provider_path(params[:provider])
     end
 
