@@ -6,11 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
   // resultat = document.querySelector("#result_card")
   results = document.querySelectorAll("#result_card")
 
+  // Default "settings" when we arrive on results view
+    nofilters = document.getElementById("nofilters")
+    nofilters.classList.add("active");
+
+    all = document.getElementById("all");
+    all.classList.add("active");
+    results.forEach((result) => {
+      result.classList.remove("hidden");
+    });
 
   // No privacy filter on pages and photos
 
   // TODO :
-  // Add privacy filter 'everyone' by default if category == page
   // My method doesn't work for the filter 'All' -> to fix
   // Check current privacy filter when clicking on category_filter
 
@@ -23,11 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     everyone.classList.add("active");
 
-    activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
+    activeFilter = category_filter.querySelector(".active").id
+    if (!(activeFilter === "all")) {
+      activeFilter = activeFilter.slice(0,-1)
+    }
 
     results.forEach((result) => {
-      if (result.classList.contains("EVERYONE") && result.classList.contains(activeFilter)){
+      if ((result.classList.contains("EVERYONE") && (result.classList.contains(activeFilter) || activeFilter === "all"))) {
         result.classList.remove("hidden")
+      // } else if (result.classList.contains("EVERYONE") && activeFilter === "all") {
+      //   result.classList.remove("hidden")
       } else {
         result.classList.add("hidden")
       };
@@ -42,10 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
     friends.classList.add("active");
 
     category_filter = document.getElementById("category_filter")
-    activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
+    activeFilter = category_filter.querySelector(".active").id
+    if (!(activeFilter === "all")) {
+      activeFilter = activeFilter.slice(0,-1)
+    }
 
     results.forEach((result) => {
-      if (result.classList.contains("ALL_FRIENDS") && result.classList.contains(activeFilter)){
+      if ((result.classList.contains("ALL_FRIENDS") && (result.classList.contains(activeFilter) || activeFilter === "all"))){
         result.classList.remove("hidden")
       } else {
         result.classList.add("hidden")
@@ -60,10 +76,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     myself.classList.add("active");
 
-    activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
+    activeFilter = category_filter.querySelector(".active").id
+    if (!(activeFilter === "all")) {
+      activeFilter = activeFilter.slice(0,-1)
+    }
 
     results.forEach((result) => {
-      if (result.classList.contains("SELF") && result.classList.contains(activeFilter)){
+      if ((result.classList.contains("SELF") && (result.classList.contains(activeFilter) || activeFilter === "all"))){
         result.classList.remove("hidden")
       } else {
         result.classList.add("hidden")
@@ -78,10 +97,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     nofilters.classList.add("active");
 
-    activeFilter = category_filter.querySelector(".active").id.slice(0,-1)
+    activeFilter = category_filter.querySelector(".active").id
+    if (!(activeFilter === "all")) {
+      activeFilter = activeFilter.slice(0,-1)
+    }
 
     results.forEach((result) => {
-      if (result.classList.contains(activeFilter)){
+      if ((result.classList.contains(activeFilter) || activeFilter === "all")){
         result.classList.remove("hidden")
       } else {
         result.classList.add("hidden")
