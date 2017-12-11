@@ -24,7 +24,7 @@ class GraphObjectService
         ze_photo = photo["likes"]["summary"]["total_count"] if photo["likes"]
         text = photo["name"] if photo["name"]
         image = photo["images"].first["source"] if photo["images"]
-        if Result.find_by_node_id(photo["id"]).nil?
+        if Result.find_by_node_id(photo["id"]).nil? || Result.find_by_node_id(photo["id"]).user != @user
           begin
             Result.create!(
               user: @user,
@@ -54,7 +54,7 @@ class GraphObjectService
     page = 1
     until posts.next_page.nil? && page != 1
       posts.each do |post|
-        if Result.find_by_node_id(post["id"]).nil?
+        if Result.find_by_node_id(post["id"]).nil? || Result.find_by_node_id(post["id"]).user != @user
           parsed_post = post.to_s
           if post.to_s.include?("\"image\"")
             attachment = parsed_post.delete(" ").scan(/(?<=\"src\"=>\")[^\"]+/).join
@@ -91,7 +91,7 @@ class GraphObjectService
     page = 1
     until actual_page.next_page.nil? && page != 1
       actual_page.each do |page|
-        if Result.find_by_node_id(page["id"]).nil?
+        if Result.find_by_node_id(page["id"]).nil? || Result.find_by_node_id(page["id"]).user != @user
           begin
             Result.create!(
               user: @user,
@@ -122,7 +122,7 @@ class GraphObjectService
       videos.each do |video|
         likes = video["likes"]["summary"]["total_count"] if video['likes']
         text = video["description"] if video["description"]
-        if Result.find_by_node_id(video["id"]).nil?
+        if Result.find_by_node_id(video["id"]).nil? || Result.find_by_node_id(video["id"]).user != @user
           begin
             Result.create!(
               user: @user,
@@ -155,7 +155,7 @@ class GraphObjectService
       videos.each do |video|
         likes = video["likes"]["summary"]["total_count"] if video['likes']
         text = video["description"] if video["description"]
-        if Result.find_by_node_id(video["id"]).nil?
+        if Result.find_by_node_id(video["id"]).nil? || Result.find_by_node_id(video["id"]).user != @user
           begin
             Result.create!(
               user: @user,

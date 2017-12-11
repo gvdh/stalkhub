@@ -1,29 +1,51 @@
-<ul class="list-inline" style="margin-left:50vh; margin-top: 10px;">
-  <li><button class="btn btn-primary" id="everyone">Only public</button></li>
-  <li><button class="btn btn-primary" id="friends">Only friends</button></li>
-  <li><button class="btn btn-primary" id="myself">Only me</button></li>
-  <li><button class="btn btn-primary" id="nofilters">No privacy filters</</button>
-</ul>
-
 <div id="page">
   <div id="side_content">
     <div id="sidebar">
       <%= render 'shared/sidebar_menu', provider: @provider %>
     </div>
+    <% if params[:provider] == "facebook"  %>
+      <div id="category_filter">
+        <%= render 'shared/category_filter', provider: @provider %>
+      </div>
+    <% end %>
 
-    <div id="category_filter">
-      <%= render 'shared/category_filter', provider: @provider %>
-    </div>
   </div>
   <div id="container-reduced">
-    <% @results.each do |result|  %>
-      <div class="row">
-        <div class="col-xs-12 col-md-8 ">
-          <%= link_to result.link , target: '_blank' do %>
-            <%= render 'shared/result_card', result: result %>
-          <% end %>
-        </div>
+
+    <% if @results.size < 1 %>
+
+      <div id="loading">
+        <%= image_tag "loading.gif" %>
+        <script>
+          setInterval(function(){ location.reload(); }, 3000);
+        </script>
       </div>
+
+    <% else  %>
+    
+      <% if params[:provider] == "facebook"  %>
+        <%= render 'shared/privacy_filter' %>
+      <% end %>
+
+      <!-- Muuri grid -->
+      <div class="grid">
+        <% @results.each do |result|  %>
+          <div class="item">
+            <div class="item-content">
+              <!-- Safe zone, enter your custom markup -->
+              <%= link_to result.link , target: '_blank' do %>
+                <%= render 'shared/result_card', result: result %>
+              <% end %>
+              <!-- Safe zone ends -->
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% content_for(:after_js) do %>
+        <%= javascript_pack_tag 'index_results' %>
+      <% end %>
+
+
     <% end %>
   </div>
 </div>

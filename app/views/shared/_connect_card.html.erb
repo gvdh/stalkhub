@@ -1,3 +1,5 @@
+
+
 <div class="connect_card">
   <!-- icon -->
   <div class="icon">
@@ -12,12 +14,32 @@
   <!-- link -->
   <div class="link">
     <% if @provider == 'facebook' %>
-      <%= link_to 'Link my facebook account', '/auth/facebook' %>
+      <button class="loginBtn loginBtn--facebook">
+        <%= link_to 'Link my facebook account', '/auth/facebook' %>
+      </button>
+      <div id="status"></div>
+                  
     <% elsif @provider == 'twitter' %>
       <%= simple_form_for :provider, url: '/auth/twitter/callback', method: :get do |f| %>
         <input type="text" name="twitter_username" placeholder="Twitter's username">
       <%= f.submit %>
       <% end %>
+
+ 
+    
+    <% elsif @provider == 'google' %>
+      <%= form_tag("/auth/google/callback", method: "get") do %>
+        <%= text_field_tag(:full_name, "Barack Obama") %>
+        <br>
+        <%= submit_tag("Dig !") %>
+      <% end %>
+    
+    <% elsif @provider == 'instagram' %>
+      <form method="get" action=<%= initializer_provider_path(@provider)%> >
+        <input name= "username" type="text">
+        <input type= "submit" value="Enregistrer">
+      </form>
+    
     <% else %>
       <p>Sorry, we don't handle connection to <%= @provider %> yet...</p>
     <% end %>
@@ -28,5 +50,6 @@
     <a href="//www.iubenda.com/privacy-policy/8281983" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
   </div>
 </div>
+
 
 
