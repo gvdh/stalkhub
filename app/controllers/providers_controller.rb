@@ -37,7 +37,7 @@ class ProvidersController < ApplicationController
     end
   end
 
-  def initializer
+  def create_for_instagram
     skip_authorization
     provider = Provider.create(
         name: params[:provider],

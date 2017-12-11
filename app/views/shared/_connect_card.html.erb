@@ -22,7 +22,7 @@
     <% elsif @provider == 'instagram' %>
       <form method="get" action=<%= initializer_provider_path(@provider)%> >
         <input name= "username" type="text">
-        <input type= "submit" value="Enregistrer">
+        <input type= "submit" value="Link my instagram account">
       </form>
     <% else %>
       <p>Sorry, we don't handle connection to <%= @provider %> yet...</p>
