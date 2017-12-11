@@ -6,6 +6,8 @@ class ProvidersController < ApplicationController
     authorize Provider
     if params[:provider] == 'facebook'
       create_or_update_for_facebook(auth_hash)
+    elsif params[:provider] == 'twitter'
+      create_twitter(params)
     elsif params[:provider] == 'google'
       create_google(params)
     else
@@ -38,6 +40,12 @@ class ProvidersController < ApplicationController
     end
   end
 
+
+  def create_twitter(params)
+    user = User.find(current_user.id)
+    TwitterJob.perform_now(params, user)
+  end
+  
   def create_google(params)
     user_ip = Geocoder.search("#{request.remote_ip}").first.city
     user_id = current_user.id

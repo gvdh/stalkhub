@@ -14,11 +14,18 @@
   <!-- link -->
   <div class="link">
     <% if @provider == 'facebook' %>
-
       <button class="loginBtn loginBtn--facebook">
         <%= link_to 'Link my facebook account', '/auth/facebook' %>
       </button>
       <div id="status"></div>
+                  
+    <% elsif @provider == 'twitter' %>
+      <%= simple_form_for :provider, url: '/auth/twitter/callback', method: :get do |f| %>
+        <input type="text" name="twitter_username" placeholder="Twitter's username">
+      <%= f.submit %>
+      <% end %>
+
+ 
     
     <% elsif @provider == 'google' %>
       <%= form_tag("/auth/google/callback", method: "get") do %>

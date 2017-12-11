@@ -26,6 +26,9 @@ gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+gem 'twitter'
+gem 'bootstrap-typeahead-rails'
+gem 'twitter-typeahead-rails'
 
 group :development, :test do
   gem 'pry-byebug'
