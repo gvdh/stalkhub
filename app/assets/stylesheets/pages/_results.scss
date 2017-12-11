@@ -40,18 +40,14 @@
 
 .grid {
   position: relative;
-  max-width: 960px;
+  max-width: 100%;
 }
 
 .item {
   display: block;
   position: absolute;
-  width: 100px;
-  height: 100px;
   margin: 5px;
   z-index: 1;
-  background: #000;
-  color: #fff;
 }
 .item.muuri-item-dragging {
   z-index: 3;
