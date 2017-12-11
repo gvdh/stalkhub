@@ -1,25 +1,19 @@
 class ResultsController < ApplicationController
 
+  before_action :load_results
+
   def index
-    provider = Provider.where(name: params[:provider], user: current_user).last
-
-    @provider = params[:provider]
-    @results = policy_scope(Result)
-
     #.where(provider: provider).order(created_at: :desc)
-    if provider.nil?
+    if @loaded_provider.nil?
       return redirect_to new_provider_path(params[:provider])
     end
 
-    # if provider.expires_at >= Time.now.to_i
-    #   return redirect_to new_provider_path(params[:provider])
-    # end
+    if @loaded_provider.expires_at >= Time.now.to_i
+      return redirect_to new_provider_path(params[:provider])
+    end
 
-
-    # check_results_size(params)
-    if @results.size < 1
-      provider_id = provider.id
-      FacebookJob.perform_later(provider_id)
+    if @results.size < 1 && params[:provider] == "facebook"
+      FacebookJob.perform_later(provider.id)
     end
 
     @type = params[:type]
@@ -39,4 +33,11 @@ class ResultsController < ApplicationController
     end
   end
 
+  private
+
+  def load_results
+    @loaded_provider = Provider.where(name: params[:provider], user: current_user).first
+    @provider = params[:provider]
+    @results = policy_scope(Result)
+  end
 end

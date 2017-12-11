@@ -3,10 +3,12 @@
     <div id="sidebar">
       <%= render 'shared/sidebar_menu', provider: @provider %>
     </div>
+    <% if params[:provider] == "facebook"  %>
+      <div id="category_filter">
+        <%= render 'shared/category_filter', provider: @provider %>
+      </div>
+    <% end %>
 
-    <div>
-      <%= render 'shared/category_filter', provider: @provider %>
-    </div>
   </div>
   <div id="container-reduced">
 
@@ -20,7 +22,10 @@
       </div>
 
     <% else  %>
-      <%= render 'shared/privacy_filter' %>
+    
+      <% if params[:provider] == "facebook"  %>
+        <%= render 'shared/privacy_filter' %>
+      <% end %>
 
       <!-- Muuri grid -->
       <div class="grid">

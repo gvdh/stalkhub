@@ -6,12 +6,13 @@ class ProvidersController < ApplicationController
     authorize Provider
     if params[:provider] == 'facebook'
       create_or_update_for_facebook(auth_hash)
-    # add new providers here (elsif)
+    elsif params[:provider] == 'google'
+      create_google(params)
     else
       flash[:alert] = 'Provider not handled'
       return redirect_to root_path
     end
-    redirect_to results_path(params[:provider])
+    return redirect_to results_path(params[:provider])
   end
 
 
@@ -37,6 +38,13 @@ class ProvidersController < ApplicationController
     end
   end
 
+  def create_google(params)
+    user_ip = Geocoder.search("#{request.remote_ip}").first.city
+    user_id = current_user.id
+    full_name = params["full_name"]
+    GoogleJob.perform_now(full_name, user_id, user_ip)
+  end
+
   def initializer
     skip_authorization
     provider = Provider.create(
@@ -48,12 +56,10 @@ class ProvidersController < ApplicationController
     redirect_to results_path(params[:provider])
   end
 
-
   def new
     # Ugly way to authorize method (instanciate an unused Provider)
     provider = Provider.new
     authorize provider
-
     @provider = params[:provider]
   end
 
