@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   has_many :providers
   has_many :results, through: :providers
   # Include default devise modules. Others available are:

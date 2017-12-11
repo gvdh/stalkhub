@@ -17,8 +17,13 @@
       <button class="loginBtn loginBtn--facebook">
         <%= link_to 'Link my facebook account', '/auth/facebook' %>
       </button>
-      <div id="status">
-</div>
+      <div id="status"></div>
+    <% elsif @provider == 'google' %>
+      <%= form_tag("/auth/google/callback", method: "get") do %>
+        <%= text_field_tag(:full_name, "Barack Obama") %>
+        <br>
+        <%= submit_tag("Dig !") %>
+      <% end %>
     <% else %>
       <p>Sorry, we don't handle connection to <%= @provider %> yet...</p>
     <% end %>

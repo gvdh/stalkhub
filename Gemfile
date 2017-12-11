@@ -10,6 +10,8 @@ gem 'rails', '5.1.4'
 gem 'redis'
 gem 'omniauth-facebook'
 gem 'koala'
+gem 'nokogiri'
+gem 'geocoder'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

@@ -3,11 +3,11 @@
     <div id="sidebar">
       <%= render 'shared/sidebar_menu', provider: @provider %>
     </div>
-
-    <div id="category_filter">
-      <%= render 'shared/category_filter', provider: @provider %>
-
-    </div>
+    <% if params[:provider] == "facebook"  %>
+      <div id="category_filter">
+        <%= render 'shared/category_filter', provider: @provider %>
+      </div>
+    <% end %>
   </div>
   <div id="container-reduced">
     <% if @results.size < 1 %>
@@ -20,12 +20,14 @@
       </div>
 
     <% else  %>
+    <% if params[:provider] == "facebook"  %>
       <ul id="privacy-filter" class="list-inline">
         <li><button class="filter-btn" id="everyone">Only public</button></li>
         <li><button class="filter-btn" id="friends">Only friends</button></li>
         <li><button class="filter-btn" id="myself">Only me</button></li>
         <li><button class="filter-btn" id="nofilters">No privacy filters</</button>
       </ul>
+    <% end %>
       <% @results.each do |result|  %>
         <div class="row">
           <div class="col-xs-12 col-md-8 ">
