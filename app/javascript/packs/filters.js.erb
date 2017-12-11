@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   category_filter = document.getElementById("category_filter")
   categoryButtons = category_filter.querySelectorAll(".filter-btn")
-  privacyButtons = document.getElementById("privacy-filter").querySelectorAll(".filter-btn")
-  // results = document.querySelectorAll("#result_card:not(.hidden)");
-  // resultat = document.querySelector("#result_card")
+
+  privacy_filter = document.getElementById("privacy-filter")
+  privacyButtons = privacy_filter.querySelectorAll(".filter-btn")
+
   results = document.querySelectorAll("#result_card")
 
   // Default "settings" when we arrive on results view
@@ -16,12 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       result.classList.remove("hidden");
     });
 
-  // No privacy filter on pages and photos
-
-  // TODO :
-  // My method doesn't work for the filter 'All' -> to fix
-  // Check current privacy filter when clicking on category_filter
-
+  // NB : No privacy filter on pages and photos
 
   // privacy filter
   everyone = document.getElementById("everyone")
@@ -39,8 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     results.forEach((result) => {
       if ((result.classList.contains("EVERYONE") && (result.classList.contains(activeFilter) || activeFilter === "all"))) {
         result.classList.remove("hidden")
-      // } else if (result.classList.contains("EVERYONE") && activeFilter === "all") {
-      //   result.classList.remove("hidden")
       } else {
         result.classList.add("hidden")
       };
@@ -112,17 +106,56 @@ document.addEventListener("DOMContentLoaded", () => {
   })
 
   // category filter
+  all = document.getElementById("all")
+  all.addEventListener("click", (event) => {
+    categoryButtons.forEach((button) => {
+      button.classList.remove("active")
+    });
+    all.classList.add("active");
+
+    activeFilter = privacy_filter.querySelector(".active").id
+    if (activeFilter === "nofilters") {
+      activeFilter = "nofilters"
+    } else if (activeFilter === "myself") {
+      activeFilter = "SELF"
+    } else if (activeFilter === "friends") {
+      activeFilter = "ALL_FRIENDS"
+    } else if (activeFilter === "everyone") {
+      activeFilter = "EVERYONE"
+    }
+
+    results.forEach((result) => {
+      if ((result.classList.contains(activeFilter) || activeFilter === "nofilters")){
+        result.classList.remove("hidden")
+      } else {
+        result.classList.add("hidden")
+      };
+    })
+  });
+
   photos = document.getElementById("photos")
   photos.addEventListener("click", (event) => {
     categoryButtons.forEach((button) => {
       button.classList.remove("active")
     });
     photos.classList.add("active");
+
+    activeFilter = privacy_filter.querySelector(".active").id
+    if (activeFilter === "nofilters") {
+      activeFilter = "nofilters"
+    } else if (activeFilter === "myself") {
+      activeFilter = "SELF"
+    } else if (activeFilter === "friends") {
+      activeFilter = "ALL_FRIENDS"
+    } else if (activeFilter === "everyone") {
+      activeFilter = "EVERYONE"
+    }
+
     results.forEach((result) => {
-      if (!(result.classList.value.includes("photo"))){
-        result.classList.add("hidden")
-      } else {
+      if ((result.classList.contains("photo") && (result.classList.contains(activeFilter) || activeFilter === "nofilters"))){
         result.classList.remove("hidden")
+      } else {
+        result.classList.add("hidden")
       };
     })
   })
@@ -133,30 +166,84 @@ document.addEventListener("DOMContentLoaded", () => {
       button.classList.remove("active")
     });
     videos.classList.add("active");
+
+    activeFilter = privacy_filter.querySelector(".active").id
+    if (activeFilter === "nofilters") {
+      activeFilter = "nofilters"
+    } else if (activeFilter === "myself") {
+      activeFilter = "SELF"
+    } else if (activeFilter === "friends") {
+      activeFilter = "ALL_FRIENDS"
+    } else if (activeFilter === "everyone") {
+      activeFilter = "EVERYONE"
+    }
+
     results.forEach((result) => {
-      if (!(result.classList.value.includes("video"))){
-        result.classList.add("hidden")
-      } else {
+      if ((result.classList.contains("video") && (result.classList.contains(activeFilter) || activeFilter === "nofilters"))){
         result.classList.remove("hidden")
+      } else {
+        result.classList.add("hidden")
       };
     })
   })
 
-  texts = document.getElementById("posts")
-  texts.addEventListener("click", (event) => {
+  posts = document.getElementById("posts")
+  posts.addEventListener("click", (event) => {
     categoryButtons.forEach((button) => {
       button.classList.remove("active")
     });
-    texts.classList.add("active");
+    posts.classList.add("active");
+
+    activeFilter = privacy_filter.querySelector(".active").id
+    if (activeFilter === "nofilters") {
+      activeFilter = "nofilters"
+    } else if (activeFilter === "myself") {
+      activeFilter = "SELF"
+    } else if (activeFilter === "friends") {
+      activeFilter = "ALL_FRIENDS"
+    } else if (activeFilter === "everyone") {
+      activeFilter = "EVERYONE"
+    }
+
     results.forEach((result) => {
-      if (!(result.classList.value.includes("post"))){
-        result.classList.add("hidden")
-      } else {
+      if ((result.classList.contains("post") && (result.classList.contains(activeFilter) || activeFilter === "nofilters"))){
         result.classList.remove("hidden")
+      } else {
+        result.classList.add("hidden")
       };
     })
   })
 
+
+  pages = document.getElementById("pages")
+  pages.addEventListener("click", (event) => {
+    categoryButtons.forEach((button) => {
+      button.classList.remove("active")
+    });
+    pages.classList.add("active");
+
+    activeFilter = privacy_filter.querySelector(".active").id
+    if (activeFilter === "nofilters") {
+      activeFilter = "nofilters"
+    } else if (activeFilter === "myself") {
+      activeFilter = "SELF"
+    } else if (activeFilter === "friends") {
+      activeFilter = "ALL_FRIENDS"
+    } else if (activeFilter === "everyone") {
+      activeFilter = "EVERYONE"
+    }
+
+    results.forEach((result) => {
+      if ((result.classList.contains("page") && (result.classList.contains(activeFilter) || activeFilter === "nofilters"))){
+        result.classList.remove("hidden")
+      } else {
+        result.classList.add("hidden")
+      };
+    });
+  });
+
+
+  // reverse button
   reverse = document.getElementById("reverse")
   reverse.addEventListener("click", (event) => {
    categoryButtons.forEach((button) => {
@@ -165,183 +252,5 @@ document.addEventListener("DOMContentLoaded", () => {
    reverse.classList.add("active");
   })
 
-  pages = document.getElementById("pages")
-  pages.addEventListener("click", (event) => {
-    categoryButtons.forEach((button) => {
-      button.classList.remove("active")
-    });
-    pages.classList.add("active");
-    results.forEach((result) => {
-      if (!(result.classList.value.includes("page"))){
-        result.classList.add("hidden")
-      } else {
-        result.classList.remove("hidden")
-      };
-    });
-  });
-
-
-  all = document.getElementById("all")
-  all.addEventListener("click", (event) => {
-    categoryButtons.forEach((button) => {
-      button.classList.remove("active")
-    });
-    all.classList.add("active");
-    results.forEach((result) => {
-      result.classList.remove("hidden");
-    });
-  });
-
 
 });
-
-
-
-
-
-// // Ancien code
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   buttons = document.querySelectorAll(".filter-btn")
-//   results = document.querySelectorAll("#result_card")
-
-//   // privacy filter
-//   everyone = document.getElementById("everyone")
-//   everyone.addEventListener("click", (event) => {
-//     buttons.forEach((button) => {
-//       button.classList.remove("active")
-//     });
-//     everyone.classList.add("active");
-//     results.forEach((result) => {
-//       if (!(result.classList.value.includes("EVERYONE"))){
-//         result.classList = result.classList + " hidden"
-//       } else {
-//         result.classList.remove("hidden")
-//       };
-//     })
-//   })
-
-//   friends = document.getElementById("friends")
-//   friends.addEventListener("click", (event) => {
-//     buttons.forEach((button) => {
-//       button.classList.remove("active")
-//     });
-//     friends.classList.add("active");
-//     results.forEach((result) => {
-//       if (!(result.classList.value.includes("FRIENDS"))){
-//         result.classList = result.classList + " hidden"
-//       } else {
-//         result.classList.remove("hidden")
-//       };
-//     })
-//   })
-
-//   myself = document.getElementById("myself")
-//   myself.addEventListener("click", (event) => {
-//     buttons.forEach((button) => {
-//       button.classList.remove("active")
-//     });
-//     myself.classList.add("active");
-//     results.forEach((result) => {
-//       if (!(result.classList.value.includes("SELF"))){
-//         result.classList = result.classList + " hidden"
-//       } else {
-//         result.classList.remove("hidden")
-//       };
-//     })
-//   })
-
-//   nofilters = document.getElementById("nofilters")
-//   nofilters.addEventListener("click", (event) => {
-//     buttons.forEach((button) => {
-//       button.classList.remove("active")
-//     });
-//     nofilters.classList.add("active");
-//     results.forEach((result) => {
-//       result.classList.remove("hidden")
-//     })
-//   })
-
-//   // category filter
-//   photos = document.getElementById("photos")
-//   photos.addEventListener("click", (event) => {
-//     buttons.forEach((button) => {
-//       button.classList.remove("active")
-//     });
-//     photos.classList.add("active");
-//     results.forEach((result) => {
-//       if (!(result.classList.value.includes("photo"))){
-//         result.classList = result.classList + " hidden"
-//       } else {
-//         result.classList.remove("hidden")
-//       };
-//     })
-//   })
-
-//   videos = document.getElementById("videos")
-//   videos.addEventListener("click", (event) => {
-//     buttons.forEach((button) => {
-//       button.classList.remove("active")
-//     });
-//     videos.classList.add("active");
-//     results.forEach((result) => {
-//       if (!(result.classList.value.includes("video"))){
-//         result.classList = result.classList + " hidden"
-//       } else {
-//         result.classList.remove("hidden")
-//       };
-//     })
-//   })
-
-//   texts = document.getElementById("texts")
-//   texts.addEventListener("click", (event) => {
-//     buttons.forEach((button) => {
-//       button.classList.remove("active")
-//     });
-//     texts.classList.add("active");
-//     results.forEach((result) => {
-//       if (!(result.classList.value.includes("post"))){
-//         result.classList = result.classList + " hidden"
-//       } else {
-//         result.classList.remove("hidden")
-//       };
-//     })
-//   })
-
-//   reverse = document.getElementById("reverse")
-//   reverse.addEventListener("click", (event) => {
-//    buttons.forEach((button) => {
-//      button.classList.remove("active")
-//    });
-//    reverse.classList.add("active");
-//   })
-
-//   pages = document.getElementById("pages")
-//   pages.addEventListener("click", (event) => {
-//     buttons.forEach((button) => {
-//       button.classList.remove("active")
-//     });
-//     pages.classList.add("active");
-//     results.forEach((result) => {
-//       if (!(result.classList.value.includes("page"))){
-//         result.classList = result.classList + " hidden"
-//       } else {
-//         result.classList.remove("hidden")
-//       };
-//     });
-//   });
-
-
-//   all = document.getElementById("all")
-//   all.addEventListener("click", (event) => {
-//     buttons.forEach((button) => {
-//       button.classList.remove("active")
-//     });
-//     all.classList.add("active");
-//     results.forEach((result) => {
-//       result.classList.remove("hidden");
-//     });
-//   });
-
-
-// });
