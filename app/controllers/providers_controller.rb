@@ -1,5 +1,7 @@
 class ProvidersController < ApplicationController
 
+#  before_action :facebook_token_expired?
+
   def create
     authorize Provider
     if params[:provider] == 'facebook'
@@ -13,7 +15,7 @@ class ProvidersController < ApplicationController
   end
 
   def create_or_update_for_facebook(hash)
-    provider = Provider.where(name: 'facebook', uid: hash[:uid]).first
+    provider = Provider.where(name: 'facebook', user: current_user).last
     if provider && provider.expires_at <= Time.now.to_i
       provider.update(token: hash[:credentials][:token])
       authorize provider
@@ -43,6 +45,11 @@ class ProvidersController < ApplicationController
   end
 
   private
+
+  # def facebook_token_expired?
+  #   if provider.expires_at >= Time.now.to_i
+  #   end
+  # end
 
   def auth_hash
     request.env['omniauth.auth']

@@ -1,7 +1,7 @@
 class ResultsController < ApplicationController
 
   def index
-    provider = Provider.where(name: params[:provider], user: current_user).first
+    provider = Provider.where(name: params[:provider], user: current_user).last
 
     @provider = params[:provider]
     @results = policy_scope(Result)
@@ -11,13 +11,13 @@ class ResultsController < ApplicationController
       return redirect_to new_provider_path(params[:provider])
     end
 
-    if provider.expires_at >= Time.now.to_i
-      return redirect_to new_provider_path(params[:provider])
-    end
+    # if provider.expires_at >= Time.now.to_i
+    #   return redirect_to new_provider_path(params[:provider])
+    # end
 
     if @results.size < 1
       provider_id = provider.id
-      FacebookJob.perform_later(provider_id)
+      FacebookJob.perform_now(provider_id)
     end
 
     @type = params[:type]
