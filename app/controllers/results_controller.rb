@@ -26,10 +26,11 @@ class ResultsController < ApplicationController
     elsif params[:type] == 'page'
       @results = @results.pages
     end
+
+    @order = params[:order]
     if params[:order] == 'reverse'
       @results = @results.order("created_at DESC")
     end
-    @order = params[:order]
   end
 
   private

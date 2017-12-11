@@ -12,6 +12,7 @@ gem 'omniauth-facebook'
 gem 'koala'
 gem 'nokogiri'
 gem 'geocoder'
+gem 'ruby-instagram-scraper'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
