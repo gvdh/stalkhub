@@ -13,10 +13,7 @@ class ResultsController < ApplicationController
         return redirect_to new_provider_path(params[:provider])
       end
     end
-    unless @results.any?
-      current_user.providers.destroy_all
-      return redirect_to new_provider_path(params[:provider])
-    end
+
 
     @type = params[:type]
     if params[:type] == 'photo'
@@ -39,7 +36,7 @@ class ResultsController < ApplicationController
 
   def load_results
     @provider = params[:provider]
-    @results = policy_scope(Result).limit(50).select { |r| r.provider.name == @provider }
+    @results = policy_scope(Result).select { |r| r.provider.name == @provider }
     @loaded_provider = Provider.where(name: params[:provider], user: current_user).last
   end
 
