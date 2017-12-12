@@ -21,23 +21,21 @@ class ProvidersController < ApplicationController
 
 
   def create_or_update_for_facebook(hash)
-    provider = Provider.create(
+    provider = Provider.where(name: "facebook", user: current_user).last
+    if provider && !(provider.expires_at <= Time.now.to_i)
+      provider.update(token: hash[:credentials][:token])
+      authorize provider
+    else
+      provider = Provider.create!(
         name: params[:provider],
         uid: hash[:uid],
         expires_at: hash[:credentials][:expires_at],
         token: hash[:credentials][:token],
         user: current_user
       )
-    if provider && !(provider.expires_at <= Time.now.to_i)
-      provider.update(token: hash[:credentials][:token])
       authorize provider
-      begin
-        FacebookJob.perform_now(provider.id)
-      rescue
-        return redirect_to new_provider_path(params[:provider])
-        flash[:alert] = 'Something went wrong, please try again'
-      end
     end
+    FacebookJob.perform_later(provider)
   end
 
 
@@ -64,7 +62,6 @@ class ProvidersController < ApplicationController
   end
 
   def new
-    # Ugly way to authorize method (instanciate an unused Provider)
     provider = Provider.new
     authorize provider
     @provider = params[:provider]

@@ -107,6 +107,7 @@ class GraphObjectService
               node_id: page["id"]
             )
           rescue
+            fail
             puts "Creation of result #{page["id"]} failed !"
           end
         else
