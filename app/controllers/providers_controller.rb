@@ -44,7 +44,7 @@ class ProvidersController < ApplicationController
         user: current_user
       )
     @username = params[:username]
-    InstaJob.perform_now(@username, current_user)
+    InstaJob.perform_later(@username, current_user)
     redirect_to results_path(params[:provider])
   end
 
