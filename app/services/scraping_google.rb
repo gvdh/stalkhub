@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'net/https'
 require 'nokogiri'
 require 'geocoder'
 
@@ -10,25 +11,31 @@ class ScrapingGoogle
     user = User.find(user_id)
     @provider = Provider.create!(
       name: "google",
-      user: user,
+      user: user
     )
+    ip = ENV['IP'"#{rand(1..3)}"]
+    @proxy_uri = URI.parse(ip)
+    @proxy_username = ENV['LOGIN']
+    @proxy_password = ENV['PASSWORD']
   end
+
+
 
   def basic_search
     url = "https://www.google.fr/search?q=\"#{@full_name}\""
-    doc = Nokogiri::HTML(open(url).read)
+    doc = Nokogiri::HTML(open(url, :proxy_http_basic_authentication => [@proxy_uri, @proxy_username, @proxy_password] ).read)
     scrape_it(doc)
   end
 
   def search_with_city
     url = "https://www.google.fr/search?q=\"#{@full_name}\" #{@user_ip}"
-    doc = Nokogiri::HTML(open(url).read)
+    doc = Nokogiri::HTML(open(url, :proxy_http_basic_authentication => [@proxy_uri, @proxy_username, @proxy_password] ).read)
     scrape_it(doc)
   end
 
   def search_with_city
     url = "https://www.google.fr/search?q=\"#{@full_name}\" #{@user_ip}"
-    doc = Nokogiri::HTML(open(url).read)
+    doc = Nokogiri::HTML(open(url, :proxy_http_basic_authentication => [@proxy_uri, @proxy_username, @proxy_password] ).read)
     scrape_it(doc)
   end
 
