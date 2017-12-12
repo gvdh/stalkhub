@@ -7,7 +7,6 @@ class TwitterService
     @user = user
     @provider = Provider.create!(
       name: "twitter",
-      expires_at: 9999999999,
       user: user
       )
     @client = Twitter::REST::Client.new do |config|
