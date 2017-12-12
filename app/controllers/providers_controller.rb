@@ -19,8 +19,14 @@ class ProvidersController < ApplicationController
 
 
   def create_or_update_for_facebook(hash)
-    provider = Provider.where(name: 'facebook', user: current_user).last
-    if provider && provider.expires_at <= Time.now.to_i
+    provider = Provider.create(
+        name: params[:provider],
+        uid: hash[:uid],
+        expires_at: hash[:credentials][:expires_at],
+        token: hash[:credentials][:token],
+        user: current_user
+      )
+    if provider && !(provider.expires_at <= Time.now.to_i)
       provider.update(token: hash[:credentials][:token])
       authorize provider
       begin
@@ -29,14 +35,6 @@ class ProvidersController < ApplicationController
         return redirect_to new_provider_path(params[:provider])
         flash[:alert] = 'Something went wrong, please try again'
       end
-    else
-      provider = Provider.create(
-        name: params[:provider],
-        uid: hash[:uid],
-        expires_at: hash[:credentials][:expires_at],
-        token: hash[:credentials][:token],
-        user: current_user
-      )
     end
   end
 
@@ -61,7 +59,7 @@ class ProvidersController < ApplicationController
         # expires_at: 999999999
       )
     @username = params[:username]
-    InstaJob.perform_now(@username, current_user)
+    InstaJob.perform_later(@username, current_user)
     redirect_to results_path(params[:provider])
   end
 
@@ -73,11 +71,6 @@ class ProvidersController < ApplicationController
   end
 
   private
-
-  # def facebook_token_expired?
-  #   if provider.expires_at >= Time.now.to_i
-  #   end
-  # end
 
   def auth_hash
     request.env['omniauth.auth']
