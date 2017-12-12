@@ -1,3 +1,6 @@
+//= require jquery3
+
+
 // PreLoader
 jQuery.noConflict();
 (function($) {
