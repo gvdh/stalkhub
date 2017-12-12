@@ -1,5 +1,3 @@
-
-
 <div class="connect_card">
   <!-- icon -->
   <div class="icon">
@@ -24,8 +22,6 @@
         <input type="text" name="twitter_username" placeholder="Twitter's username">
       <%= f.submit %>
       <% end %>
-
-
 
     <% elsif @provider == 'google' %>
       <%= form_tag("/auth/google/callback", method: "get") do %>
