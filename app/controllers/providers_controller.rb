@@ -58,7 +58,7 @@ class ProvidersController < ApplicationController
     provider = Provider.create(
         name: params[:provider],
         user: current_user,
-        expires_at: 999999999
+        # expires_at: 999999999
       )
     @username = params[:username]
     InstaJob.perform_now(@username, current_user)
