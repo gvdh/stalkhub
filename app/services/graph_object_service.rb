@@ -10,6 +10,7 @@ class GraphObjectService
   UPLOADED_VIDEOS_FIELDS = "me/videos/uploaded?fields=privacy,created_time,description, source, picture, permalink_url"
 
   def initialize(provider)
+    @provider = provider
     @token = provider.token
     @user = provider.user
   end
@@ -27,6 +28,7 @@ class GraphObjectService
         if Result.find_by_node_id(photo["id"]).nil? || Result.find_by_node_id(photo["id"]).user != @user
           begin
             Result.create!(
+              provider: @provider,
               user: @user,
               category: "photo",
               text: text,
@@ -64,6 +66,7 @@ class GraphObjectService
           text = post["message"] || post["story"]
           begin
             Result.create!(
+              provider: @provider,
               user: @user,
               category: "post",
               privacy: post["privacy"]["value"],
@@ -94,6 +97,7 @@ class GraphObjectService
         if Result.find_by_node_id(page["id"]).nil? || Result.find_by_node_id(page["id"]).user != @user
           begin
             Result.create!(
+              provider: @provider,
               user: @user,
               category: "page",
               text: page["name"],
@@ -125,6 +129,7 @@ class GraphObjectService
         if Result.find_by_node_id(video["id"]).nil? || Result.find_by_node_id(video["id"]).user != @user
           begin
             Result.create!(
+              provider: @provider,
               user: @user,
               category: "video",
               privacy: video["privacy"]["value"],
@@ -158,6 +163,7 @@ class GraphObjectService
         if Result.find_by_node_id(video["id"]).nil? || Result.find_by_node_id(video["id"]).user != @user
           begin
             Result.create!(
+              provider: @provider,
               user: @user,
               category: "video",
               privacy: video["privacy"]["value"],
