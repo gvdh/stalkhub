@@ -45,7 +45,7 @@ class ProvidersController < ApplicationController
     user = User.find(current_user.id)
     TwitterJob.perform_now(params, user)
   end
-  
+
   def create_google(params)
     user_ip = Geocoder.search("#{request.remote_ip}").first.city
     user_id = current_user.id

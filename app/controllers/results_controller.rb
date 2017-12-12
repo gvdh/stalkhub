@@ -8,10 +8,11 @@ class ResultsController < ApplicationController
 
     @provider = params[:provider]
     @results = policy_scope(Result).select { |r| r.provider.name == @provider }
-    fail
     if @provider.nil? || @results.size < 1
       redirect_to new_provider_path(params[:provider])
     #.where(provider: provider).order(created_at: :desc)
+    end
+
     if @loaded_provider.nil?
       return redirect_to new_provider_path(params[:provider])
     end
