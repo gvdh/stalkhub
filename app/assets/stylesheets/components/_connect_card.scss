@@ -1,5 +1,5 @@
 .connect_card {
-  height: 300px;
+  height: 320px;
   background-color: white;
   text-align: center;
   border-radius: 5px;
@@ -14,3 +14,13 @@
 .link {
   margin-bottom: 20px;
 }
+
+.connect-input {
+  width: 100%;
+  border-radius: 8px;
+  border: solid 1px $medium-gray;
+  padding: 5px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
