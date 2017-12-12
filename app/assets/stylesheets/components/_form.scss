@@ -1,12 +1,12 @@
-.wrapper.form {
+.wrapper-form {
   min-height: 100vh;
   height: inherit;
 }
 
-#form {
+.form {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 8px;
-  padding: 20px;
+  padding: 40px 60px;
   margin-bottom: 100px;
   input {
     border-radius: 8px;
@@ -18,7 +18,7 @@
   padding-top: 30px;
   padding-bottom: 10px;
   color: #FFF;
-  margin-top: 150px;
+  margin-top: 10vh;
 }
 
 #sentence {
@@ -28,7 +28,7 @@
 
 .form-group {
   text-align: center;
-  margin: 20px 30px;
+  margin: 20px 0px;
   border-radius: 8px;
   background-color: white;
   label {
@@ -36,8 +36,12 @@
   }
 }
 
+#password-form {
+  margin-top: 40px;
+}
+
 .btn.btn-default {
-  width: 100px;
+  width: 100%;
   border-radius: 8px;
   border: none;
   background-color: $blue;
@@ -45,12 +49,9 @@
   margin-bottom: 10px;
 }
 
-#btn-forgot-password {
-  width: 200px;
-}
-
 .privacy-btn {
   margin-top: 10px;
 }
+
 
 

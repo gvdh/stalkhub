@@ -1,26 +1,31 @@
-<div class="wrapper form" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%), url(<%= image_path 'earth.png' %>);
+<div class="wrapper-form" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%), url(<%= image_path 'earth.png' %>);
   background-size: cover;">
   <div class="container">
     <div class="row">
       <div class="col-xs-12" id="action">
-        <h2 class="text-center" id="title">Forgot your password?</h2>
+        <h2 class="text-center" id="title">STALK_<span>HUB</span></h2>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-6 col-xs-offset-3" id="form">
-        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-          <%= f.error_notification %>
+      <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+        <div class="form" id="password-form">
+          <h2 class="text-center">Forgot your password?</h2>
+          <div class="row">
+            <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+              <%= f.error_notification %>
 
-          <div class="form-inputs">
-            <%= f.input :email, required: true, autofocus: true, placeholder: 'Your email' %>
-          </div>
+              <div>
+                <%= f.input :email, required: true, autofocus: true, placeholder: 'Your email' %>
+              </div>
 
-          <div class="form-actions text-center" >
-            <%= f.button :submit, "Reset password", id: "btn-forgot-password" %>
+              <div class="text-center">
+                <%= f.button :submit, "Reset password" %>
+              </div>
+            <% end %>
+            <div class="col-xs-12 text-center">
+            <%= render "devise/shared/links" %>
+            </div>
           </div>
-        <% end %>
-        <div class="col-xs-12 text-center">
-        <%= render "devise/shared/links" %>
         </div>
       </div>
     </div>
