@@ -10,10 +10,14 @@
     <% end %>
 
   </div>
+
+  <% if params[:provider] == "facebook"  %>
+    <%= render 'shared/privacy_filter' %>
+  <% end %>
+
   <div id="container-reduced">
 
     <% if @results.size < 1 %>
-
       <div id="loading">
         <%= image_tag "loading.gif" %>
         <script>
@@ -22,11 +26,6 @@
       </div>
 
     <% else  %>
-
-      <% if params[:provider] == "facebook"  %>
-        <%= render 'shared/privacy_filter' %>
-      <% end %>
-
       <!-- Muuri grid -->
       <div class="grid">
         <% @results.each do |result|  %>
@@ -44,7 +43,6 @@
       <% content_for(:after_js) do %>
         <%= javascript_pack_tag 'index_results' %>
       <% end %>
-
 
     <% end %>
   </div>
