@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   # end
 
   def after_sign_in_path_for(resource)
-    new_provider_path("facebook")
+    results_path("facebook")
   end
 
   def after_sign_up_path_for(resource)
