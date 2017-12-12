@@ -7,10 +7,10 @@ class ResultsController < ApplicationController
       return redirect_to new_provider_path(params[:provider])
     end
 
-    if @loaded_provider.expires_at <= Time.now.to_i
-      current_user.providers.destroy_all
-      return redirect_to new_provider_path(params[:provider])
-    end
+    # if @loaded_provider.expires_at <= Time.now.to_i
+    #   current_user.providers.destroy_all
+    #   return redirect_to new_provider_path(params[:provider])
+    # end
 
     unless @results.any?
       current_user.providers.destroy_all

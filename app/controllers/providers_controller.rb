@@ -55,7 +55,7 @@ class ProvidersController < ApplicationController
     skip_authorization
     provider = Provider.create(
         name: params[:provider],
-        user: current_user,
+        user: current_user
         # expires_at: 999999999
       )
     @username = params[:username]

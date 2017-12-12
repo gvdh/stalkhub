@@ -6,10 +6,13 @@ class InstaJob < ApplicationJob
     doc = RubyInstagramScraper.get_user_media_nodes(username)
     data = doc.to_s.scan(/(?<=display_src"=>")[^"]+/)
 
+    puts data
+
     if data == nil
       redirect_to root_path
     else
       data.each do |photo|
+
         Result.create!(
           user: user_id,
           name: @username,
