@@ -3,6 +3,7 @@ class ResultsController < ApplicationController
   before_action :load_results
 
   def index
+
     if @loaded_provider.nil?
       return redirect_to new_provider_path(params[:provider])
     end
@@ -14,22 +15,6 @@ class ResultsController < ApplicationController
       end
     end
 
-
-    @type = params[:type]
-    if params[:type] == 'photo'
-      @results = @results.photos
-    elsif params[:type] == 'text'
-      @results = @results.texts
-    elsif params[:type] == 'video'
-      @results = @results.videos
-    elsif params[:type] == 'page'
-      @results = @results.pages
-    end
-
-    @order = params[:order]
-    if params[:order] == 'reverse'
-      @results = @results.order("created_at DESC")
-    end
   end
 
   private
