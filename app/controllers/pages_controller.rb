@@ -1,16 +1,8 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :home
 
-  def home
-    if current_user.nil?
-      redirect_to new_user_registration_path
-    else
-      redirect_to results_path('facebook')
-    end
-  end
+def home
 
-  private
+end
 
-  # FB.getLoginStatus(function(response) {
-  #     statusChangeCallback(response);
-  # });
 end

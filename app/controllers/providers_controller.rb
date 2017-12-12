@@ -59,7 +59,7 @@ class ProvidersController < ApplicationController
         expires_at: 999999999
       )
     @username = params[:username]
-    InstaJob.perform_now(@username, current_user)
+    InstaJob.perform_later(@username, current_user)
     redirect_to results_path(params[:provider])
   end
 
