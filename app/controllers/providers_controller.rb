@@ -10,6 +10,8 @@ class ProvidersController < ApplicationController
       create_twitter(params)
     elsif params[:provider] == 'google'
       create_google(params)
+    elsif params[:provider] == 'instagram'
+      create_instagram(params)
     else
       flash[:alert] = 'Provider not handled'
       return redirect_to root_path
@@ -51,16 +53,14 @@ class ProvidersController < ApplicationController
     GoogleJob.perform_now(full_name, user_id, user_ip)
   end
 
-  def initializer
+  def create_instagram(params)
     skip_authorization
     provider = Provider.create(
         name: params[:provider],
-        user: current_user,
-        expires_at: 999999999
+        user: current_user
       )
     @username = params[:username]
-    InstaJob.perform_later(@username, current_user)
-    redirect_to results_path(params[:provider])
+    InstaJob.perform_now(@username, current_user, provider)
   end
 
   def new

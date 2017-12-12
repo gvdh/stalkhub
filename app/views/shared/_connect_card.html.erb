@@ -35,10 +35,10 @@
       <% end %>
 
     <% elsif @provider == 'instagram' %>
-      <form method="get" action=<%= initializer_provider_path(@provider)%> >
-        <input name= "username" type="text">
-        <input type= "submit" value="Enregistrer">
-      </form>
+      <%= simple_form_for :provider, url: '/auth/instagram/callback', method: :get do |f| %>
+        <input type="text" name="username" placeholder="Instagram's username">
+      <%= f.submit %>
+      <% end %>
 
     <% else %>
       <p>Sorry, we don't handle connection to <%= @provider %> yet...</p>
