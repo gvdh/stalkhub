@@ -45,7 +45,7 @@ class ProvidersController < ApplicationController
     user = User.find(current_user.id)
     TwitterJob.perform_now(params, user)
   end
-  
+
   def create_google(params)
     user_ip = Geocoder.search("#{request.remote_ip}").first.city
     user_id = current_user.id
@@ -57,7 +57,8 @@ class ProvidersController < ApplicationController
     skip_authorization
     provider = Provider.create(
         name: params[:provider],
-        user: current_user
+        user: current_user,
+        expires_at: 999999999
       )
     @username = params[:username]
     InstaJob.perform_now(@username, current_user)
