@@ -39,9 +39,11 @@ class GraphObjectService
               total_likes: ze_photo
               )
           rescue
+            fail
             puts "Creation of result #{photo["id"]} failed !"
           end
         else
+          fail
           puts "Result already exists !"
         end
       end

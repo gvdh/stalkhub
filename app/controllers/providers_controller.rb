@@ -1,7 +1,5 @@
 class ProvidersController < ApplicationController
 
-#  before_action :facebook_token_expired?
-
   def create
     authorize Provider
     if params[:provider] == 'facebook'
@@ -18,7 +16,6 @@ class ProvidersController < ApplicationController
     end
     return redirect_to results_path(params[:provider])
   end
-
 
   def create_or_update_for_facebook(hash)
     provider = Provider.where(name: "facebook", user: current_user).last
@@ -37,7 +34,6 @@ class ProvidersController < ApplicationController
     end
     FacebookJob.perform_later(provider)
   end
-
 
   def create_twitter(params)
     user = User.find(current_user.id)
