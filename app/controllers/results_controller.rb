@@ -23,7 +23,6 @@ class ResultsController < ApplicationController
     @provider = params[:provider]
     @results = policy_scope(Result).select { |r| r.provider.name == @provider }
     @loaded_provider = Provider.where(name: params[:provider], user: current_user).last
-    fail
 
     # check_results_size ??
 
@@ -55,9 +54,9 @@ class ResultsController < ApplicationController
     elsif @provider == "twitter"
       @category = params[:category]
       if params[:category] == 'from'
-        @results = @results.select { |r| r.category == "from" }
+        @results = @results.select { |r| r.category == "twitter-from" }
       elsif params[:category] == 'to'
-        @results = @results.select { |r| r.category == "to" }
+        @results = @results.select { |r| r.category == "twitter-to" }
       else
         @results
       end
