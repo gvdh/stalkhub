@@ -22,8 +22,6 @@ class ResultsController < ApplicationController
   def load_results
     @provider = params[:provider]
     @results = policy_scope(Result).select { |r| r.provider.name == @provider }
-    # @paginatable_array = Kaminari.paginate_array(@results).page(params[:page])
-    # @results = @paginatable_array
     @loaded_provider = Provider.where(name: params[:provider], user: current_user).last
 
     # check_results_size ??
@@ -54,8 +52,13 @@ class ResultsController < ApplicationController
 
     # @order = params[:order]
     # if params[:order] == 'reverse'
-    #   @results = @results.order("created_at DESC")
+    #   @results = @results.sort_by!{ |r| r.created_time }
+    # else
+    #   @results = @results.sort_by!{ |r| r.created_time }.reverse
     # end
+
+    @paginatable_array = Kaminari.paginate_array(@results).page(params[:page])
+    @results = @paginatable_array
   end
 
 end

@@ -25,11 +25,15 @@
       <div>Pages</div>
     <% end %>
   </div>
-<!--   <div class="filter-btn" id="reverse">
-    <div>
-      <i class="fa fa-arrow-up" aria-hidden="true"></i>
-      <i class="fa fa-arrow-down" aria-hidden="true"></i>
-    </div>
+
+  <!-- pass order parameter to every link_to of category and privacy filter -->
+<!--   <div class="filter-btn <%= 'active' if @order == 'reverse' %>" id="reverse">
+    <%= link_to results_path(@provider, category: @category, privacy: @privacy) do %>
+      <div>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </div>
+    <% end %>
   </div> -->
 </div>
 
