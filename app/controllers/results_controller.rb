@@ -10,7 +10,7 @@ class ResultsController < ApplicationController
 
     if @loaded_provider.name == "facebook"
       if @loaded_provider.expires_at <= Time.now.to_i
-        current_user.providers.destroy_all
+        current_user.providers.where(name: "facebook").destroy_all
         return redirect_to new_provider_path(params[:provider])
       end
     end
