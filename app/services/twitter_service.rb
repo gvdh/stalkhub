@@ -15,8 +15,12 @@ class TwitterService
   end
 
   def get_all_tweets_from_user(user)
-    @client.search("from:#{user}", result_type: "recent").take(200).collect do |tweet|
+    @client.search("from:#{user}", result_type: "recent").take(10).collect do |tweet|
+      id = tweet.id
+      name = tweet.user.name
+      link = "https://www.twitter.com/#{name}/status/#{id.to_s}"
       results = Result.new(
+        link: link,
         total_likes: tweet.retweet_count,
         provider: @provider,
         user: @user,
@@ -24,8 +28,7 @@ class TwitterService
         text: tweet.text,
         created_at: tweet.created_at,
         avatar: tweet.user.profile_image_url_https,
-        username: user,
-        name: tweet.user.screen_name
+        username: tweet.user.screen_name
         )
       results.provider = @provider
       results.save!
@@ -33,8 +36,12 @@ class TwitterService
   end
 
   def get_all_tweets_to_user(user)
-    @client.search("to:#{user}", result_type:"recent").take(200).collect do |tweet|
+    @client.search("to:#{user}", result_type:"recent").take(10).collect do |tweet|
+      id = tweet.id
+      name = tweet.user.name
+      link = "https://www.twitter.com/#{name}/status/#{id.to_s}"
       results = Result.new(
+        link: link,
         total_likes: tweet.retweet_count,
         provider: @provider,
         user: @user,
@@ -42,28 +49,12 @@ class TwitterService
         text: tweet.text,
         created_at: tweet.created_at,
         avatar: tweet.user.profile_image_url_https,
-        username: user,
-        name: tweet.user.screen_name
-
+        username: tweet.user.screen_name,
         )
       results.provider = @provider
       results.save!
     end
   end
-
-  # def get_all_retweets_from_user(user)
-  #   @client.search("retweets_of:#{user}", result_type:"recent").take(50).collect do |tweet|
-  #     results = Result.new(
-  #       provider: @provider,
-  #       user: @user,
-  #       category: "twitter",
-  #       text: tweet.text,
-  #       created_at: tweet.created_at,
-  #       name: tweet.user.screen_name
-  #       )
-  #     results.provider = @provider
-  #     results.save!
-  # end
 end
 
 
