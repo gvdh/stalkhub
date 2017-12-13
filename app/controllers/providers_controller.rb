@@ -42,9 +42,10 @@ class ProvidersController < ApplicationController
 
   def create_google(params)
     user_ip = Geocoder.search("#{request.remote_ip}").first.city
+    country_code = Geocoder.search("#{request.remote_ip}").first.country_code
     user_id = current_user.id
     full_name = params["full_name"]
-    GoogleJob.perform_now(full_name, user_id, user_ip)
+    GoogleJob.perform_now(full_name, user_id, user_ip, country_code)
   end
 
   def create_instagram(params)
