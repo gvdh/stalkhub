@@ -13,12 +13,7 @@
   }
 }
 
-.filter-btn:hover {
-  background-color: $blue;
-  color: white;
-}
-
-.active {
+.filter-btn:hover, .filter-btn.active {
   background-color: $blue;
   color: white;
 }

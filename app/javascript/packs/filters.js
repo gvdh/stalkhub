@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   categoryButtons = category_filter.querySelectorAll(".filter-btn")
 
   privacy_filter = document.getElementById("privacy-filter")
-  privacyButtons = privacy_filter.querySelectorAll(".filter-btn")
+  privacyButtons = privacy_filter.querySelectorAll(".filter-tab")
 
   results = document.querySelectorAll("#result_card")
 

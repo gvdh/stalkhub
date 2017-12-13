@@ -9,23 +9,16 @@
 #sidebar, #category_filter {
   height: 100vh;
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   top: 0;
 }
 
 #container-reduced {
   flex-grow: 1;
   margin-left: calc(268px + 40px);
-  margin-top: 40px;
+  margin-top: 105px;
   margin-right: 40px;
   position: relative;
-}
-
-#privacy-filter {
-  margin-bottom: 40px;
-  .filter-btn {
-    margin-bottom: 0px;
-  }
 }
 
 #loading {
