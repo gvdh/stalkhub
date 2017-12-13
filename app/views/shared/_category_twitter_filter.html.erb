@@ -1,11 +1,17 @@
 <div id="category_filter">
-  <div class="filter-btn" id="all">
-    <div>All</div>
+  <div class="filter-btn <%= 'active' unless @category %>" id="all">
+    <%= link_to results_path(@provider) do %>
+      <div>All</div>
+    <% end %>
   </div>
-  <div class="filter-btn" id="from">
-    <div>From you</div>
+  <div class="filter-btn <%= 'active' if @category == 'from' %>" id="from">
+    <%= link_to results_path(@provider, category: 'from') do %>
+      <div>From me</div>
+    <% end %>
   </div>
-  <div class="filter-btn" id="to">
-    <div>To you</div>
+  <div class="filter-btn <%= 'active' if @category == 'to' %>" id="to">
+    <%= link_to results_path(@provider, category: 'to') do %>
+      <div>To me</div>
+    <% end %>
   </div>
 </div>
