@@ -15,6 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // When we click on all btn, all hidden will be remove
   document.getElementById('all').addEventListener ("click", (event) => {
     results.forEach((result) => {
+      all.classList.add("active");
+      btnTo.classList.remove("active");
+      btnFrom.classList.remove('active');
       result.classList.remove("hidden");
       });
     })
