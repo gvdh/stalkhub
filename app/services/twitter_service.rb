@@ -18,13 +18,17 @@ class TwitterService
   end
 
   def get_all_tweets_from_user(user)
-    @client.search("from:#{user}", result_type: "recent").take(50).collect do |tweet|
+    @client.search("from:#{user}", result_type: "recent").collect do |tweet|
+      puts 'user->',user
+      puts '@user->',@user
+      puts tweet
       results = Result.new(
         provider: @provider,
         user: @user,
         category: "twitter",
         text: tweet.text,
         created_at: tweet.created_at,
+        picture: tweet.user.profile_image_url_https,
         name: tweet.user.screen_name
         )
       results.provider = @provider
@@ -33,12 +37,13 @@ class TwitterService
   end
 
   def get_all_tweets_to_user(user)
-    @client.search("to:#{user}", result_type:"recent").take(50).collect do |tweet|
+    @client.search("to:#{user}", result_type:"recent").collect do |tweet|
       results = Result.new(
         provider: @provider,
         user: @user,
         category: "twitter",
         text: tweet.text,
+        picture: tweet.user.profile_image_url_https,
         created_at: tweet.created_at,
         name: tweet.user.screen_name
         )
@@ -48,6 +53,8 @@ class TwitterService
   end
 end
 
+c = User.last
+TwitterService.new("hello", c)
 
 
 
