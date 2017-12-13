@@ -1,25 +1,23 @@
-<div id="result_card" class="<%= result.category %> <%= result.privacy %>">
-  <div class="card-media">
-    <%= image_tag result.avatar if result.avatar %>
+<div id="result_card">
+  <div class="header">
+    <%= image_tag result.avatar, class: "avatar-circle" if result.avatar %>
+    <p class="username"><%= result.username  if result.username %></p>
   </div>
-
-  <div class="card_text">
-    <%= result.username if result.username %>
+  <div class="content">
+    <% if result.picture %>
+      <%= image_tag result.picture, class: "picture" if result.picture %>
+    <% end %>
+      <%= result.text if result.text %>
+    <% if result.description %>
+      <p class="description"><%= result.description.delete("[]\"") %></p>
+    <% end %>
   </div>
+  <div class="footer">
 
-  <div class="card-media">
-    <%= image_tag result.picture.delete("[]\\\"")  if result.picture %>
-  </div>
-
-  <div class="card_text">
-    <p><%= result.text if result.text %></p>
-  </div>
-
-  <div class="card_footer text-right">
-     <p> <%= result.date.to_time.strftime("%b %Y") if result.date %> </p>
-  </div>
-
-  <div class="card_footer text-left">
-     <p> <%= result.total_likes if result.total_likes %> </p>
+    <p class="likes"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+<%= result.total_likes if result.total_likes %></p>
+    <button class="btn" id="see_more"><%= link_to "See more", result.link if result.link %></button>
   </div>
 </div>
+
+

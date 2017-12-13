@@ -48,11 +48,9 @@ class GraphObjectService
               total_likes: likes
               )
           rescue
-            fail
             puts "Creation of result #{photo["id"]} failed !"
           end
         else
-          fail
           puts "Result already exists !"
         end
       end
@@ -67,19 +65,27 @@ class GraphObjectService
     page = 1
     until posts.next_page.nil? && page != 1
       posts.each do |post|
-        if Result.find_by_node_id(post["id"]).nil? || Result.find_by_node_id(post["id"]).user != @user
+        puts post
+        if true #Result.find_by_node_id(post["id"]).nil? || Result.find_by_node_id(post["id"]).user != @user
           parsed_post = post.to_s
-          if post.to_s.include?("\"image\"")
+          if parsed_post.include?("\"image\"")
             attachment = parsed_post.delete(" ").scan(/(?<=\"src\"=>\")[^\"]+/).join
           else
             attachment = ""
           end
           text = post["message"] || post["story"]
+          puts parsed_post
+          if parsed_post.include?("\"data\"=>[{\"description\"=>")
+            description = parsed_post.scan(/(?<={\"description\"=>\")[^\"]+/)
+          else
+            description = ""
+          end
           begin
             Result.create!(
               username: @username,
               avatar: @avatar,
               provider: @provider,
+              description: description,
               user: @user,
               category: "post",
               privacy: post["privacy"]["value"],
