@@ -7,15 +7,12 @@ require 'geocoder'
 
 class ScrapingGoogle
 
-  def initialize(full_name, user_id,user_ip, country_code)
+  def initialize(full_name, user_id, user_ip, country_code, provider_id)
     @user_ip = user_ip
     @country_code = country_code
     @full_name = full_name
-    user = User.find(user_id)
-    @provider = Provider.create!(
-      name: "google",
-      user: user
-    )
+    @user = User.find(user_id)
+    @provider = Provider.find(provider_id)
     ip = ENV['IP'"#{rand(1..4)}"]
     @proxy_uri = URI.parse(ip)
     @proxy_username = ENV['LOGIN']
@@ -42,16 +39,15 @@ class ScrapingGoogle
         title = rslt.search('.r').text()
         description = rslt.search('.st').text()
         link = rslt.search('.r > a').attr("href") if rslt.search('.r > a').size > 0
-        if !(link.include?("/search?q=")) && Result.where(name: title).nil?
-          result = Result.new(
+        if !(link.include?("/search?q=")) && !(Result.where(name: title).nil?)
+          Result.create!(
             user: @user,
+            provider: @provider,
             category: "google",
             name: title,
             text: description,
             link: link.value.gsub("/url?q=", "")
             )
-          result.provider = @provider
-          result.save!
         end
       end
     end
