@@ -32,12 +32,18 @@ class ProvidersController < ApplicationController
       )
       authorize provider
     end
-    FacebookJob.perform_later(provider)
+    FacebookJob.perform_later(provider.id)
   end
 
   def create_twitter(params)
-    user = User.find(current_user.id)
-    TwitterJob.perform_now(params, user)
+    username = params["twitter_username"]
+    user = current_user
+    @provider = Provider.create!(
+      name: "twitter",
+      user: user
+    )
+    @provider.user_id = @provider
+    TwitterJob.perform_later(username, user.id)
   end
 
   def create_google(params)
@@ -45,7 +51,7 @@ class ProvidersController < ApplicationController
     country_code = Geocoder.search("#{request.remote_ip}").first.country_code
     user_id = current_user.id
     full_name = params["full_name"]
-    GoogleJob.perform_now(full_name, user_id, user_ip, country_code)
+    GoogleJob.perform_later(full_name, user_id, user_ip, country_code)
   end
 
   def create_instagram(params)
@@ -55,7 +61,7 @@ class ProvidersController < ApplicationController
         user: current_user
       )
     @username = params[:username]
-    InstaJob.perform_now(@username, current_user, provider)
+    InstaJob.perform_later(@username, current_user.id, provider.id)
   end
 
   def new

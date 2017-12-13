@@ -3,12 +3,9 @@ require 'twitter'
 class TwitterService
   attr_reader :client
 
-  def initialize(params, user)
-    @user = user
-    @provider = Provider.create!(
-      name: "twitter",
-      user: user
-      )
+  def initialize(user)
+    @user = User.find(user)
+    @provider = Provider.find(@provider.id)
     @client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV["TWITTER_API_KEY"]
       config.consumer_secret     = ENV["TWITTER_API_SECRET"]
