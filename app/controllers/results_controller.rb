@@ -33,6 +33,13 @@ class ResultsController < ApplicationController
     if params[:order] == 'reverse'
       @results = @results.order("created_at DESC")
     end
+
+    # if params[:type] == 'to'
+    #   @results = @client.get_all_tweets_from_user(params["twitter_username"])
+    # else params[:type] == 'from'
+    #   @results = @client.get_all_tweets_to_user(params["twitter_username"])
+    # end
+
   end
 
   private
@@ -42,5 +49,4 @@ class ResultsController < ApplicationController
     @results = policy_scope(Result).select { |r| r.provider.name == @provider }
     @loaded_provider = Provider.where(name: params[:provider], user: current_user).last
   end
-
 end

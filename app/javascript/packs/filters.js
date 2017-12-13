@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     all = document.getElementById("all");
     all.classList.add("active");
+
     results.forEach((result) => {
       result.classList.remove("hidden");
     });

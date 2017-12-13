@@ -38,7 +38,6 @@ class ProvidersController < ApplicationController
     end
   end
 
-
   def create_twitter(params)
     user = User.find(current_user.id)
     TwitterJob.perform_now(params, user)
