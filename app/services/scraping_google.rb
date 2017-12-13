@@ -11,7 +11,6 @@ class ScrapingGoogle
     @provider = Provider.create!(
       name: "google",
       user: user,
-      expires_at: 999999999
     )
   end
 

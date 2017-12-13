@@ -7,7 +7,6 @@ class TwitterService
     @user = user
     @provider = Provider.create!(
       name: "twitter",
-      expires_at: 9999999999,
       user: user
       )
     @client = Twitter::REST::Client.new do |config|
@@ -21,7 +20,7 @@ class TwitterService
   def get_all_tweets_from_user(user)
     @client.search("from:#{user}", result_type: "recent").take(50).collect do |tweet|
       results = Result.new(
-        provider: @provider
+        provider: @provider,
         user: @user,
         category: "twitter",
         text: tweet.text,
@@ -36,7 +35,7 @@ class TwitterService
   def get_all_tweets_to_user(user)
     @client.search("to:#{user}", result_type:"recent").take(50).collect do |tweet|
       results = Result.new(
-        provider: @provider
+        provider: @provider,
         user: @user,
         category: "twitter",
         text: tweet.text,

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activeadmin/activeadmin.git
-  revision: 6a0f2481761ee1387b30b9c89353faa4b4ffb359
+  revision: c1b2889bff016c54956d48624fa230ef0d5fb316
   specs:
     activeadmin (2.0.0.alpha)
       arbre (>= 1.1.1)
@@ -111,7 +111,7 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
-    geocoder (1.4.4)
+    geocoder (1.4.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     has_scope (0.7.1)
@@ -308,7 +308,7 @@ GEM
       railties (>= 3.1)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
-    uglifier (4.0.1)
+    uglifier (4.0.2)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
@@ -320,7 +320,7 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webpacker (3.0.2)
+    webpacker (3.1.1)
       activesupport (>= 4.2)
       rack-proxy (>= 0.6.1)
       railties (>= 4.2)
