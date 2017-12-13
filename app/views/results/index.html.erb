@@ -23,13 +23,16 @@
 
   <div id="container-reduced">
     <% if @results.size < 1 %>
-      <div id="loading">
+      <div>
+        <p>There is no result at this moment</p>
+      </div>
+<!--       <div id="loading">
         <%= image_tag "loading.gif" %>
         <script>
           setInterval(function(){ location.reload(); }, 3000);
         </script>
       </div>
-
+ -->
     <% else  %>
       <!-- Muuri grid -->
       <div class="grid">
@@ -45,6 +48,9 @@
           </div>
         <% end %>
       </div>
+
+      <%= paginate @results, left: 1, right: 1, window: 1  %>
+
       <% content_for(:after_js) do %>
         <%= javascript_pack_tag 'index_results' %>
       <% end %>

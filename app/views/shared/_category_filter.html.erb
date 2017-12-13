@@ -1,24 +1,40 @@
 <div id="category_filter">
-  <div class="filter-btn" id="all">
-    <div>All</div>
+  <div class="filter-btn <%= 'active' unless @category %>" id="all">
+    <%= link_to results_path(@provider, privacy: @privacy) do %>
+      <div>All</div>
+    <% end %>
   </div>
-  <div class="filter-btn" id="photos">
-    <div>Photos</div>
+  <div class="filter-btn <%= 'active' if @category == 'photo' %>" id="photos">
+    <%= link_to results_path(@provider, category: 'photo', privacy: @privacy) do %>
+      <div>Photos</div>
+    <% end %>
   </div>
-  <div class="filter-btn" id="posts">
-    <div>Posts</div>
+  <div class="filter-btn <%= 'active' if @category == 'post' %>" id="posts">
+    <%= link_to results_path(@provider, category: 'post', privacy: @privacy) do %>
+      <div>Posts</div>
+    <% end %>
   </div>
-  <div class="filter-btn" id="videos">
-    <div >Videos</div>
+  <div class="filter-btn <%= 'active' if @category == 'video' %>" id="videos">
+    <%= link_to results_path(@provider, category: 'video', privacy: @privacy) do %>
+      <div >Videos</div>
+    <% end %>
   </div>
 
-  <div class="filter-btn" id="pages">
-    <div>Pages</div>
+  <div class="filter-btn <%= 'active' if @category == 'page' %>" id="pages">
+    <%= link_to results_path(@provider, category: 'page', privacy: @privacy) do %>
+      <div>Pages</div>
+    <% end %>
   </div>
-<!--   <div class="filter-btn" id="reverse">
-    <div>
-      <i class="fa fa-arrow-up" aria-hidden="true"></i>
-      <i class="fa fa-arrow-down" aria-hidden="true"></i>
-    </div>
+
+  <!-- pass order parameter to every link_to of category and privacy filter -->
+<!--   <div class="filter-btn <%= 'active' if @order == 'reverse' %>" id="reverse">
+    <%= link_to results_path(@provider, category: @category, privacy: @privacy) do %>
+      <div>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      </div>
+    <% end %>
   </div> -->
 </div>
+
+

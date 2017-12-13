@@ -29,6 +29,7 @@ gem 'sidekiq-failures', '~> 1.0'
 gem 'twitter'
 gem 'bootstrap-typeahead-rails'
 gem 'twitter-typeahead-rails'
+gem 'kaminari'
 
 group :development, :test do
   gem 'pry-byebug'

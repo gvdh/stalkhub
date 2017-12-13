@@ -18,20 +18,14 @@ class ProvidersController < ApplicationController
   end
 
   def create_or_update_for_facebook(hash)
-    provider = Provider.where(name: "facebook", user: current_user).last
-    if provider && !(provider.expires_at <= Time.now.to_i)
-      provider.update(token: hash[:credentials][:token])
-      authorize provider
-    else
-      provider = Provider.create!(
+    provider = Provider.create!(
         name: params[:provider],
         uid: hash[:uid],
         expires_at: hash[:credentials][:expires_at],
         token: hash[:credentials][:token],
         user: current_user
       )
-      authorize provider
-    end
+    authorize provider
     FacebookJob.perform_later(provider.id)
   end
 

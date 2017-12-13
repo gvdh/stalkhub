@@ -13,15 +13,19 @@
 }
 
 .filter-tab {
-  margin-bottom: 10px;
-  border-bottom: solid $medium-gray 1px;
-  padding-bottom: 5px;
-  margin-right: 10px;
-  padding: 5px;
-  border-radius: 5px 5px 0px 0px;
+  a {
+    color: $compiled-gray;
+    margin-bottom: 10px;
+    border-bottom: solid $medium-gray 1px;
+    padding-bottom: 5px;
+    margin-right: 10px;
+    padding: 5px;
+  }
 }
 
 .filter-tab:hover, .filter-tab.active {
-  border-bottom: solid $blue 5px;
-  background-color: white;
+  a {
+    text-decoration: none;
+    border-bottom: solid $blue 5px;
+  }
 }

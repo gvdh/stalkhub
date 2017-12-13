@@ -342,6 +342,7 @@ DEPENDENCIES
   geocoder
   inherited_resources!
   jbuilder (~> 2.0)
+  kaminari
   koala
   listen (~> 3.0.5)
   nokogiri
