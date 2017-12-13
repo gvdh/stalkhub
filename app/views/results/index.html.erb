@@ -3,12 +3,15 @@
     <div id="sidebar">
       <%= render 'shared/sidebar_menu', provider: @provider %>
     </div>
-    <% if params[:provider] == "facebook"  %>
+    <% if params[:provider] == "facebook" %>
       <div id="category_filter">
         <%= render 'shared/category_filter', provider: @provider %>
       </div>
     <% end %>
 
+    <% if params[:provider] == "twitter" %>
+      <%= render 'shared/category_twitter_filter', provider: @provider %>
+    <% end %>
   </div>
 
   <% if params[:provider] == "facebook"  %>

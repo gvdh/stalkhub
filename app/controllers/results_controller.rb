@@ -60,5 +60,4 @@ class ResultsController < ApplicationController
     @paginatable_array = Kaminari.paginate_array(@results).page(params[:page])
     @results = @paginatable_array
   end
-
 end

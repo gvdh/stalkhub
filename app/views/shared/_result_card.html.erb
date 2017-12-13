@@ -1,8 +1,16 @@
 <div id="result_card" class="<%= result.category %> <%= result.privacy %>">
+  <div class="card-media">
+    <%= image_tag result.avatar if result.avatar %>
+  </div>
+
+  <div class="card_text">
+    <%= result.username if result.username %>
+  </div>
 
   <div class="card-media">
-    <%= image_tag result.picture if result.picture %>
+    <%= image_tag result.picture.delete("[]\\\"")  if result.picture %>
   </div>
+
   <div class="card_text">
     <p><%= result.text if result.text %></p>
   </div>
@@ -10,4 +18,9 @@
   <div class="card_footer text-right">
      <p> <%= result.date.to_time.strftime("%b %Y") if result.date %> </p>
   </div>
+
+  <div class="card_footer text-left">
+     <p> <%= result.total_likes if result.total_likes %> </p>
+  </div>
 </div>
+<% end %>

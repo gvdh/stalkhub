@@ -8,6 +8,7 @@ class GraphObjectService
   LIKED_PAGES = "me/likes?fields=fan_count,name,picture,link"
   TAGGED_VIDEOS_FIELDS = "me/videos?fields=privacy,created_time,description, source, picture, permalink_url"
   UPLOADED_VIDEOS_FIELDS = "me/videos/uploaded?fields=privacy,created_time,description, source, picture, permalink_url"
+  BASIC_INFOS = "me?fields=name,picture,link"
 
   def initialize(provider)
     @provider = provider
@@ -15,19 +16,27 @@ class GraphObjectService
     @user = provider.user
   end
 
+  def basic_infos
+    graph = Koala::Facebook::API.new(@token)
+    profile = graph.get_object(BASIC_INFOS)
+    @username = profile["name"]
+    @avatar = profile["picture"]["data"]["url"] if profile["picture"]["data"]["url"]
+  end
 
   def get_photos
-    @graph = Koala::Facebook::API.new(@token)
-    photos =  @graph.get_object(PHOTOS_FIELDS)
+    graph = Koala::Facebook::API.new(@token)
+    photos =  graph.get_object(PHOTOS_FIELDS)
     page = 1
     until photos.next_page.nil? && page != 1
       photos.each do |photo|
-        ze_photo = photo["likes"]["summary"]["total_count"] if photo["likes"]
+        likes = photo["likes"]["summary"]["total_count"] if photo["likes"]
         text = photo["name"] if photo["name"]
         image = photo["images"].first["source"] if photo["images"]
         if Result.find_by_node_id(photo["id"]).nil? || Result.find_by_node_id(photo["id"]).user != @user
           begin
             Result.create!(
+              username: @username,
+              avatar: @avatar,
               provider: @provider,
               user: @user,
               category: "photo",
@@ -36,7 +45,7 @@ class GraphObjectService
               picture: image,
               node_id: photo["id"],
               link: photo["link"],
-              total_likes: ze_photo
+              total_likes: likes
               )
           rescue
             fail
@@ -53,8 +62,8 @@ class GraphObjectService
   end
 
   def get_uploaded_posts
-    @graph = Koala::Facebook::API.new(@token)
-    posts =  @graph.get_object(UPLOADED_POSTS_FIELDS)
+    graph = Koala::Facebook::API.new(@token)
+    posts =  graph.get_object(UPLOADED_POSTS_FIELDS)
     page = 1
     until posts.next_page.nil? && page != 1
       posts.each do |post|
@@ -68,6 +77,8 @@ class GraphObjectService
           text = post["message"] || post["story"]
           begin
             Result.create!(
+              username: @username,
+              avatar: @avatar,
               provider: @provider,
               user: @user,
               category: "post",
@@ -91,14 +102,16 @@ class GraphObjectService
   end
 
   def get_liked_pages
-    @graph = Koala::Facebook::API.new(@token)
-    actual_page = @graph.get_object(LIKED_PAGES)
+    graph = Koala::Facebook::API.new(@token)
+    actual_page = graph.get_object(LIKED_PAGES)
     page = 1
     until actual_page.next_page.nil? && page != 1
       actual_page.each do |page|
         if Result.find_by_node_id(page["id"]).nil? || Result.find_by_node_id(page["id"]).user != @user
           begin
             Result.create!(
+              username: @username,
+              avatar: @avatar,
               provider: @provider,
               user: @user,
               category: "page",
@@ -122,8 +135,8 @@ class GraphObjectService
   end
 
   def get_tagged_videos
-    @graph = Koala::Facebook::API.new(@token)
-    videos = @graph.get_object(UPLOADED_VIDEOS_FIELDS)
+    graph = Koala::Facebook::API.new(@token)
+    videos = graph.get_object(UPLOADED_VIDEOS_FIELDS)
     page = 1
     until videos.next_page.nil? && page != 1
       videos.each do |video|
@@ -132,6 +145,8 @@ class GraphObjectService
         if Result.find_by_node_id(video["id"]).nil? || Result.find_by_node_id(video["id"]).user != @user
           begin
             Result.create!(
+              username: @username,
+              avatar: @avatar,
               provider: @provider,
               user: @user,
               category: "video",
@@ -156,8 +171,8 @@ class GraphObjectService
   end
 
   def get_uploaded_videos
-    @graph = Koala::Facebook::API.new(@token)
-    videos = @graph.get_object(UPLOADED_VIDEOS_FIELDS)
+    graph = Koala::Facebook::API.new(@token)
+    videos = graph.get_object(UPLOADED_VIDEOS_FIELDS)
     page = 1
     until videos.next_page.nil? && page != 1
       videos.each do |video|
@@ -166,6 +181,8 @@ class GraphObjectService
         if Result.find_by_node_id(video["id"]).nil? || Result.find_by_node_id(video["id"]).user != @user
           begin
             Result.create!(
+              username: @username,
+              avatar: @avatar,
               provider: @provider,
               user: @user,
               category: "video",
