@@ -26,7 +26,7 @@ class TwitterService
         user: @user,
         category: "twitter-from",
         text: tweet.text,
-        created_at: tweet.created_at,
+        created_time: tweet.created_at,
         avatar: tweet.user.profile_image_url_https,
         username: tweet.user.screen_name
         )
