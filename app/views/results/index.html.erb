@@ -40,6 +40,8 @@
           </div>
         <% end %>
       </div>
+      <%= paginate @results, left: 1, right: 1, window: 1%>
+
       <% content_for(:after_js) do %>
         <%= javascript_pack_tag 'index_results' %>
       <% end %>

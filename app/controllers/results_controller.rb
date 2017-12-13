@@ -22,6 +22,8 @@ class ResultsController < ApplicationController
   def load_results
     @provider = params[:provider]
     @results = policy_scope(Result).select { |r| r.provider.name == @provider }
+    @paginatable_array = Kaminari.paginate_array(@results).page(params[:page])
+    @results = @paginatable_array
     @loaded_provider = Provider.where(name: params[:provider], user: current_user).last
   end
 

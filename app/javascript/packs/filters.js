@@ -245,12 +245,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // reverse button
-  reverse = document.getElementById("reverse")
-  reverse.addEventListener("click", (event) => {
-   categoryButtons.forEach((button) => {
-     button.classList.remove("active")
-   });
-   reverse.classList.add("active");
-  })
+  // reverse = document.getElementById("reverse")
+  // reverse.addEventListener("click", (event) => {
+  //  categoryButtons.forEach((button) => {
+  //    button.classList.remove("active")
+  //  });
+  //  reverse.classList.add("active");
+  // })
 
 });
