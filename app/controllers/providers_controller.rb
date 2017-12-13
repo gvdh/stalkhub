@@ -1,7 +1,5 @@
 class ProvidersController < ApplicationController
 
-#  before_action :facebook_token_expired?
-
   def create
     authorize Provider
     if params[:provider] == 'facebook'
@@ -10,6 +8,8 @@ class ProvidersController < ApplicationController
       create_twitter(params)
     elsif params[:provider] == 'google'
       create_google(params)
+    elsif params[:provider] == 'instagram'
+      create_instagram(params)
     else
       flash[:alert] = 'Provider not handled'
       return redirect_to root_path
@@ -17,25 +17,22 @@ class ProvidersController < ApplicationController
     return redirect_to results_path(params[:provider])
   end
 
-
   def create_or_update_for_facebook(hash)
-    provider = Provider.create(
+    provider = Provider.where(name: "facebook", user: current_user).last
+    if provider && !(provider.expires_at <= Time.now.to_i)
+      provider.update(token: hash[:credentials][:token])
+      authorize provider
+    else
+      provider = Provider.create!(
         name: params[:provider],
         uid: hash[:uid],
         expires_at: hash[:credentials][:expires_at],
         token: hash[:credentials][:token],
         user: current_user
       )
-    if provider && !(provider.expires_at <= Time.now.to_i)
-      provider.update(token: hash[:credentials][:token])
       authorize provider
-      begin
-        FacebookJob.perform_now(provider.id)
-      rescue
-        return redirect_to new_provider_path(params[:provider])
-        flash[:alert] = 'Something went wrong, please try again'
-      end
     end
+    FacebookJob.perform_later(provider)
   end
 
   def create_twitter(params)
@@ -45,25 +42,23 @@ class ProvidersController < ApplicationController
 
   def create_google(params)
     user_ip = Geocoder.search("#{request.remote_ip}").first.city
+    country_code = Geocoder.search("#{request.remote_ip}").first.country_code
     user_id = current_user.id
     full_name = params["full_name"]
-    GoogleJob.perform_now(full_name, user_id, user_ip)
+    GoogleJob.perform_now(full_name, user_id, user_ip, country_code)
   end
 
-  def initializer
+  def create_instagram(params)
     skip_authorization
     provider = Provider.create(
         name: params[:provider],
-        user: current_user,
-        expires_at: 999999999
+        user: current_user
       )
     @username = params[:username]
-    InstaJob.perform_later(@username, current_user)
-    redirect_to results_path(params[:provider])
+    InstaJob.perform_now(@username, current_user, provider)
   end
 
   def new
-    # Ugly way to authorize method (instanciate an unused Provider)
     provider = Provider.new
     authorize provider
     @provider = params[:provider]

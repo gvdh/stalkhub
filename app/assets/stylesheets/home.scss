@@ -1,3 +1,13 @@
+@import "config/fonts";
+@import "config/colors";
+@import "config/bootstrap_variables";
+
+// External libraries
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
