@@ -10,6 +10,7 @@
   <div class="card-media">
     <%= image_tag result.picture.delete("[]\\\"")  if result.picture %>
   </div>
+
   <div class="card_text">
     <p><%= result.text if result.text %></p>
   </div>
@@ -22,3 +23,4 @@
      <p> <%= result.total_likes if result.total_likes %> </p>
   </div>
 </div>
+<% end %>

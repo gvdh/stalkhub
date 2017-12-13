@@ -24,5 +24,4 @@ class ResultsController < ApplicationController
     @results = policy_scope(Result).select { |r| r.provider.name == @provider }
     @loaded_provider = Provider.where(name: params[:provider], user: current_user).last
   end
-
 end
