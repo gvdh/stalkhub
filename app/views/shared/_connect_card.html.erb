@@ -21,13 +21,11 @@
       <%= simple_form_for :provider, url: '/auth/twitter/callback', method: :get do |f| %>
         <input type="text" name="twitter_username" placeholder="Your Twitter's username" class="connect-input" >
         <input type="submit" value="Dig!" class="btn btn-default">
-        <!-- f.submit -->
       <% end %>
 
     <% elsif @provider == 'google' %>
       <%= form_tag("/auth/google/callback", method: "get") do %>
-        <%= text_field_tag(:full_name, "Your full name", class: "connect-input") %>
-        <br>
+        <%= text_field_tag(:full_name, nil, placeholder: "Your full name", class: "connect-input") %>
         <%= submit_tag("Dig!", class: "btn btn-default")%>
       <% end %>
 
@@ -35,7 +33,6 @@
       <%= simple_form_for :provider, url: '/auth/instagram/callback', method: :get do |f| %>
         <input type="text" name="username" placeholder="Your Instagram's username" class="connect-input">
         <input type="submit" value="Dig!" class="btn btn-default">
-      <!-- f.submit -->
       <% end %>
 
     <% else %>
