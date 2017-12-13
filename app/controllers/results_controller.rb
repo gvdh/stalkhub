@@ -24,7 +24,6 @@ class ResultsController < ApplicationController
         return redirect_to new_provider_path(params[:provider])
       end
     end
-
   end
 
   private
