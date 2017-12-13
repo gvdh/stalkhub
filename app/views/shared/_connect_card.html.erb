@@ -1,5 +1,3 @@
-
-
 <div class="connect_card">
   <!-- icon -->
   <div class="icon">
@@ -21,17 +19,16 @@
 
     <% elsif @provider == 'twitter' %>
       <%= simple_form_for :provider, url: '/auth/twitter/callback', method: :get do |f| %>
-        <input type="text" name="twitter_username" placeholder="Twitter's username">
-      <%= f.submit %>
+        <input type="text" name="twitter_username" placeholder="Your Twitter's username" class="connect-input" >
+        <input type="submit" value="Dig!" class="btn btn-default">
+        <!-- f.submit -->
       <% end %>
-
-
 
     <% elsif @provider == 'google' %>
       <%= form_tag("/auth/google/callback", method: "get") do %>
-        <%= text_field_tag(:full_name, "Barack Obama") %>
+        <%= text_field_tag(:full_name, "Your full name", class: "connect-input") %>
         <br>
-        <%= submit_tag("Dig !") %>
+        <%= submit_tag("Dig!", class: "btn btn-default")%>
       <% end %>
 
     <% elsif @provider == 'instagram' %>
