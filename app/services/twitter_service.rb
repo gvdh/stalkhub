@@ -18,10 +18,7 @@ class TwitterService
   end
 
   def get_all_tweets_from_user(user)
-    @client.search("from:#{user}", result_type: "recent").collect do |tweet|
-      puts 'user->',user
-      puts '@user->',@user
-      puts tweet
+    @client.search("from:#{user}", result_type: "recent").take(200).collect do |tweet|
       results = Result.new(
         provider: @provider,
         user: @user,
@@ -37,7 +34,7 @@ class TwitterService
   end
 
   def get_all_tweets_to_user(user)
-    @client.search("to:#{user}", result_type:"recent").collect do |tweet|
+    @client.search("to:#{user}", result_type:"recent").take(200).collect do |tweet|
       results = Result.new(
         provider: @provider,
         user: @user,
