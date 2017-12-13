@@ -1,20 +1,28 @@
 <div id="privacy-container">
   <ul id="privacy-filter" class="list-inline">
-    <li class="filter-tab" id="everyone">
-      <i class="fa fa-globe" aria-hidden="true"></i>
-      Public
+    <li class="filter-tab <%= 'active' if @privacy == 'public' %>" id="everyone">
+      <%= link_to results_path(@provider, category: @category, privacy: 'public') do %>
+        <i class="fa fa-globe" aria-hidden="true"></i>
+        Public
+      <% end %>
     </li>
-    <li class="filter-tab" id="friends">
-      <i class="fa fa-users" aria-hidden="true"></i>
-      Only friends
+    <li class="filter-tab <%= 'active' if @privacy == 'friends' %>" id="friends">
+      <%= link_to results_path(@provider, category: @category, privacy: 'friends') do %>
+        <i class="fa fa-users" aria-hidden="true"></i>
+        Only friends
+      <% end %>
     </li>
-    <li class="filter-tab" id="myself">
-      <i class="fa fa-lock" aria-hidden="true"></i>
-      Only me
+    <li class="filter-tab <%= 'active' if @privacy == 'myself' %>" id="myself">
+      <%= link_to results_path(@provider, category: @category, privacy: 'myself') do %>
+        <i class="fa fa-lock" aria-hidden="true"></i>
+        Only me
+      <% end %>
     </li>
-    <li class="filter-tab" id="nofilters">
-      <i class="fa fa-times" aria-hidden="true"></i>
-      No privacy filters
+    <li class="filter-tab <%= 'active' unless @privacy %>" id="nofilters">
+      <%= link_to results_path(@provider, category: @category,) do %>
+        <i class="fa fa-times" aria-hidden="true"></i>
+        No privacy filters
+      <% end %>
     </li>
   </ul>
 </div>
