@@ -36,7 +36,8 @@ class ProvidersController < ApplicationController
   end
 
   def create_twitter(params)
-    user = User.find(current_user.id)
+    user = current_user.id
+    username = params["twitter_username"]
     TwitterJob.perform_now(params, user)
   end
 
@@ -54,8 +55,10 @@ class ProvidersController < ApplicationController
         name: params[:provider],
         user: current_user
       )
-    @username = params[:username]
-    InstaJob.perform_now(@username, current_user, provider)
+    username = params[:username]
+    user_id = current_user.id
+    provider_id = provider.id
+    InstaJob.perform_now(username, user_id, provider_id)
   end
 
   def new
