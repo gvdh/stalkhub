@@ -13,6 +13,11 @@ class ResultsController < ApplicationController
         return redirect_to new_provider_path(params[:provider])
       end
     end
+
+    if @loaded_provider.name == "instagram"
+      return redirect_to results_path(params[:provider])
+    end
+
     unless @results.any?
       current_user.providers.destroy_all
       return redirect_to new_provider_path(params[:provider])
