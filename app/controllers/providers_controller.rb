@@ -37,13 +37,13 @@ class ProvidersController < ApplicationController
 
   def create_twitter(params)
     username = params["twitter_username"]
-    user = current_user
+    user_id = current_user.id
     @provider = Provider.create!(
       name: "twitter",
-      user: user
+      user: current_user
     )
-    @provider.user_id = @provider
-    TwitterJob.perform_later(username, user.id)
+    provider_id = @provider.id
+    TwitterJob.perform_later(username, user_id, provider_id)
   end
 
   def create_google(params)
@@ -60,8 +60,10 @@ class ProvidersController < ApplicationController
         name: params[:provider],
         user: current_user
       )
-    @username = params[:username]
-    InstaJob.perform_later(@username, current_user.id, provider.id)
+    username = params[:username]
+    user_id = current_user.id
+    provider_id = provider.id
+    InstaJob.perform_later(username, user_id, provider_id)
   end
 
   def new
