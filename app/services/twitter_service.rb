@@ -15,6 +15,7 @@ class TwitterService
   end
 
   def get_all_tweets_from_user(user)
+     @user.results.destroy_all
     @client.search("from:#{user}", result_type: "recent").take(10).collect do |tweet|
       id = tweet.id
       name = tweet.user.name
@@ -36,6 +37,7 @@ class TwitterService
   end
 
   def get_all_tweets_to_user(user)
+     @user.results.destroy_all
     @client.search("to:#{user}", result_type:"recent").take(10).collect do |tweet|
       id = tweet.id
       name = tweet.user.name

@@ -1,0 +1,40 @@
+<div class="connect_card">
+  <!-- icon -->
+  <div class="icon">
+    <i class="fa fa-<%= @provider %>" aria-hidden="true"></i>
+  </div>
+
+  <!-- name -->
+  <div class="name">
+    <p><%= @provider %></p>
+  </div>
+
+  <!-- link -->
+  <div class="link">
+
+    <% if @provider == 'twitter' %>
+    <p>There is no result at this moment</p>
+    <%= link_to "Retry", new_provider_path %>
+
+    <% elsif @provider == 'google' %>
+    <p>There is no result at this moment</p>
+    <%= link_to "Retry", new_provider_path %>
+
+
+    <% elsif @provider == 'instagram' %>
+    <p>There is no result at this moment</p>
+    <%= link_to "Retry", new_provider_path %>
+
+    <% else %>
+      <p>Sorry, we don't handle connection to <%= @provider %> yet...</p>
+    <% end %>
+  </div>
+
+  <!-- privacy policy (do not touch, or it will be disabled ;)) -->
+  <div class="infos">
+    <a href="//www.iubenda.com/privacy-policy/8281983" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+  </div>
+</div>
+
+
+

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   root to: 'pages#home'
-  get '/:provider/initializer', to: 'providers#initializer', as: 'initializer_provider'
+  get '/:provider/destroy', to: 'results#destroy', as: 'destroy_results'
   get '/:provider/results', to: 'results#index', as: 'results'
   get '/:provider/connect', to: 'providers#new', as: 'new_provider'
 

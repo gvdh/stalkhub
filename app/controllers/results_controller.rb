@@ -17,6 +17,10 @@ class ResultsController < ApplicationController
 
   end
 
+  # def destroy
+  #   current_user.providers.where(name: "instagram").Result.destroy_all
+  # end
+
   private
 
   def load_results

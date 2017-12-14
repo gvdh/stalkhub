@@ -9,6 +9,7 @@ class InstagramService
   end
 
   def getting_infos
+    @user.results.destroy_all
     @doc["media"]["nodes"].each do |post|
       puts post
       picture = post.to_s.scan(/(?<=display_src"=>")[^"]+/).first if post.to_s.scan(/(?<=display_src"=>")[^"]+/).any?

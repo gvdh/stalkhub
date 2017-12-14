@@ -12,6 +12,10 @@
     <% if params[:provider] == "twitter" %>
       <%= render 'shared/category_twitter_filter', provider: @provider %>
     <% end %>
+
+    <% if params[:provider] == "instagram" %>
+      <%= render 'shared/category_instagram_filter', provider: @provider %>
+    <% end %>
   </div>
 
   <% if params[:provider] == "facebook"  %>
@@ -22,7 +26,7 @@
 
     <% if @results.size < 1 %>
       <div>
-        <p>There is no result at this moment</p>
+        <%= render 'shared/no_connect_card', provider: @provider%>
       </div>
 <!--       <div id="loading">
         <%= image_tag "loading.gif" %>
@@ -54,4 +58,11 @@
     <% end %>
   </div>
 </div>
-
+<script>
+setTimeout(function () {
+    if(window.location.hash != '#r') {
+        window.location.hash = 'r';
+        window.location.reload(1);
+    }
+}, 1500);
+</script>
