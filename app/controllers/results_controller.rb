@@ -3,6 +3,7 @@ class ResultsController < ApplicationController
   before_action :load_results
 
   def index
+
     if @loaded_provider.nil?
       return redirect_to new_provider_path(params[:provider])
     end
@@ -14,22 +15,11 @@ class ResultsController < ApplicationController
       end
     end
 
-    if @loaded_provider.name == "instagram"
-      return redirect_to results_path(params[:provider])
-    end
-
-    unless @results.any?
-      current_user.providers.destroy_all
-      return redirect_to new_provider_path(params[:provider])
-    end
-
-    if @loaded_provider.name == "facebook"
-      if @loaded_provider.expires_at <= Time.now.to_i
-        current_user.providers.destroy_all
-        return redirect_to new_provider_path(params[:provider])
-      end
-    end
   end
+
+  # def destroy
+  #   current_user.providers.where(name: "instagram").Result.destroy_all
+  # end
 
   private
 

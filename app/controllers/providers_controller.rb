@@ -1,4 +1,4 @@
-class ProvidersController < ApplicationController
+  class ProvidersController < ApplicationController
 
   def create
     authorize Provider
