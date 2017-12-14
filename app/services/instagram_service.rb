@@ -14,8 +14,10 @@ class InstagramService
       picture = post.to_s.scan(/(?<=display_src"=>")[^"]+/).first if post.to_s.scan(/(?<=display_src"=>")[^"]+/).any?
       link = "https://www.instagram.com/p/#{post['code']}"
       likes = post["likes"]["count"]
+      date = post["date"]
       caption = post["caption"]
         Result.create!(
+          created_time: Time.at(date),
           total_likes: likes,
           text: caption,
           link: link,

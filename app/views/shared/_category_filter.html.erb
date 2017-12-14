@@ -26,6 +26,10 @@
     <% end %>
   </div>
 
+  <div class="filter-btn" id="search_again">
+    <%= link_to '', new_provider_path(:dr => current_user ), class: "fa fa-search" %>
+  </div>
+
   <!-- pass order parameter to every link_to of category and privacy filter -->
 <!--   <div class="filter-btn <%= 'active' if @order == 'reverse' %>" id="reverse">
     <%= link_to results_path(@provider, category: @category, privacy: @privacy) do %>

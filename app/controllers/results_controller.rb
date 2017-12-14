@@ -2,6 +2,15 @@ class ResultsController < ApplicationController
 
   before_action :load_results
 
+  def monitor
+    skip_authorization
+    if params["/monitor"]
+      if params["/monitor"]["title"]
+        flash[:notice] = 'You successfully subscribed !'
+      end
+    end
+  end
+
   def index
 
     if @loaded_provider.nil?
@@ -62,14 +71,6 @@ class ResultsController < ApplicationController
       end
 
     end
-
-
-    # @order = params[:order]
-    # if params[:order] == 'reverse'
-    #   @results = @results.sort_by!{ |r| r.created_time }
-    # else
-    #   @results = @results.sort_by!{ |r| r.created_time }.reverse
-    # end
 
     @paginatable_array = Kaminari.paginate_array(@results).page(params[:page])
     @results = @paginatable_array

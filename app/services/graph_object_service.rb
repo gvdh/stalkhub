@@ -41,18 +41,16 @@ class GraphObjectService
               user: @user,
               category: "photo",
               text: text,
-              date: photo["created_time"],
+              created_time: photo["created_time"],
               picture: image,
               node_id: photo["id"],
               link: photo["link"],
               total_likes: likes
               )
           rescue
-            fail
             puts "Creation of result #{photo["id"]} failed !"
           end
         else
-          fail
           puts "Result already exists !"
         end
       end
@@ -67,23 +65,31 @@ class GraphObjectService
     page = 1
     until posts.next_page.nil? && page != 1
       posts.each do |post|
-        if Result.find_by_node_id(post["id"]).nil? || Result.find_by_node_id(post["id"]).user != @user
+        puts post
+        if true #Result.find_by_node_id(post["id"]).nil? || Result.find_by_node_id(post["id"]).user != @user
           parsed_post = post.to_s
-          if post.to_s.include?("\"image\"")
+          if parsed_post.include?("\"image\"")
             attachment = parsed_post.delete(" ").scan(/(?<=\"src\"=>\")[^\"]+/).join
           else
             attachment = ""
           end
           text = post["message"] || post["story"]
+          puts parsed_post
+          if parsed_post.include?("\"data\"=>[{\"description\"=>")
+            description = parsed_post.scan(/(?<={\"description\"=>\")[^\"]+/)
+          else
+            description = ""
+          end
           begin
             Result.create!(
               username: @username,
               avatar: @avatar,
               provider: @provider,
+              description: description,
               user: @user,
               category: "post",
               privacy: post["privacy"]["value"],
-              date: post["created_time"],
+              created_time: post["created_time"],
               text: text,
               node_id: post["id"],
               picture: attachment,
@@ -151,7 +157,7 @@ class GraphObjectService
               user: @user,
               category: "video",
               privacy: video["privacy"]["value"],
-              date: video["created_time"],
+              created_time: video["created_time"],
               text: text,
               node_id: video["id"],
               total_likes: likes,
@@ -187,7 +193,7 @@ class GraphObjectService
               user: @user,
               category: "video",
               privacy: video["privacy"]["value"],
-              date: video["created_time"],
+              created_time: video["created_time"],
               text: video["description"],
               node_id: video["id"],
               total_likes: likes,

@@ -1,49 +1,41 @@
-  <!-- START PRELOADER -->
+<!-- START PRELOADER -->
   <div id="preloader">
     <div id="status">&nbsp;</div>
   </div>
   <!-- END PRELOADER -->
   <!-- Return to Top -->
   <a href="javascript:" id="return-to-top"><span class="fa fa-arrow-up" aria-hidden="true"></span></a>
-  <!-- navigation -->
-  <!-- intro header -->
-  <header class="intro">
-
-    <div class="intro-body">
-
-      <div class="container">
-
-          <div class="col-md-8 col-md-offset-2">
-
-            <!-- start typer hello  -->
-              <h1 class="text-center" id="title">STALK_<span>HUB</span></h1>
-            <!-- end typer hello -->
-            <br>
-            <p class="intro-text">What can be found about you on <span class="txt-rotate" data-period="100" data-rotate='[ "Facebook", "Instagram", "LinkedIn", "Twitter","Google"]'></span></p>
-            <!-- start mouse wrap -->
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <div class="mouse-warp">
-              <a href="#mouse-here" class="page-scroll">
-                <div class="mouse">
-                  <div class="scroll"></div>
-                </div>
-              </a>
-            </div>
-            <!-- end mouse wrap -->
-          </div>
-          <!-- end column wrapping -->
-        </div>
-        <!-- end row header -->
-        <%= link_to t(".sign_in", default: "Login"), new_user_session_path %>
+  <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('https://hdwallsource.com/img/2014/9/earth-pictures-23104-23754-hd-wallpapers.jpg');">
+    <%= link_to(new_user_session_path) do %>
+      <p class="btn btn-signup" id="log">log In</p>
+    <% end %>
+    <div class="banner-content">
+      <div id="logo">
+        <ul>
+          <li>
+            <%= image_tag "white-logo.png", style: "width: 60px; height: 60px;" %>
+          </li>
+          <li>
+            <p>STALK_<span style="color: #87A1DC;">HUB</span></p>
+          </li>
+        </ul>
       </div>
-      <!-- end container header -->
+      <h1 class="text-center" id="title">STALK_<span style="color: #87A1DC;">HUB</span></h1>
+       <h4 class="intro-text">What can be found about you on <span class="txt-rotate" data-period="100" data-rotate='[ "Facebook", "Instagram", "LinkedIn", "Twitter","Google"]' style="color: #B27062"></span></h4>
+      <%= link_to(new_user_registration_path) do %>
+        <p class="btn btn-signup call-to-action">Discover</p>
+      <% end %>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="mouse-warp">
+            <a href="#mouse-here" class="page-scroll">
+              <i class="fa fa-angle-down fa-3x" style="color: #FFF;" aria-hidden="true" id="arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- end intro body -->
-    <br>
+  </div>
 
   </header>
   <!-- end intro header -->
@@ -52,178 +44,80 @@
     <!-- start count stats -->
     <section id="counter-stats">
       <div class="container">
-        <br>
         <div class="row">
-          <div class="col-lg-3 stats">
+          <div class="subtitle">
+            <h3 class="text-center">OUR <span style="color: #B27062;">SOCIAL MEDIAS</span></h3>
+          </div>
+          <div class="col-md-3 col-sm-6 col-xs-12 stats">
             <span class="fa fa-facebook-square" aria-hidden="true"></span>
-            <div class="counter" data-count="549684">0</div>
-            <h5>public profiles</h5>
+            <p style="padding-top: 30px;">Facebook</p>
           </div>
-          <div class="col-lg-3 stats">
+          <div class="col-md-3 col-sm-6 col-xs-12 stats">
             <span class="fa fa-instagram" aria-hidden="true"></span>
-            <div class="counter" data-count="679405">0</div>
-            <h5>public pictures</h5>
+            <p style="padding-top: 30px;">Instagram</p>
           </div>
-          <div class="col-lg-3 stats">
+          <div class="col-md-3 col-sm-6 col-xs-12 stats">
             <span class="fa fa-twitter" aria-hidden="true"></span>
-            <div class="counter" data-count="755063">0</div>
-            <h5>public tweets</h5>
+            <p style="padding-top: 30px;">Twitter</p>
           </div>
-          <div class="col-lg-3 stats">
+          <div class="col-md-3 col-sm-6 col-xs-12 stats">
             <span class="fa fa-linkedin" aria-hidden="true"></span>
-            <div class="counter" data-count="4630">0</div>
-            <h5>public profiles</h5>
+            <p style="padding-top: 30px;">Linkedin</p>
           </div>
         </div>
-        <!-- end row counter stats -->
       </div>
-      <!-- end container counter stats -->
     </section>
-    <!-- end cont stats -->
-  </section>
-  <br>
-  <br>
-  <br>
-  <!-- end about me -->
-  <!-- start work portfolio -->
-  <section id="services">
-    <div class="container">
-      <h2>OUR SERVICES</h2>
-      <div class="row">
-        <div class="ct-services">
-          <div class="col-md-4 services-item">
-            <div class="rotate">
-              <span class="fa fa-code" aria-hidden="true"></span>
-              <!-- <i class="fa fa-file-code-o fa-wrapper" aria-hidden="true"></i> -->
-            </div>
-            <h3>Check your public profile</h3>
-            <p>Everyone have privacy, are you really annonymous in the web.</p>
-          </div>
-          <div class="col-md-4 services-item">
-            <div class="rotate">
-              <span class="fa fa-users fa-wrapper" aria-hidden="true"></span>
-            </div>
-            <h3>Public Life</h3>
-            <p>Check which public can see your digital information.</p>
-          </div>
-          <div class="col-md-4 services-item">
-            <div class="rotate">
-              <span class="fa fa-line-chart" aria-hidden="true"></span>
-              <!-- <i class="fa fa-search fa-wrapper" aria-hidden="true"></i>-->
-            </div>
-            <h3>Search Engine Optimization</h3>
-            <p>Our services have a optimized search engine, we can check your information on every social platform</p>
-          </div>
-        </div>
-        <!-- end row of services -->
-      </div>
-            <div class="row">
-        <div class="ct-services">
-          <div class="col-md-4 services-item">
-            <div class="rotate">
-              <span class="fa fa-folder" aria-hidden="true"></span>
-              <!-- <i class="fa fa-file-code-o fa-wrapper" aria-hidden="true"></i> -->
-            </div>
-            <h3>Check News</h3>
-            <p>We can help you to check news on your digital life.</p>
-          </div>
-          <div class="col-md-4 services-item">
-            <div class="rotate">
-              <span class="fa fa-comments-o fa-wrapper" aria-hidden="true"></span>
-            </div>
-            <h3>posts, Tweet, Instagram photos ...</h3>
-            <p>We will check everything, don't worry :)</p>
-          </div>
-          <div class="col-md-4 services-item">
-            <div class="rotate">
-              <span class="fa fa-eye" aria-hidden="true"></span>
-              <!-- <i class="fa fa-search fa-wrapper" aria-hidden="true"></i>-->
-            </div>
-            <h3>Keep an eye on your social media</h3>
-            <p>We will have all information from different social platform</p>
-          </div>
-        </div>
-        <!-- end row of services -->
-      </div>
-      <!-- end row services section -->
+
+  <div class="row">
+    <div class="subtitle">
+      <h3 class="text-center">OUR <span style="color: #B27062;">SERVICES</span></h3>
     </div>
-    <!-- end div services section -->
-  </section>
-  <!-- end services -->
-  <!-- start testimionals -->
-  <section id="testimionals">
-    <div class="testimionals-bg">
-      <div class="container testimionals-bg-opacity">
-        <h2>TESTIMONIALS</h2>
-        <div><span class="fa fa-quote-left quotes" aria-hidden="true"></span>
-        </div>
-        <div id="slider-testimionals" class="carousel slide" data-ride="carousel">
-          <!-- indicators dot nav -->
-          <ol class="carousel-indicators">
-            <li data-target="#slider-testimionals" data-slide-to="0" class="active"></li>
-            <li data-target="#slider-testimionals" data-slide-to="1"></li>
-            <li data-target="#slider-testimionals" data-slide-to="2"></li>
-            <li data-target="#slider-testimionals" data-slide-to="3"></li>
-          </ol>
-          <!-- wrapper for slides -->
-          <div class="carousel-inner" role="listbox">
-            <!-- start first testimional -->
-            <div class="item active">
-              <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                  <div class="carousel-caption">
-                    <p>Thanks to STALK_HUB , I see every post on social media until my subscription.</p>
-                    <p class="client">Emilien, Facebook</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end first testimional -->
-            <!-- start second testimional -->
-            <div class="item">
-              <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                  <div class="carousel-caption">
-                    <p>STALK_HUB helps my girl friend to delete all strange post.</p>
-                    <p class="client">Rogier, Instagram</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end second testimional -->
-            <!-- start third testimional -->
-            <div class="item">
-              <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                  <div class="carousel-caption">
-                    <p>I love STALK_HUB, really easy</p>
-                    <p class="client">Gillian, LinkedIn</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end third testimional -->
-            <!-- start fourth and last testimional -->
-            <div class="item">
-              <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                  <div class="carousel-caption">
-                    <p>I have a lot of public post :S , Thank you STALK_HUB</p>
-                    <p class="client">Ana, Google</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end fourth and last testimional -->
-          </div>
-          <!-- end carousel -->
-        </div>
-        <!-- end slider bootstrap -->
-      </div>
+    <div class="col-md-4 col-xs-12 stats">
+      <span class="fa fa-users fa-wrapper" aria-hidden="true"></span>
+      <h3>Check your public profile</h3>
+      <p style= "padding-top: 30px">Did you really protect your privacy on the web ?</p>
     </div>
-    <!-- end div container testimionals -->
-  </section>
-  <!-- end testimionals -->
+    <div class="col-md-4 col-xs-12 stats">
+      <span class="fa fa-eye" aria-hidden="true"></span>
+      <h3>Keep an eye on your social media</h3>
+      <p style= "padding-top: 30px">We retrieve all informations <br> from different social platforms.</p>
+    </div>
+    <div class="col-md-4 col-xs-12 stats">
+      <span class="fa fa-comments-o fa-wrapper" aria-hidden="true"></span>
+      <h3>Posts, tweets, photos ...</h3>
+      <p style= "padding-top: 30px">We check everything about you.</p>
+    </div>
+  </div>
+
+  <!-- Team -->
+
+      <div class="container">
+        <div class="team">
+          <div class="row">
+            <div class="subtitle">
+              <h3 class="text-center">OUR <span style="color: #B27062;">TEAM</span></h3>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 stats">
+              <%= image_tag "lucie.jpg", class: "profil-picture"%>
+              <p style= "padding-top: 30px";>Lucie Keunen</p>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 stats">
+              <%= image_tag "clement.jpg", class: "profil-picture"%>
+              <p style= "padding-top: 30px";>Clément Bacle</p>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 stats">
+              <%= image_tag "denis.jpg", class: "profil-picture"%>
+              <p style= "padding-top: 30px";>Denis Huang</p>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 stats">
+              <%= image_tag "gauthier.jpg", class: "profil-picture"%>
+              <p style= "padding-top: 30px";>Gauthier Vanderhaegen</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <!--  --><!-- end team -->
   <!-- start footer -->
  <div class="footer">
   <div class="footer-links">
@@ -234,7 +128,7 @@
     <a href="#"><i class="fa fa-linkedin"></i></a>
   </div>
   <div class="footer-copyright">
-    This footer is made with <i class="fa fa-heart"></i> STALK_HUB
+    STALK_HUB
   </div>
 </div>
   <!-- end footer -->

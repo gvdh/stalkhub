@@ -7,20 +7,22 @@
       <div id="category_filter">
         <%= render 'shared/category_filter', provider: @provider %>
       </div>
-    <% end %>
-
-    <% if params[:provider] == "twitter" %>
+    <% elsif params[:provider] == "twitter" %>
       <%= render 'shared/category_twitter_filter', provider: @provider %>
+    <% else %>
+      <div id="category_filter">
+        <div class="filter-btn" id="search_again">
+          <%= link_to '', new_provider_path(:dr => current_user ), class: "fa fa-search" %>
+        </div>
+      </div>
     <% end %>
   </div>
 
   <% if params[:provider] == "facebook"  %>
     <%= render 'shared/privacy_filter' %>
   <% end %>
-
   <div id="container-reduced">
     <div class="grid">
-
       <% if @results.size < 1 %>
         <div class="no-results">
           <p>There is no result at this moment</p>
@@ -31,8 +33,12 @@
           <div class="item">
             <div class="item-content">
               <!-- Safe zone, enter your custom markup -->
-              <%= link_to result.link , target: '_blank' do %>
-                <%= render 'shared/result_card', result: result %>
+              <%= link_to result.link, target: "_blank" do %>
+                <% if result.category == "google" %>
+                  <%= render 'shared/google_result_card', result: result %>
+                <% else %>
+                  <%= render 'shared/result_card', result: result %>
+                <% end %>
               <% end %>
               <!-- Safe zone ends -->
             </div>
