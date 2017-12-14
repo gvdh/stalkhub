@@ -66,6 +66,12 @@ class ProvidersController < ApplicationController
   end
 
   def new
+    if params[:dr]
+      a = current_user.providers.where(name: params[:provider])
+      a.each do |providr|
+       providr.destroy
+      end
+    end
     provider = Provider.new
     authorize provider
     @provider = params[:provider]

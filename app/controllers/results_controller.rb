@@ -63,14 +63,6 @@ class ResultsController < ApplicationController
 
     end
 
-
-    # @order = params[:order]
-    # if params[:order] == 'reverse'
-    #   @results = @results.sort_by!{ |r| r.created_time }
-    # else
-    #   @results = @results.sort_by!{ |r| r.created_time }.reverse
-    # end
-
     @paginatable_array = Kaminari.paginate_array(@results).page(params[:page])
     @results = @paginatable_array
   end

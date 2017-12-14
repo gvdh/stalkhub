@@ -1,0 +1,11 @@
+<div id="result_card" class="<%= result.category %>">
+  <div class="header <%= params[:provider] %>">
+    <p class="username"><%= result.name  if result.name %></p>
+  </div>
+  <div class="content google">
+      <p>
+        Description : <%= result.text if result.text %>
+      </p>
+  </div>
+</div>
+

@@ -7,10 +7,23 @@
   height:100%;
 }
 .content {
-  font-family: Arial;
-  padding: 2px;
+  font-family: Arial, Sans Serif;
   text-align:center;
   overflow-wrap: break-word;
+  font-size:14px;
+  color: black;
+
+}
+
+.content.google{
+  display:flex;
+  align-items: center;
+  height:150px;
+  color:black;
+  text-align:left;
+  font-size:12px;
+  font-family: Arial, Sans Serif;
+  padding: 0 20px;
 }
 
 .avatar-circle {
@@ -30,9 +43,15 @@
   text-align: center;
 }
 
-// #result_card:hover {
-//   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-// }
+#result_card.google{
+  height: 200px;
+  min-height: 200px;
+  justify-content:center;
+}
+
+#result_card:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
 
 .description{
   font-style: italic;
@@ -40,12 +59,42 @@
 }
 
 .header {
-  border-radius:3px;
+  border-top-left-radius:3px;
+  border-top-right-radius:3px;
   display: flex;
   align-items:center;
   height: 50px;
   background-color: #676F8B;
   color:white;
+  p {
+    margin:0!important;
+  }
+}
+
+.header.facebook{
+  background-color: #4768AD;
+}
+
+.header.instagram{
+  background: #f09433;
+  background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+}
+
+.header.twitter{
+  background-color:#00aced;
+}
+
+.header.google{
+  background-color:#DFE0E2;
+  color:black;
+  font-size:14px;
+  padding:2px;
+  text-align:left;
+  vertical-align: center;
+  padding-left: 10px;
 }
 
 .footer {
@@ -56,7 +105,9 @@
   padding:10px;
   height: 50px;
   background-color: #F4F4F8;
+  color:#686A6C;
 }
+
 
 // #result_card {
 //   background-color: white;
@@ -77,11 +128,6 @@
 // #result_card:hover {
 //   box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 // }
-
-.card_text {
-  max-width: 300px;
-}
-
 
 
 a:hover {
