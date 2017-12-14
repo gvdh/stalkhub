@@ -2,6 +2,15 @@ class ResultsController < ApplicationController
 
   before_action :load_results
 
+  def monitor
+    skip_authorization
+    if params["/monitor"]
+      if params["/monitor"]["title"]
+        flash[:notice] = 'You successfully subscribed !'
+      end
+    end
+  end
+
   def index
 
     if @loaded_provider.nil?

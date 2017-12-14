@@ -13,19 +13,19 @@
       <i class="fa fa-instagram" aria-hidden="true"></i>
     <% end %>
   </div>
-  <div id="linkedin-tab" class="social-media-icon <%= 'active' if @provider == 'linkedin' %>">
-    <%= link_to '/linkedin/results', class: 'link'  do %>
-      <i class="fa fa-linkedin" aria-hidden="true"></i>
-    <% end %>
-  </div>
   <div id="twitter-tab" class="social-media-icon <%= 'active' if @provider == 'twitter' %>">
     <%= link_to '/twitter/results', class: 'link'  do %>
       <i class="fa fa-twitter" aria-hidden="true"></i>
     <% end %>
   </div>
-    <div id="google-tab" class="social-media-icon <%= 'active' if @provider == 'google' %>">
+  <div id="google-tab" class="social-media-icon <%= 'active' if @provider == 'google' %>">
     <%= link_to '/google/results', class: 'link'  do %>
       <i class="fa fa-google" aria-hidden="true"></i>
+    <% end %>
+  </div>
+  <div id="linkedin-tab" class="social-media-icon <%= 'active' if @provider.nil? %>">
+    <%= link_to '/monitor', class: 'link'  do %>
+      <i class="fa fa-eye" aria-hidden="true"></i>
     <% end %>
   </div>
   <div class="sidebar-bottom">
@@ -36,4 +36,5 @@
     </div>
   </div>
 </div>
+
 

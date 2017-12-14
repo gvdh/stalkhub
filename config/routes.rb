@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/:provider/initializer', to: 'providers#initializer', as: 'initializer_provider'
   get '/:provider/results', to: 'results#index', as: 'results'
   get '/:provider/connect', to: 'providers#new', as: 'new_provider'
+  get '/monitor', to: 'results#monitor', as: 'monitor'
 
   devise_for :users
 

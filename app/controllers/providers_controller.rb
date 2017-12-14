@@ -1,5 +1,7 @@
 class ProvidersController < ApplicationController
 
+
+
   def create
     authorize Provider
     if params[:provider] == 'facebook'
