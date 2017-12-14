@@ -7,7 +7,7 @@
     <% if result.picture %>
       <%= image_tag result.picture, class: "picture" if result.picture %>
     <% end %>
-      <%= result.text if result.text %>
+      <p class="text"><%= result.text if result.text %></p>
     <% if result.description %>
       <p class="description"><%= result.description.delete("[]\"") %></p>
     <% end %>
