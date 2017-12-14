@@ -1,5 +1,5 @@
-<div id="result_card">
-  <div class="header">
+<div id="result_card" class="<%= result.category %>">
+  <div class="header <%= params[:provider] %>">
     <%= image_tag result.avatar, class: "avatar-circle" if result.avatar %>
     <p class="username"><%= result.username  if result.username %></p>
   </div>
@@ -13,11 +13,18 @@
     <% end %>
   </div>
   <div class="footer">
-
-    <p class="likes"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
-<%= result.total_likes if result.total_likes %></p>
-    <button class="btn" id="see_more"><%= link_to "See more", result.link if result.link %></button>
+    <p class="likes">
+      <% if result.total_likes %>
+        <% if result.category.include?("twitter") %>
+          <i class="fa fa-retweet" aria-hidden="true"></i>
+        <% end %>
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+        <%= result.total_likes %>
+      <% end %>
+    </p>
+    <p class="created_time">
+      <%= result.created_time.to_time.strftime("%b %Y") if result.created_time %>
+    </p>
   </div>
 </div>
-
 

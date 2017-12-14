@@ -7,30 +7,26 @@
       <div id="category_filter">
         <%= render 'shared/category_filter', provider: @provider %>
       </div>
-    <% end %>
-
-    <% if params[:provider] == "twitter" %>
+    <% elsif params[:provider] == "twitter" %>
       <%= render 'shared/category_twitter_filter', provider: @provider %>
+    <% else %>
+      <div id="category_filter">
+        <div class="filter-btn" id="search_again">
+          <%= link_to '', new_provider_path(:dr => current_user ), class: "fa fa-search" %>
+        </div>
+      </div>
     <% end %>
   </div>
 
   <% if params[:provider] == "facebook"  %>
     <%= render 'shared/privacy_filter' %>
   <% end %>
-
   <div id="container-reduced">
 
     <% if @results.size < 1 %>
       <div>
         <p>There is no result at this moment</p>
       </div>
-<!--       <div id="loading">
-        <%= image_tag "loading.gif" %>
-        <script>
-          setInterval(function(){ location.reload(); }, 3000);
-        </script>
-      </div>
- -->
     <% else  %>
       <!-- Muuri grid -->
       <div class="grid">
@@ -38,7 +34,13 @@
           <div class="item">
             <div class="item-content">
               <!-- Safe zone, enter your custom markup -->
-                <%= render 'shared/result_card', result: result %>
+              <%= link_to result.link do %>
+                <% if result.category == "google" %>
+                  <%= render 'shared/google_result_card', result: result %>
+                <% else %>
+                  <%= render 'shared/result_card', result: result %>
+                <% end %>
+              <% end %>
               <!-- Safe zone ends -->
             </div>
           </div>

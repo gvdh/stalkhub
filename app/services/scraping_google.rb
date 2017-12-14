@@ -39,7 +39,7 @@ class ScrapingGoogle
         title = rslt.search('.r').text()
         description = rslt.search('.st').text()
         link = rslt.search('.r > a').attr("href") if rslt.search('.r > a').size > 0
-        if !(link.include?("/search?q=")) && !(Result.where(name: title).nil?)
+        if !(link.include?("/search?q=")) && !(Result.where(name: title).nil?) && !(title.include?("Images"))
           Result.create!(
             user: @user,
             provider: @provider,
