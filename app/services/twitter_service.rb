@@ -19,19 +19,28 @@ class TwitterService
       id = tweet.id
       name = tweet.user.name
       link = "https://www.twitter.com/#{name}/status/#{id.to_s}"
-      results = Result.new(
-        link: link,
-        total_likes: tweet.retweet_count,
-        provider: @provider,
-        user: @user,
-        category: "twitter-from",
-        text: tweet.text,
-        created_time: tweet.created_at,
-        avatar: tweet.user.profile_image_url_https,
-        username: tweet.user.screen_name
-        )
-      results.provider = @provider
-      results.save!
+      if Result.find_by_node_id(photo["id"]).nil? || Result.find_by_node_id(photo["id"]).user != @user
+        begin
+          results = Result.new(
+            node_id: id,
+            link: link,
+            total_likes: tweet.retweet_count,
+            provider: @provider,
+            user: @user,
+            category: "twitter-to",
+            text: tweet.text,
+            created_time: tweet.created_at,
+            avatar: tweet.user.profile_image_url_https,
+            username: tweet.user.screen_name,
+            )
+          results.provider = @provider
+          results.save!
+        rescue
+          puts "Creation of result #{id]} failed !"
+        end
+      else
+        puts "Result already exists !"
+      end
     end
   end
 
