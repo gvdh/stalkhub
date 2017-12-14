@@ -19,21 +19,14 @@
   <% end %>
 
   <div id="container-reduced">
+    <div class="grid">
 
-    <% if @results.size < 1 %>
-      <div>
-        <p>There is no result at this moment</p>
-      </div>
-<!--       <div id="loading">
-        <%= image_tag "loading.gif" %>
-        <script>
-          setInterval(function(){ location.reload(); }, 3000);
-        </script>
-      </div>
- -->
-    <% else  %>
+      <% if @results.size < 1 %>
+        <div class="no-results">
+          <p>There is no result at this moment</p>
+        </div>
+      <% else  %>
       <!-- Muuri grid -->
-      <div class="grid">
         <% @results.each do |result|  %>
           <div class="item">
             <div class="item-content">
