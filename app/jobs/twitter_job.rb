@@ -1,11 +1,14 @@
+require 'sidekiq-scheduler'
+
 class TwitterJob < ApplicationJob
   queue_as :default
 
-  def perform(username, user_id, provider_id)
-    user = User.find(user_id)
-    provider = Provider.find(provider_id)
-    infos = TwitterService.new(user, provider)
-    infos.get_all_tweets_from_user(username)
-    infos.get_all_tweets_to_user(username)
+  def perform
+    User.find_each do |user|
+      provider = user.providers.find_by(name: 'twitter')
+      infos = TwitterService.new(user, provider)
+      infos.get_all_tweets_from_user(provider.username)
+      infos.get_all_tweets_to_user(provider.username)
+    end
   end
 end

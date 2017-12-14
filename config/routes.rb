@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'providers#create'
 
+  mount ActionCable.server, at: '/cable'
+
   authenticate :user, lambda { |u| u.admin } do
     mount Sidekiq::Web => '/sidekiq'
   end

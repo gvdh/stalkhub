@@ -36,10 +36,11 @@ class ProvidersController < ApplicationController
     user_id = current_user.id
     @provider = Provider.create!(
       name: "twitter",
-      user: current_user
+      user: current_user,
+      username: username
     )
     provider_id = @provider.id
-    TwitterJob.perform_later(username, user_id, provider_id)
+    #TwitterJob.perform_later(username, user_id, provider_id)
   end
 
   def create_google(params)

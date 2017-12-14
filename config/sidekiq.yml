@@ -18,3 +18,7 @@
 :verbose: true
 :queues:
   - default
+:schedule:
+  twitter_worker:
+    every: 15s
+    class: TwitterJob

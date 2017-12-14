@@ -22,14 +22,13 @@
     <%= render 'shared/privacy_filter' %>
   <% end %>
   <div id="container-reduced">
-
-    <% if @results.size < 1 %>
-      <div>
-        <p>There is no result at this moment</p>
-      </div>
-    <% else  %>
+    <div class="grid">
+      <% if @results.size < 1 %>
+        <div class="no-results">
+          <p>There is no result at this moment</p>
+        </div>
+      <% else  %>
       <!-- Muuri grid -->
-      <div class="grid">
         <% @results.each do |result|  %>
           <div class="item">
             <div class="item-content">
