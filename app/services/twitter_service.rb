@@ -47,7 +47,7 @@ class TwitterService
           total_likes: tweet.retweet_count,
           provider: @provider,
           user: @user,
-          category: "twitter-to",
+          category: "twitter-from",
           text: tweet.text,
           created_time: tweet.created_at,
           avatar: tweet.user.profile_image_url_https,

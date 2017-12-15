@@ -1,4 +1,4 @@
-const options = {
+var options = {
 
   // Item elements
   items: '*',
@@ -79,8 +79,8 @@ App.cable.subscriptions.create({channel: "TwitterChannel", id: "1"},
     console.log('disconnected');
   },
   received: function(data) {
-    const grid = document.querySelector('.grid');
-    const noResults = document.querySelector('.no-results');
+    var grid = document.querySelector('.grid');
+    var noResults = document.querySelector('.no-results');
 
     if (noResults) {
       grid.removeChild(noResults);
