@@ -1,18 +1,3 @@
-# $redis = Redis.new
-
-# url = ENV["REDISCLOUD_URL"]
-
-# if url
-#   Sidekiq.configure_server do |config|
-#     config.redis = { url: url }
-#   end
-
-#   Sidekiq.configure_client do |config|
-#     config.redis = { url: url }
-#   end
-#   $redis = Redis.new(:url => url)
-# end
-
 :concurrency: 3
 :timeout: 60
 :verbose: true
@@ -20,5 +5,5 @@
   - default
 :schedule:
   twitter_worker:
-    every: 15s
+    every: 30s
     class: TwitterJob
